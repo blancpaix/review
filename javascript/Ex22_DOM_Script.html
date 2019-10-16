@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload = function () {
+			var menode;
+			menode = document.getElementById("me");
+			menode.style.backgroundColor="yellow"; 	// id가 me 인 부분 찾아서 색을 바꿈style = 
+
+			var parentnode = menode.parentNode	// body
+			parentnode.style.backgroundColor = "skyblue";	// 부모의 바탕색을 바꿈
+
+			var grandnode;
+			grandnode = parentnode.parentNode;	// html
+			grandnode.style.backgroundColor = "lightgray";
+
+			var my = document.getElementById("mychild");
+			console.log(my);
+			console.log(my.firstChild.nodeName);		// 태그이름 li 불러옴
+			console.log(my.firstChild.innerText);		// li. div, p value 가 없어요
+			console.log(my.firstChild.nextSibling.innerText);	// 계층 트리기 때문에 가능한것
+
+			console.log(my.childNodes);
+			console.log(my.childNodes.length);
+			console.log(my.lastChild.innerText);
+			
+			
+
+			for (var index in my.childNodes) {
+				var text = my.childNodes[index].innerText;
+				console.log("text : " +text);
+			}
+
+			// 포문 지금 당장 외우세요
+			for (var i = 0; i< my.childNodes.length; i++) {		// 인덱스를 확인하고 사용하게요. 여기서는 이걸 쓰는것이 맞습니다.
+				console.log(i);
+				var text = my.childNodes[i].innerText;
+				console.log(text);
+			}
+			// Node 가 Element 보다 더 많은 자원을 가지고 있다?? &&&&&&&&
+
+			// 이벤트를 직접 할당할 수 있다! 
+			// event Handler 라고도 합니다.. 그냥 함수라고 생각하면 될듯?
+
+		}
+	</script>
+</head>
+<body>
+	<div>A</div><div>B</div><div id="me">C</div><div>D</div><div>E</div>
+	<ul id="mychild"><li>AA</li><li>BB</li><li>CC</li></ul>
+</body>
+	<script type="text/javascript">
+	</script>
+</html>

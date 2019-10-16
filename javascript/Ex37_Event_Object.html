@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 핸들러</title>
+ 
+</head>
+<body>
+    <form id="frm">
+        <fieldset>
+            <legend>주소록</legend>
+            <textarea name="txt" id="txt" cols="30" rows="10"></textarea><br>
+            <input type="submit" id="q" value="불러오기">
+        </fieldset>
+    </form>
+ 
+    <script>
+        var address = ["김철수", "email: kcs@gmail.com"];
+ 
+        // 폼 객체 지정
+        var q = document.getElementById('frm');
+ 
+        function addr_search(event){
+            var textarea = q.txt;
+ 
+            // textarea에 주소록 표시
+            textarea.value = '이름 / 주소 \n';
+            textarea.value += address[0] + ', ' + address[1] + '\n';
+            // submit 하려면
+            document.frm.submit(); // 이런식으로 날리면 전송기능 쓸 수 있음
+        }
+ 
+        // 폼 제출시
+        q.addEventListener('submit', function(event){
+            event.preventDefault();    // 기본 이벤트 해제     // 전파를 막는 (캡쳐링, 버블링)의 stop propagation??? 이거는 기본 submit의 강제로 보내는 기능을 막아버림  preventDefault() 이게 그거임.
+            addr_search();    // 주소록 불러오기
+            // submit 에 함수를 태우는것임 이거는...
+        });
+    </script>
+</body>
+ 
+</html>

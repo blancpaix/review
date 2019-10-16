@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Java script 문법</title>
+	<script type="text/javascript">
+	/*
+		- 변수 생성 > 타입 설정 > 초기화
+		- 모든 변수의 타입 > var, let, const	// (let, const : ES6 부터 지원)
+			let은 함수 안에서 주로 사용 (var을 함수안에서 사용시 오류날 수 있음)
+		- String, Number 타입은 존재하지 않아요
+		- JAVA : int age, String name
+		- var name; >> 타입이 정의되지 않아요
+		- ename = "홍길동"; >> 현재 ename 의 타입은 String
+		- ename = 100;	>> 현재 ename 의 타입은 Number
+		- 초기화 시에 자신의 타입을 결정
+		- javascript (정수, 실수, boolean, 문자)
+		- 내부적으로 Number, boolean, array, Object ....
+		
+		변수의 범위 : PAGE >> Function >>  
+	*/
+	
+	var a;
+	console.log(a);
+	a = 100;
+	console.log(a);
+	console.log(typeof(a));
+	
+	var i, j;	// 변수 여러개 동시 선언 가능
+	i = 100;
+	j = 200;
+	var result = i+j;
+	console.log(result);
+	
+	var intnum = 100;	// 정수		=> number type
+	var dnum = 12.345;	// 실수		=> number type
+	var flag = true;	// boolean
+	var str = null;		// 값이 없다	=> Object type
+	var str2 = "ABC";	// 문자열 (문자라는 개념이 없어요) || 'ABC' 도 가능
+	
+	console.log(typeof(intnum));
+	console.log(typeof(dnum));
+	console.log(typeof(flag));
+	console.log(typeof(str));
+	console.log(typeof(str2));
+	
+	// es6 let, const 따로 정리할게요
+	
+	// 연산자		(자바를 배웠기에 편하게 할 수 있음)
+	// 산술 (+, -, /, *, %)
+	var num1 = 10;
+	var num2 = 3;
+	document.write(num1/num2 +"<br>")
+	document.write(num1%num2 +"<br>")
+	
+	// 관계(==, ===, !=, >=, <=)	||	===은 ==보다 더 새미랗ㅁ
+	var a = 3;
+	var b = 5;
+	document.write((a == b) + "<br>") ;
+	document.write((a != b) + "<br>") ;
+	document.write((a >= b) + "<br>") ;
+	document.write((a <= b) + "<br>") ;
+	
+	// 논리 (&& and, || or) 
+	document.write((10 >= 5) && (1 != 3)+"<br>");	// true + true = true
+	document.write((10 >= 5) || (1 != 3)+"<br>");	// true + false = true;
+	
+	
+	// 삼항연선자
+	var result2 = (4 % 2 == 0) ? "22222" : "짝수";	// 유동적인 타입으로  String/int 가 들어갈 수 있음
+	document.write("<br>" + result2 + "<br>")
+	
+	// 대입 연산자 (+=, -=, *=, /=)
+	var p = 10;
+	var k = 5;
+	// p = p + k;
+	p+=k;
+	document.write("결과 : " + p);
+	
+	// Number와 String 동시 연산시 String이 우선
+	var x = 5 + 5;			// 10
+	var y = "5" + 5;		// 55
+	var z = "Hello" + 5;	// Hello5
+	var v = "5";
+	var v2 = 5;
+	document.write("adaf: " + v == v2 );	// true
+	document.write("adag: " + v === v2 );	// false
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

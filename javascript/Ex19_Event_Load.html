@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EVENT & LOAD</title>
+<script type="text/javascript">
+	/*
+	onload 이벤트 발생 시점 : body 태그 안에 있는 모든 요소(태그) 브라우저에 loading 되고 나서 발생
+	<body onload=call()>
+	window.onload = call() 코드도 가능
+
+	function aa();	// 필요할때 아무나 호출 => 재사용 가능
+
+	*/
+	function call() {	}		// 굉장히 중요함?? &&&&&&&&
+	// 원래는 이렇게 쓰는게 맞는데 한번만 쓰고 안 쓰기때문에 아래방식으로 사용
+	window.onload = function() {	// 함수의 이름이 없다 (익명함수 :일회성) : 재활용 ( X )
+		// page 모든 요소가 loading 된 후에 함수가 자동실행
+		// body 태그 제어 가능
+		var out="";
+		out+="<ul>";
+			out+="<li>javasciprt</li>";
+			out+="<li>jquery</li>";
+			out+="<li>vue</li>";
+		out+="</ul>";
+
+		document.body.innerHTML=out;		// Overwrite 개념
+
+		var header = document.createElement("h1");
+		// <h1></h1>	태그로 묶는거고
+		var textnode = document.createTextNode("Hello");
+		// Hello 		값으로 묶는거고
+
+		header.appendChild(textnode)	// 자식으로 textNode 를 주겠다
+		
+		document.body.appendChild(header);
+
+		// img 태그 생성하고 src 속성 만들고 body 자식으로 append
+		var img = document.createElement("img");	// 이것은 <img> 태그 만듦
+		img.setAttribute("src", "img/good.png");	// <img src="img/good.png">
+		img.setAttribute("width", '200px');
+		img.setAttribute("height", '175px'); // <img src="img/good.png" width="200px" height="175px">
+		document.body.appendChild(img);		
+
+	}
+
+</script>
+</head>
+<body>
+	HELLO WORLD!
+</body>
+</html>

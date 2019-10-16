@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>유효성 검증</title>
+	<script type="text/javascript">
+		// 유효성 검증			// 웹은 비연결 프로그램
+		// 1. Client 서버전송 >> 서버 검증 >> 검증 여부 Client 보낸다	 => ex) ID 중복확인
+		// 2. Client 검증 >> 검증 완료 시 서버 전송 >> 서버 반영			 => ex) 
+		// 최대한 할 수 있는 부분은 2번... 서버 전송 수를 줄인다 (POINT)		Client의 browser가 똑똑해져야함
+		
+		// 2번 javacript 담당
+		// 유효성 체크
+
+		//&&&&&&&&&& name="txtuserid" name 속성이 없으면 서버는 값을 받지 못합니다 &&&&&&&&&&&&		
+		// id는 클라이언트, name은 서버와 연동을 목적으로 함
+
+		function send() {
+			// var element = document.forms[0].elements[0].values;
+			// form이 name 속성이 있다면
+			var inputuserid = document.loginform.txtuserid;
+			// inputuserid .> <input type=text" name="txtuserid">
+			console.log(inputuserid);
+			console.log(inputuserid.value);
+			
+			// DOM Script 사용하기 위해서는 form에 id 값을 설정하여 사용
+			var userpwd = document.getElementById("txtpwd")
+			console.log(userpwd);
+			console.log(userpwd.value);
+			// DOM 이 훨씬 편하니까 최종적으로 쓰는것
+			
+			// 검증 (여러분 원하는대로.. )
+			if(inputuserid.value == "" || !(inputuserid.value.length >= 3 && inputuserid.value.length <= 10)) {
+				alert("다시입력");
+				document.loginform.txtuserid.focus();		// inputuserid.focus(); 로 써도 됨 
+				inputuserid.select();			// select 는 전체를 블럭으로 잡아주는거라는데??? 뭐임??
+			} else {
+				alert("검증완료");
+				// 서버로 전송하는 코드를 여기서 만듦....
+				
+				document.loginform.action = "Ex09_login.jsp";
+				document.loginform.submit();		// form >> submit() 내장 >> 호출
+			}
+		}
+			
+	</script>
+</head>
+<body>
+	<form action="" method="get" name="loginform">
+		ID : <input type="text" name="txtuserid"><br>
+		PWD : <input type="password" name="txtpwd" id="txtpwd"><br>
+		<input type="button" value="전송" onclick="send()">
+		<!--  출항을 결정하는 선장역할을 하는 것
+		type="submit"
+		type="image"
+		type="button" >> 별도의 함수가 필요 (함수 내부 submit)
+		-->
+	</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click "Try it" to execute the displayDate() function.</p>
+
+<button id="myBtn">Try it</button>
+<button id="myBtn2">Try it2</button>
+
+<p id="demo"></p>
+
+<script>
+/*
+주의사항
+document.getElementById("myBtn").onclick = displayDate();
+실제 이벤트 발생시 dispalyDate() 호출하는데
+해석될때 dispalyDate(); 호출합니다....
+
+그래서! displayDate() 말고 displayDate 씁니다
+ */
+document.getElementById("myBtn").onclick = displayDate;
+	// 해석하기만 하고 일단 쟁여놓음
+// document.getElementById("myBtn2").onclick = displayDate();
+	해석하면서 바로실행됨
+function displayDate() {
+  document.getElementById("demo").innerHTML = Date();
+}
+</script>
+
+</body>
+</html> 

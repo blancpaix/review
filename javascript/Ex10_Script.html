@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>javascript (문자열, 숫자) 함수</title>
+	<script type="text/javascript">
+		var str = "10+20+30";
+		document.write(str+"<br>");
+		
+		// 1. eval()
+		// 문자형 수식을 계산 >> "10+20A+30" (X)
+		// 문자형 숫자 -> 숫자
+		document.write("eval()" + eval(str) + "<br>");
+		
+		// 2.isNaN >> Not a Number -> true (너 숫자 아니니), false (숫자)
+		document.write(isNaN("12345")+ "<br>");		// F 숫자
+		document.write(isNaN("12345A")+ "<br>");	// T 문자
+		document.write(isNaN("대한민국")+ "<br>");		// T 문자
+		document.write(isNaN('12345')+ "<br>");		// F 숫자
+		
+		// https://www.w3schools.com/jsref/jsref_obj_string.asp
+		// 문자열 함수 학습하기 (필요하면 찾아보세요)
+		
+		// https://www.w3schools.com/jsref/jsref_obj_number.asp
+		// 숫자 함수 학습하기 (찾아서 적용할 수는 있어야 함>)
+		/*
+		Method 				| Description
+		isFinite() 			| Checks whether a value is a finite number
+		isInteger() 		| Checks whether a value is an integer
+		isNaN() 			| Checks whether a value is Number.NaN
+		isSafeInteger() 	| Checks whether a value is a safe integer
+		toExponential(x) 	| Converts a number into an exponential notation
+		toFixed(x) 			| Formats a number with x numbers of digits after the decimal point
+		toLocaleString() 	| Converts a number into a string, based on the locale settings
+		toPrecision(x) 		| Formats a number to x length
+		toString() 			| Converts a number to a string
+		valueOf() 			| Returns the primitive value of a number
+		*/
+		
+		var i = "100";
+		var j = "200";
+		document.write("결합 : "+(i+j));		// java, javascript +(산술, 결합)
+		document.write("<br>숫자 변환 : " + (Number(i)+ Number(j)));
+		
+		
+		
+		// Javascript Event
+		
+		function focusFunction() {
+			document.getElementById("myinput").style.background = "yellow";
+		}
+		function blurFunction() {
+			document.getElementById("myinput").style.background = "red";
+		}
+		function selectTag(){
+			//onChange>> select 태그의   option 선택
+			alert(document.myform.sel.value);
+		}
+		
+		// POINT (this 활용)			&&&&&&&&&&&&&&&&
+		function changeColor (obj) {
+			console.log(obj)
+			obj.style.backgroundColor="gold";		// Javascript에서 css를 적용하는 방법
+			// 내부적으로 style="background-color:gold;"
+		}
+		function changeColor2 (obj) {
+			console.log(obj)
+			obj.style.backgroundColor="white";
+			
+		}
+		
+		// onload, onmouseover, 	onblur, 		onfocus, 		onclick 등등 사용할 줄 알면 좋음
+		// 모름...	마우스가 위에 있으면, 마우스가 위치에서 나가면, 마우스 커서가 입력되면, 클릭되면
+		
+		// onload="alert('finished HTML ELE loading\n the page')"
+	</script>
+	
+</head>
+
+<body>
+
+	<form action="#" name="myform">
+		<input type="text" id="myinput" name="myinput" onblur="blurFunction()" onfocus="focusFunction()">
+		<select name="sel" onchange="selectTag()">
+			<option value="A">AA</option>
+			<option value="B">BB</option>
+			<option value="C">CC</option>
+			<option value="D">DD</option>
+			<option value="E">EE</option>
+		</select>
+		<hr>
+		<!-- 
+		** this POINT
+		onmouseover = changeColor(this)"
+		this는 input type=text 태그를 의미
+		 -->
+		<input type="text" onmouseover="changeColor(this)" onmouseout="changeColor2(this)">
+		<br>
+		<input type="text" onkeypress="alert('이새끼가??')">
+		<br>
+		<input type="text" value="1000A" name="money">
+	</form>
+	
+</body>
+
+	<script type="text/javascript">
+	/*
+		아래 코드는 onload 에서 실행
+		onload는 body안에 있는 모든 요소 실행 후 실행
+	*/
+		var data = document.myform.money.value;
+		document.write(isNaN(data + "<br>"));		// true 문자 (1000A) // false 숫자 (1000)
+	</script>
+	
+</html>

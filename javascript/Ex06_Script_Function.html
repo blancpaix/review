@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>사용자 정의 함수 : 내장함수</title>
+	<script type="text/javascript">
+		// java : public void print() {}
+		// 		  public String pirint() {return "";}
+		// 		  public int print(int num, int num2) {return num+num2;}
+		
+		// Javascript
+		// function 함수이름 () {} >> void (x), return type(x)
+		
+		// 함수는 반드시 호출에 의해서만 실행
+		function callConfirm() {	// 사용자 정의 함수
+			if (window.confirm("작업내용")) {		//confirm의 return type : boolean type
+				// confirm 내장함수	// 확인, 취소 (true, false) 리턴
+				window.alert("삭제합니다!");
+			} else {
+				alert("취소합니다!");	// 내장함수
+			}
+		}
+
+		function showPopup() {		// open() : 내장 함수
+			window.open("Ex06_Popup.html", "zipcode", "width=200, height=300"); 
+			// window.open(URL, name, specs, replace)
+			// window.close() >> close the correct window
+			// https://www.w3schools.com/jsref/met_win_open.asp
+			// specs 브라우저마다  지원 여부가 다름. [위의 사이트 참조하여 사용]
+			// sepcs : 주소창, 창의 크기 옵션
+		}
+		
+		function myFunction() {
+			var mywindow = window.open("Ex06_Popup.html", "zipcode", "width=200, height=300"); 
+			// mywindow 현재의 팝업창을 의미함
+			mywindow.document.write("<p> this is 'msgWindow'</p>")
+		}
+		
+		// java : public String goUrlTime(String url) { return "" }
+		function goUrlTime (url) {		// 함수의 parameter는 변수명만 씀 (타입따윈 안씀) : url, a, b...
+			window.setTimeout("location.href='"+url+"'", 3000);	// 일정 시간이 되면 호출되는 함수(3초)
+			// locaton.href="http://www.daum.net"	이 코드가 실행되면 특정 url 로 이동
+			// ex) 우리사이트 공사중...  5초후 다른화면으로 이동함
+			return; // 쓰려면 쓰고 필요없으면 안쓰고
+		}
+		
+		// function 함수이름(a,b,c,d,e) {	}
+		function myfun(a,b) {
+			return a+b;
+			
+		}
+		var result = myfun(100, 200)	// script 내부에서 함수 호출
+		console.log("myfun : " + result);
+		
+		// 익명 함수  (함수의 주소를 리턴 객체...)			 1회성 함수
+		changeColor = function() {		// function 이름 { }
+			window.document.bgColor="silver";
+			window.document.fgColor="blue";
+		}
+		
+	</script>
+</head>
+<body>
+	<h3>내장 함수와 사용자 정의 함수 사용하기</h3>
+	<button onclick="callConfirm()">클릭 사건 발생 => 함수(핸들러) 호출</button>
+	
+	<br>
+	<button onclick="showPopup()">팝업창</button>
+	
+	<br>
+	<button onclick="myFunction()">팝업 Test</button>
+	
+	<br>
+	<button onclick="goUrlTime('http://www.daum.net')">주소 이동</button>
+	
+	<br>
+	<button onclick="myfun()">함수 Test2</button>
+	
+	<br>
+	<button onclick="changeColor()">익명 함수</button>
+	
+</body>
+</html>

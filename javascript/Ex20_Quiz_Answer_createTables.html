@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		table{width: 100%}
+		table,tr,th,td {border: 1px solid; border-collapse: collapse;}
+		td{background-color: gold; text-align: center;}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			document.getElementById("b1").onclick =function(){
+				//동적으로 생성되는 테이블
+				var intRow = parseInt(document.getElementById("txtrow").value);
+				var intColumn = parseInt(document.getElementById("txtcolumn").value);
+				
+				var eletable = document.createElement("table");
+				eletable.setAttribute("id", "Tab");
+				//<table id="Tab"></table>
+				
+				for(var i = 0 ; i < intRow ; i++){
+					var elerow = document.createElement("tr");
+					//<tr></tr>
+					for(var j = 0 ; j < intColumn ; j++){
+						if( i == 0){ //첫행 ...<tr><th></th><th></th></tr>
+							var eCell = document.createElement("th");
+							var eText = document.createTextNode((i+1)+"행" + ","+(j+1)+"열");
+							eCell.appendChild(eText);
+							elerow.appendChild(eCell);
+							//<tr><th>1행1열</th></tr>
+						}else{ //두번째행 ...<tr><td></td><td></td></tr>
+							var eCell = document.createElement("td");
+							var eText = document.createTextNode((i+1)+"행" + ","+(j+1)+"열");
+							eCell.appendChild(eText); // 추가
+							elerow.appendChild(eCell);
+						}
+					}
+					//tr 생성시 
+					eletable.appendChild(elerow); //Table tr add
+				}
+				//body 
+				document.getElementById("div").appendChild(eletable);
+				
+			}
+			document.getElementById("b2").onclick =function(){
+				//생성된 테이블 삭제
+				//table id 속성이 있다면
+				
+				//var tab = document.getElementById("Tab");  //하나의 요소만 가지고 와요 (제일 먼저 만나는 녀석)
+				//console.log(tab);
+				//document.getElementById("div").removeChild(tab);
+				
+				//Table  id 속성이 없다면
+				//document.getElementById(id) >> id 식별자 <div id="mydiv">
+				// var array = document.getElementsByTagName("table") // >> 모든 <p> , 모든 <div> 
+				
+				//document.getElementsByName(name)
+				//document.getElementsByClassName(name)
+				var tables = document.getElementsByTagName("table");
+				console.log(tables);
+				console.log(tables.length);
+				console.log(tables[tables.length-1]);
+				
+				//마지막에 생성된  Table 부터 삭제
+				if(tables.length > 0){
+					document.getElementById("div").removeChild(tables[tables.length -1]);
+				}else{
+					alert("모두 삭제 되었습니다");
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="div">
+			행의수 : <input type="text" id="txtrow" name="txtrow" value="2"><br>
+			열의수 : <input type="text" id="txtcolumn" name="txtcolumn" value="2"><br>
+			<input type="button" id="b1" value="동적테이블 생성" >
+			<input type="button" id="b2"  value="동적테이블 제거" >
+	</div>
+</body>
+</html>

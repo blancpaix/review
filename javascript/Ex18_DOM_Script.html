@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+When a web page is loaded,
+the browser creates a Document Object Model of the page.
+
+The HTML DOM model is constructed as a tree of Objects:
+	
+    JavaScript can change all the HTML elements in the page
+    JavaScript can change all the HTML attributes in the page
+    JavaScript can change all the CSS styles in the page
+    JavaScript can remove existing HTML elements and attributes
+    JavaScript can add new HTML elements and attributes
+    JavaScript can react to all existing HTML events in the page
+    JavaScript can create new HTML events in the page
+
+	위와 같은 작업 가능
+
+	id="demo" :  같은 page, 같은 id 이름을 가지면 안됌
+	id="demo2"
+*/
+</script>
+</head>
+<body>
+	<div id="demo">
+		첫번째 요소
+	</div>
+	<div id="demo">
+		두번째 요소	(계층 트리 형태 첫번째 id = demo 찾으면 stop 함... id 같은것을 여러번 쓰지말라고 식별자를 씀)
+	</div>
+
+</body>
+<script type="text/javascript">
+	var ele_dev = document.getElementById("demo");		// id가 같은 것이 2개가 있음 어찌함? 
+	console.log(ele_dev);
+	ele_dev.innerHTML = "<b>Hello World!</b>"	//블록태그는 value 가 없어서 innerHTML 사용해서 값에 접근함
+
+	// 이 스크립트 코드가 호출 되기 이전에 물리적으로 쓰고싶다면??? 함수화 + onload 사용
+</script>
+</html>

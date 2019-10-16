@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		var myTime = window.setInterval(function() { 	//익명함수, 1회성(재사용성 X) 
+				// javascript 다양한 객체 (Date 객체)
+				// Date d = new Date();		JAVA
+			var d = new Date();
+			var t = d.toLocaleTimeString();
+				// DOM script (메모리상에 만들어진 HTML 모델에 접근)
+			document.getElementById("time").innerHTML=t;
+				/*
+				실제로 브라우저 메모리에 올라가고 트리형태로 만들어짐..
+				<html>
+				 <head>
+				  <body>
+				   <div>
+				     ..... 이런식으로 메모리에 전부 올려놓는 것을 DOM 이라고 한대요..
+				*/
+		}
+		, 1000)	// 1000ms 1초마다 익명함수를 실행해라
+		
+		function myTimeStop() {
+			window.clearInterval(myTime);
+		}
+		
+	</script>
+</head>
+<body>
+	<p id="time"></p>
+	<button onclick="myTimeStop()">Stop Time</button>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<!-- 
+	한번 클릭하면 모든 체크박스를 체크하는 방법?
+	checked="checked" 활용
+	?list=java&list=oracle&....	 -->
+	
+	<script type="text/javascript">
+		var checkflage = "false";		// global (전역 : 현재 페이지에서 사용 가능) 변수 
+		function checkForm() {
+			var list = document.myform.list;
+			// list 타입 : Array
+			// console.log(list);
+			// console.log(list.length);
+			if(checkflag == "false") {
+				for (var index in list) {
+					list[index].checked = true;
+					// input checked 부여
+				}
+				checkflag="true";
+				return "[선택해제하기]";
+			} else {
+				for (var index in list) {
+					list[index].checked = false;
+					// input checked 부여
+				}
+				checkflag = "false";
+				return "[전체선택]";
+			}	
+		}
+		
+		function checkForm2(list) {
+			console.log(list);	// 무슨기능임???
+		}
+		
+	</script>
+	
+</head>
+<body>
+	<form action="" name = "myform">
+		좋아하는 과목은 : <br>
+		<input type="checkbox" name="list" value="java" checked="checked">JAVA <br>
+		<input type="checkbox" name="list" value="oracle">ORACLE <br>
+		<input type="checkbox" name="list" value="html">HTML <br>
+		<input type="checkbox" name="list" value="css">CSS <br>
+		<input type="checkbox" name="list" value="javascript">JAVASCRIPT <br>
+		
+		<input type="button" value="[전체선택]" onclick="this.value=checkForm()">
+		
+		<input type="button" value="[전체선택]" onclick="this.value=checkForm2(this.list)">
+	</form>
+</body>
+</html>

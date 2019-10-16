@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript addEventListener()</h2>
+
+<p>This example uses the addEventListener() method to add two click events to the same button.</p>
+
+<button id="myBtn">Try it</button>
+
+<script>
+var x = document.getElementById("myBtn");
+x.addEventListener("click", myFunction);
+x.addEventListener("click", someOtherFunction);
+x.addEventListener("click", someOtherFunction3);
+
+function myFunction() {
+  alert ("Hello World!");
+}
+
+function someOtherFunction() {
+  alert ("This function was also executed!");
+}
+function someOtherFunction3() {
+	  alert ("Bye Bye~!");
+	}
+	
+	/*
+	script>
+	var x = document.getElementById("myBtn");
+	x.addEventListener("mouseover", myFunction);
+	x.addEventListener("click", mySecondFunction);
+	x.addEventListener("mouseout", myThirdFunction);
+	
+	function myFunction() {
+	  document.getElementById("demo").innerHTML += "Moused over!<br>";
+	}
+	
+	function mySecondFunction() {
+	  document.getElementById("demo").innerHTML += "Clicked!<br>";
+	}
+	
+	function myThirdFunction() {
+	  document.getElementById("demo").innerHTML += "Moused out!<br>";
+	}
+	/script>
+	==============================
+	
+	이벤트 추가와 제거하기
+
+	script>
+	document.getElementById("myDIV").addEventListener("mousemove", myFunction);
+
+	function myFunction() {
+	  document.getElementById("demo").innerHTML = Math.random();
+	}
+
+	function removeHandler() {
+
+	document.getElementById("myDIV").removeEventListener("mousemove", myFunction);
+	}
+
+	/script>
+	
+	*/
+	
+</script>
+
+</body>
+</html>

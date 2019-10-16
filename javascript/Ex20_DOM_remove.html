@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.democlass {
+	color: red;
+}
+</style>
+</head>
+<body>
+
+	<h1 class="democlass">Hello World</h1>
+	<h1 class="democlass">Hello World</h1>
+	<h1 class="democlass">Hello World</h1>
+	<p id="demo">Click the button to remove the class attribute from
+		the h1 element.</p>
+
+	<button onclick="myFunction()">Try it</button>
+
+	<script>
+		function myFunction() {
+			//document.getElementsByTagName("H1")[0].removeAttribute("class"); 
+			var arr = document.getElementsByTagName("H1");
+			for ( var index in arr) {
+				arr[index].removeAttribute("class");
+			}
+		}
+	</script>
+
+</body>
+</html>
+

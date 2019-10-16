@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>안녀형~ 이제는 안녕 JavaScript</title>
+		<script>
+		/*
+			javascript ( 언어 : Web : 코드 해석은 웹브라우저(해석기-엔진?/parser) : 라인단위 해석 (interpreating language) )
+			javascript ( 객체지향언어 : class, 상속, 다형성, 재사용성... 특성 가짐 )
+			문법이 엄청 유연한게.... 좋지않음..
+			
+			javascript 사용
+			1. html 의  content, attribute [변경, 삭제, 추가] (동적으로)
+			2. css 속성 [변경, 삭제, 추가] (동적으로)
+			3. 유효성 검증 (6글자 제한 등 정규표현식같은것을 유효성이라하네? id, 주민번호 검증)
+			4. 동적인 웹 페이지 
+			5. 전 세계적으로 1위
+				-javascript >> framework () => 쉽게 만들어줌 (50 > 2 줄)
+							>> 대표적 framework : jquery.js >> angular.js ( back|MVC ) 
+							>> node.js ( java 대체|back 구현가능[db연동, etc.] : server 구현 가능)
+							>> vue.js >> react.js >> 전세계적으로 js 엄청 많음...
+							장점 : 개발시간 단축, 유지보수 편함
+							단점 : 종속(library) >> javascript 기본이 되어야 노예에서 벗어남
+			6. 문법
+				-1. 대소문자를 엄격하게 구분
+				-2. 종결자 (;)
+				-3. 타입 ( var, let, const ), 연산자, 제어문, 객체....
+				참고) java 와 코드가 유사 (제어문)
+			7. 사용법 (css 동일 : common.css)
+				-in-line (태그 방식 : <p onclick="<script><//sciript>"> </p>)
+				-internal	(page 안에서 <head> <script> <//script> <//head>.. <body>안쪽 )
+				-external	(common.js) -> link 방식으로 사용				
+							
+		*/
+		
+		function call() {
+					alert("internal");
+		}
+			
+		</script>
+		
+		<script type="text/javascript" src="script/common.js"></script>
+		
+	</head>
+	<body>
+		<h3> in-line </h3>
+			<input type="button" value="inline" onclick="alert('메롱!')">
+			
+		<h3> internal </h3>
+			<input type="button" value="internal" onclick="call()">
+		
+		<h3> internal </h3>
+			<input type="button" value="external" onclick="excall()">
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+
+		var index = 1;
+
+		window.onload = function(){
+			var myphotos = ["img/1.jpg",
+							"img/2.jpg",
+							"img/3.jpg",
+							"img/4.jpg",
+		                   ] 	// int[] arr = new int[]{10,20,30}						
+			}
+
+		document.getElementById("prv").onclick = function() {
+			if (index == 1 ) {
+				index =4;
+			}
+			for (var i=index; i>index-1; i--) {
+				var crImg = document.creteElement("img");
+				crImg.setAttribute("src", '"img"+i+".jpg"');
+				crImg.setAttribute("id", "imgs");
+				crImg.setAttribute("width","200");
+				crImg.setAttribute("height", "200");
+				crImg.setAttribute("alt", "이미지");
+				body.appendChild(crImg)
+			}
+		}
+
+		document.getElementById("next").onclick = function() {
+			if (index == 4 ) {
+				index =1;
+			}
+			for (var i=index; i<index+1; i++) {
+				var crImg = document.creteElement("img");
+				crImg.setAttribute("src", "img"+i+".jpg");
+				crImg.setAttribute("id", "imgs");
+				crImg.setAttribute("width","200");
+				crImg.setAttribute("height", "200");
+				crImg.setAttribute("alt", "이미지");
+				body.appendChild(crImg);
+			}
+		}
+		
+			                     
+			//console.log(myphotos[2]);
+			//img  id="imgs" 의 src 속성값을        myphotos의 값으로                
+			//var img =.....
+			//img.src = ...
+			//img.setAttr ....(name,value)
+			//myphotos[index]
+			
+			//이전 구현
+			//이전 onclick 이벤트 (익명함수 )사용해서 ......
+			
+			
+			//다음 구현
+			//다음 onclick 이벤트(익명함수)사용해서 ......
+			//id prv onclick 이벤트 .....
+		
+		}
+	</script>
+</head>
+<body>
+	<h3>DOM 슬라이드</h3>
+	<img src="img/1.jpg" id="imgs" width="200" height="200" alt="이미지">
+	<hr>
+	<a href="#" id="prv">이전</a>||<a href="#" id="next">다음</a>
+</body>
+</html>

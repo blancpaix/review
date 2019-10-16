@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title> DOM 을 사용하는 javaScript </title>
+	<script type="text/javascript">
+		function print () {		// 이게 DOM 이라는데 뭐임??
+			var element = document.getElementById("demo");	// 식별자로 찾는거라서 같은 이름이 존재하면 안됨
+			console.log(element);
+			element.innerHTML = "배고프다";
+		}	
+	</script>
+	</head>
+<body>
+	<button onclick="print()">클릭하세요</button>
+	<p id="demo">demo p태그 구분하는 식별자 </p>
+	
+</body>
+</html>

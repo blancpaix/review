@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		// javasciprt 해석 >> 결과 >> 출력 >> 웹브라우저
+		// 웹브라우저
+		// window.alert
+		// window 내장객체 (브라우저 가 사용(가지고있음))
+		window.document.write("방가방가<br>");
+		//귀찮으니까 windows 객체 생략 
+		document.write("window 객체 생략 가능<br>");
+		
+		console.log(10+10);
+		console.log("디버깅, 결과확인, 오류메세지");
+		
+		document.write("<b>Hello World</b><br>");
+		document.write('<table border = "1">');
+		document.write('<tr><td>AA</td><td>BB</td></tr>');
+		document.write('</table>');
+		
+		var num;		// 타입을 정의하지 않아요 //indefined
+		num = 100;		// 값을 갖는 시점에 타입이 설정
+		console.log(typeof(num));		//udefinded ...number
+		
+		//var element = window.document.forms[0].elements[0];
+		//alert(element);
+		
+		/* 
+		Uncaught TypeError: Cannot read property 'elements' of undefined
+    	at Ex02_ScriptBasic.html:26
+    	
+    	페이지에 있는 코드가 순차적으로 실행
+    	var element = window.document.forms[0].elements[0];
+		form 만들어지기 전에 read 할려고 시도... [[[ 순서 ]]]
+		*/
+		
+		function data(){  //data() 함수 호출시에는 실행 ... 
+			var element = window.document.forms[0].elements[0];
+			alert(element);
+		}
+	</script>
+</head>
+<body>
+	<form action="#" method="get" name="myform">
+ 		ID:<input type="text" name="userid" value="hong"><br>
+ 		PWD:<input type="password" name="pwd" value="1111"><br>
+ 		<input type="submit" value="전송">
+	  </form>
+	  
+	  <input type ="button" value="클릭해봐" onclick="data()">
+	  
+</body>
+	<script>		// 스크립트는 html 어디에 들어가든 상관이 없습니다...
+		// form 생성된 후... 상관없음
+		var element = window.document.forms[0].elements[0];
+		// alert(element);
+		console.log("1번"+element);
+		console.log("2번"+element.value);
+		console.log("3번"+element.value.length);
+		
+		
+		//form 태그가 자신의 이름을 가지고 있다
+		// name = "myform"
+		// window.document.폼이읆.요소이름
+		// window.document.폼이름.요소이름.값
+		
+		var ele = window.document.myform.userid;
+		//ele 변수는 : <input type="text" name = "userid" value = "hong">
+		console.log("ele : "+ ele);
+		console.log("input userid : " + ele.value);
+		
+		var val = window.document.myform.userid.value;
+		console.log("val : " + val);
+		
+		console.log(typeof(val));
+		if (val.length < 5 ) {
+			alert("다시 입력햇");
+			ele.value = "";	
+		}
+		
+		
+	</script>
+</html>

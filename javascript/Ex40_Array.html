@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		// javascript Array : 정적 + Collection		(정적, 동적)
+		// Java : int[] arr = {10, 20, 30}; 고정배열 (정적)
+		// 		  Collection >> ArrayList list = new ArrayList();
+		// list.add(), list.get()	.....
+
+		var array = ['포도', '사과'];
+		var array0 = ['포도', '사과'];
+		array0 += ['수박'];
+		
+
+		document.write(array.toString() + "<br>");
+		document.write(array + "<br> toString() default" );
+
+		for (var i=0; i<array.length; i++) {
+			document.write(array[i] + "<br>");
+		}
+
+		array0[2] = "바나나";		// 동적배열 2번 index value 추가
+		document.write("<br>뭐임이건??<br>" +array0.toString() + " / " + array0.length +"<br>");
+
+		// 동적 기능 :
+		// array[0] >> 포도, array[1] >> 사과
+		// 방은 2개...		JAVA 는 이상태에서 방의 크기를 즉시 늘릴 수 없음
+		array[2] = "바나나";		// 동적배열 2번 index value 추가
+		document.write(array.toString() + " / " + array.length +"<br>");
+
+		array[10] = "애플망고";
+		document.write(array.toString() + " / " + array.length + "<br>");
+		document.write(array[9] + " / " + array.length + "<br>");
+		// 공간은 있는데 정의된  [타입]이 없다.....
+		array[9] = 100;
+		document.write(typeof(array[0])+ "<Br>");		// string
+		document.write(typeof(array[9])+ "<Br>");		// number
+		document.write("초기화 : " + array[9] + " / " + array.length + "<br>");
+
+		var array2 = ['one', 'two', 'three'];
+		document.write(array2.length + "<br>");	// 3
+
+		array2.length = 2;		// 강제로 3개에서 2개로 줄이면 어떻게 될까?
+		for (var index in array2){
+			document.write(array2[index] + "<br>");		// two 는 값이 날라가서 위험한것이라서 강제로 크기를 줄이는 행위는 위험합니다. 조심스럽게 사용하세요
+		}
+
+		array2.length = 4;		// 강제로 배열의 크기를 늘임
+		document.write(array2.toString() + " / " + array2.length + "<BR>");
+		document.write(array2[2] + "<BR>");	// undefined
+
+		// POINT &&&&&&&&&&&&&&&&&&&&&&
+		array2.push("Four")			// 자바에서 배운 Stack 구조와 동일
+		document.write("push : " + array2.toString() + "<BR>");
+		document.write("====================================<BR>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+
+
+		// 배열 선언시에.....
+		var list = [];
+		list.push("A");
+		list.push("B");
+		list.push("C");
+		list.push("D");
+		list.push("E");
+		
+		document.write(list.pop() + "<br>");
+		document.write(list.pop() + "<br>");
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

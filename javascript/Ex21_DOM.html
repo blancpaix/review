@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload = function() {	// onload 이벤트 발생시 익명함수 실행
+			var btnobj = document.getElementById("btnGetData");		// 필요에 따라서 기능을 실행하겠다???
+			//<onclick = "call()">
+			btnobj.onclick = function() {	// 버튼 클릭 이벤트 발생 시 익명함수 실행
+				var txtmsg = document.getElementById("textmessage");
+				var str = "";
+				str+="ID : " + txtmsg.getAttribute("id")	// id 라는 값의 [속성]을 가지고 와라
+				str+="\nVALUE : " + txtmsg.getAttribute("value");
+				str+="\nVALUE : " + txtmsg.value;
+				str+="\nLENGTH : " + txtmsg.value.length;
+				console.log(str);
+			}
+
+			document.getElementById("btnCreate").onclick = function() {		// 이런 코드가 익숙해지셔야 합니
+				var txtname = document.createElement("input");
+				txtname.setAttribute("type", "text");
+				txtname.setAttribute("id", "txtbox");
+				txtname.setAttribute("value", "홍길동");
+
+				document.body.appendChild(txtname);
+				
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<input type="text" id="textmessage" value="hello">
+	<input type="button" value="getInfo" id="btnGetData">
+	<hr>
+	<input type="button" value="동적생성" id="btnCreate">
+
+</body>
+</html>

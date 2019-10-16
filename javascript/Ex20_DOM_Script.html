@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload = function() {			// 이 함수 쓰는거는 외워두세요!
+			var pele = document.createElement("p");
+		var hrele = document.createElement("hr");
+		var h3ele = document.createElement("h3");
+		var divele = document.createElement("div");
+		var textnode = document.createTextNode("hello world!");
+		var textnode2 = document.createTextNode("HI Hi hi!");
+
+		// <hr title = "수평선">
+		hrele.setAttribute("title","수평선");
+
+		// <h3>hello world!</h3>
+		h3ele.appendChild(textnode);
+
+		// <div>HI Hi hi!</div>
+		divele.appendChild(textnode2);		// 여기서 나온 값이 밑으로 타고 드렁가는거가??
+
+		document.body.appendChild(pele).appendChild(divele); // HIHIHI! 인데 왜 나옴?
+
+		document.body.appendChild(pele).appendChild(h3ele);
+		// <body> <p> HI Hi hi! </p> </body>
+
+		document.body.appendChild(hrele);
+		// <body> <p> HI Hi hi! </p> <hr title="수평선"> </body>
+
+		document.body.appendChild(h3ele);
+		// <body> <p> HI Hi hi! </p> <hr title="수평선"> <h3> </body>
+
+		}
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

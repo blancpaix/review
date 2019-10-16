@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function evtproductor(frm) {
+			console.log(frm);
+			console.log(frm.productor.value);
+			console.log("index" + frm.productor.selectedIndex);
+			// seletecIndex 는 기본적으로 제공되는 속성
+
+			// select 태그는 option 태그 배열로 관리			// Radio box 는 배열로 관리하지 않습니다
+			
+			// select Tag 의 option value 들은 배열로 관리하기 때문에 index 사용 가능
+			// selectedIndex >> [0][1][2][3][4]...
+			// form[], elements[], options[]
+			
+			//console.log(frm.productor.options[0].value);
+			//console.log(frm.productor.options[0].text);
+			//console.log(frm.productor.options[frm.productor.selectedIndex].text);
+			//console.log(frm.productor.options[frm.productor.selectedIndex].value);
+			// Index 를 고정시키지 않으려면 위와 같이
+
+			var index = frm.productor.selectedIndex;
+			var text = frm.productor.options[index].text;
+			var val = frm.productor.options[index].value;
+
+			if (index === 0) {
+				frm.valProductor.value=""; // 우리가 굳이 선택할 필요가 없는것
+				frm.txtProductor.value="";
+			} else {			// else 를 탈때문 값을 뿌려주면 됨
+				frm.valProductor.value = val;
+				frm.txtProductor.value = text;
+			}
+		}
+
+		function evtBrand() {
+			// 파라미터 없이 위와 같은 기능을 구현해보세요!
+			var frm = document.frmdata;		// 폼을 가지고 와서 사용 &&&
+			var index = frm.brand.selectedIndex;
+			var text = frm.brand.options[index].text;
+			var val = frm.brand.options[index].value;
+
+			if (index === 0) {
+				frm.valBrand.value=""; // 우리가 굳이 선택할 필요가 없는것
+				frm.txtBrand.value="";
+			} else {			// else 를 탈때문 값을 뿌려주면 됨
+				frm.valBrand.value = val;
+				frm.txtBrand.value = text;
+			}
+		}
+
+	</script>
+</head>
+<body>
+모델별 최저가 검색<br>
+	<form name="frmdata">
+		<select  style="width: 200px" name="productor"  onchange="evtproductor(this.form)">
+			<option value="A000" selected>제조사</option>
+			<option value="A001">삼성전자</option>
+			<option value="A002">LG전자</option>
+			<option value="A003">Apple</option>
+			<option value="A004">Dell</option>
+		</select>
+	    <input type="text" name="valProductor" size="10">
+	    <input type="text" name="txtProductor" size="10">
+	    <br>
+      
+	    <select style="width: 200px"  name="brand"  onchange="evtBrand()">
+	        <option value="B000" SELECTED>브랜드</option>
+	        <option value="B001">센스</option>
+	        <option value="B002">X-Note</option>
+	        <option value="B003">MAC</option>
+	        <option value="B004">VAIO</option>
+	    </select>
+		    <input type="text" name="valBrand" size="10">
+		    <input type="text" name="txtBrand" size="10">
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>POPUP</title>
+	<script type="text/javascript">
+		function zipSearch(obj) {
+			// Parameter에서는 함수의 Parameter로 하단의 value 값을 전달하려면?
+			// onclick="zipSearch(this.value)" 이렇게 
+			console.log(obj); 		// 각각의 input 태그 value
+			
+			// 우편번호, 주소 분리해서 전달
+			var zip = obj.substring(0,7);		// 0~7글자 까지 Trim
+			var addr = obj.substr(7);			// 나머지 Trim
+			// alert(zip + "/" + addr)
+			
+			// 부모창(Ex12_Script_Zipcode) : 자식창 (Ex12_popup)
+			
+			// 자식창에서 부모창에 접근해서
+			// 부모객체 접근방법 : opener
+			// 부모객체(opener) : window.opener 부모창
+			window.opener.mainform.zipcode.value = zip;
+			opener.mainform.addr.value = addr;
+			window.close();		// self close();
+				// 우편번호 찾기에서 클릭하면 알아서 꺼지는 기능
+				
+				//안됨?? 왜??
+		}
+		
+	</script>
+</head>
+<body>
+	<h3>DB연결 검색 화면주소 출력(선택)</h3>
+	<form action="" name="zipform">
+		<input type="button" value="200-300 서울시 강남구 고길동" name="btn" onclick="zipSearch(this.value)"> <br>
+		<input type="button" value="200-400 경기도 성남시 김기동" name="btn" onclick="zipSearch(this.value)"> <br>
+		<input type="button" value="200-500 경기도 수원시 홍길동" name="btn" onclick="zipSearch(this.value)"> <br>
+		
+		
+	</form>
+</body>
+</html>
