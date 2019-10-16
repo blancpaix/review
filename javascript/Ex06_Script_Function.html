@@ -9,27 +9,28 @@
 		// 		  public int print(int num, int num2) {return num+num2;}
 		
 		// Javascript
-		// function 함수이름 () {} >> void (x), return type(x)
+		// function 함수이름 () {}
+		// void 함수이름 () {}, 타입 함수이름 () { return type(x) } 이런거 안씀	$$$$$$$$$
 		
-		// 함수는 반드시 호출에 의해서만 실행
-		function callConfirm() {	// 사용자 정의 함수
-			if (window.confirm("작업내용")) {		//confirm의 return type : boolean type
-				// confirm 내장함수	// 확인, 취소 (true, false) 리턴
+			// 함수는 반드시 호출에 의해서만 실행 							$$$$$$$$$
+		function callConfirm() {					// 사용자 정의 함수 		$$$$$$$$$
+			if (window.confirm("작업내용")) {		//confirm 내장함수의 return type : boolean type
+				// confirm 내장함수					// 확인, 취소 (true, false) 리턴
 				window.alert("삭제합니다!");
 			} else {
-				alert("취소합니다!");	// 내장함수
+				alert("취소합니다!");				// 내장함수
 			}
 		}
 
-		function showPopup() {		// open() : 내장 함수
+		function showPopup() {				// open() : 내장 함수
 			window.open("Ex06_Popup.html", "zipcode", "width=200, height=300"); 
-			// window.open(URL, name, specs, replace)
-			// window.close() >> close the correct window
-			// https://www.w3schools.com/jsref/met_win_open.asp
-			// specs 브라우저마다  지원 여부가 다름. [위의 사이트 참조하여 사용]
-			// sepcs : 주소창, 창의 크기 옵션
+				// window.open(URL, name, specs, replace);
+				// window.close()	>>	close the correct window
+				// https://www.w3schools.com/jsref/met_win_open.asp
+				// specs 브라우저마다  지원 여부 다름. [위의 사이트 참조하여 사용]
+				// sepcs : 주소창, 창의 크기 옵션
 		}
-		
+				// ==============================================================================================================20191017 0127 일단 여기까지
 		function myFunction() {
 			var mywindow = window.open("Ex06_Popup.html", "zipcode", "width=200, height=300"); 
 			// mywindow 현재의 팝업창을 의미함

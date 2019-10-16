@@ -5,36 +5,46 @@
 		<title>안녀형~ 이제는 안녕 JavaScript</title>
 		<script>
 		/*
-			javascript ( 언어 : Web : 코드 해석은 웹브라우저(해석기-엔진?/parser) : 라인단위 해석 (interpreating language) )
+			Web Browser 가 라인 단위로 해석하고 사용하는 언어
+			javascript ( 라인단위 해석 (interpreating language) )
 			javascript ( 객체지향언어 : class, 상속, 다형성, 재사용성... 특성 가짐 )
-			문법이 엄청 유연한게.... 좋지않음..
+				유연한 문법(var : JAVA의 String, int, arr... 대체) => 복잡함
 			
 			javascript 사용
 			1. html 의  content, attribute [변경, 삭제, 추가] (동적으로)
+
 			2. css 속성 [변경, 삭제, 추가] (동적으로)
-			3. 유효성 검증 (6글자 제한 등 정규표현식같은것을 유효성이라하네? id, 주민번호 검증)
+
+			3. 유효성 검증 (6글자 제한, id, 주민번호 검증)		 	정규표현식같은것을 유효성이라하네??
+
 			4. 동적인 웹 페이지 
-			5. 전 세계적으로 1위
-				-javascript >> framework () => 쉽게 만들어줌 (50 > 2 줄)
-							>> 대표적 framework : jquery.js >> angular.js ( back|MVC ) 
-							>> node.js ( java 대체|back 구현가능[db연동, etc.] : server 구현 가능)
-							>> vue.js >> react.js >> 전세계적으로 js 엄청 많음...
+
+			5. 많이 쓰이는 언어
+				-javascript >> framework() : 자바스크립트 사용을 쉽게 만들어줌 (50줄  > 2줄으로 단축 가능)
+							대표적인 framework
+							>> jquery.js 
+							>> angular.js ( back-end | MVC ) 
+							>> node.js ( java 대체가능 | back-end 구현가능[db연동, etc.] : server 구현 가능)
+							>> vue.js
+							>> react.js  등...
 							장점 : 개발시간 단축, 유지보수 편함
-							단점 : 종속(library) >> javascript 기본이 되어야 노예에서 벗어남
+							단점 : 종속(library) >> javascript 기본이 되어야 framework 종속 관계에서 벗어남
+									-한가지만 고집하다가 그것이 망하는 순간 갈 길이 없다ㅜ
+
 			6. 문법
-				-1. 대소문자를 엄격하게 구분
-				-2. 종결자 (;)
+				-1. 대/소문자를 구분
+				-2. 종결자 ( ; )
 				-3. 타입 ( var, let, const ), 연산자, 제어문, 객체....
-				참고) java 와 코드가 유사 (제어문)
+					ps) JAVA와 코드가 유사 (제어문)
+
 			7. 사용법 (css 동일 : common.css)
 				-in-line (태그 방식 : <p onclick="<script><//sciript>"> </p>)
-				-internal	(page 안에서 <head> <script> <//script> <//head>.. <body>안쪽 )
-				-external	(common.js) -> link 방식으로 사용				
-							
+				-internal	(page 안에서 <head> <script> </head><//script> <//head>.. <body>안쪽 )
+				-external	(common.js) -> link 방식으로 사용											
 		*/
 		
 		function call() {
-					alert("internal");
+					alert("internal");		// 브라우저 팝업창 띄움
 		}
 			
 		</script>
@@ -44,12 +54,16 @@
 	</head>
 	<body>
 		<h3> in-line </h3>
+			<!-- 버튼 클릭 시 내장된 함수 호출 -->
 			<input type="button" value="inline" onclick="alert('메롱!')">
+
+		<h3> internal </h3>
+			<!-- 버튼 클릭 시 script에서 선언된 call() 함수 호출 -->
+			<input type="button" value="internal" onclick="call()">
 			
 		<h3> internal </h3>
-			<input type="button" value="internal" onclick="call()">
-		
-		<h3> internal </h3>
+			<!-- 버튼 클릭 시 src="script/common.js"에 선언된 excall() 함수 호출 -->
 			<input type="button" value="external" onclick="excall()">
+			
 	</body>
 </html>

@@ -4,10 +4,14 @@
 	<meta charset="UTF-8">
 	<title> DOM 을 사용하는 javaScript </title>
 	<script type="text/javascript">
-		function print () {		// 이게 DOM 이라는데 뭐임??
-			var element = document.getElementById("demo");	// 식별자로 찾는거라서 같은 이름이 존재하면 안됨
+		function print () {		// 이게 DOM 구조라는 건가???
+			var element = document.getElementById("demo");
+				// 식별자로 찾는것이라서 같은 식별자 이름("demo")이 존재하면 안됨
+				// element 변수에 demo 라는 id 를 가진 객체(<p id="demo">demo p태그 구분하는 식별자 </p>)를 가져온다
 			console.log(element);
+				// 콘솔에다가 객체(<p>~</p>)를 찍는다.??? 뭐임 배고프다 왜나온느거임???		&&&&
 			element.innerHTML = "배고프다";
+				// 객체(<p>~</p>) 내부의 값을 "배고프다" 로 바꿈
 		}	
 	</script>
 	</head>

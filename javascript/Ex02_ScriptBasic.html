@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- UTF-8 타입 언어 사용 -->
 	<meta charset="UTF-8">
+	<!-- 웹 브라이저 탭 창에 표시될 제목 표시 -->
 	<title>Insert title here</title>
+	
 	<script type="text/javascript">
-		// javasciprt 해석 >> 결과 >> 출력 >> 웹브라우저
-		// 웹브라우저
-		// window.alert
-		// window 내장객체 (브라우저 가 사용(가지고있음))
-		window.document.write("방가방가<br>");
-		//귀찮으니까 windows 객체 생략 
-		document.write("window 객체 생략 가능<br>");
+			// javasciprt 해석 >> 결과 >> 출력 >> 웹브라우저
+
+			// window.alert
+			// window 내장객체 (Browser 가 사용(가지고있음))
+		window.document.write("방가방가<br>");			
+			// window 는 굳이 안써도 됨
+		document.write("window 객체 생략 가능<br>");			// 웹 사이트에 직접적으로 출력
 		
 		console.log(10+10);
-		console.log("디버깅, 결과확인, 오류메세지");
+		console.log("디버깅, 결과확인, 오류메세지");			// 콘솔창 (F12)에서 출력 확인 가능
 		
-		document.write("<b>Hello World</b><br>");
+		document.write("<b>Hello World</b><br>");			// 웹 사이트에 직접적으로 출력
 		document.write('<table border = "1">');
 		document.write('<tr><td>AA</td><td>BB</td></tr>');
 		document.write('</table>');
 		
-		var num;		// 타입을 정의하지 않아요 //indefined
-		num = 100;		// 값을 갖는 시점에 타입이 설정
-		console.log(typeof(num));		//udefinded ...number
+		var num;						// 타입을 정의하지 않고 값이 입력되면 알아서 타입 설정 (초기상태 : undefined)		&&&&&&&&&&&&
+		console.log(typeof(num));		// undefined
+		num = 100;						// 값을 갖는 시점에 타입이 설정 (숫자 => int, 문자 => String)
+		console.log(typeof(num));		// Number
 		
-		//var element = window.document.forms[0].elements[0];
-		//alert(element);
+			//var element = window.document.forms[0].elements[0];
+			//alert(element);
 		
 		/* 
 		Uncaught TypeError: Cannot read property 'elements' of undefined
@@ -52,34 +56,34 @@
 	  <input type ="button" value="클릭해봐" onclick="data()">
 	  
 </body>
-	<script>		// 스크립트는 html 어디에 들어가든 상관이 없습니다...
-		// form 생성된 후... 상관없음
-		var element = window.document.forms[0].elements[0];
-		// alert(element);
+
+	<script>		
+			// 스크립트는 html 어디에 들어가든 상관이 없습니다...				&&&&&&&&&&&&&&&&&&&&
+			// form 생성된 후... 상관없음
+		var element = window.document.forms[0].elements[0];		// document (현재 html), forms[0] (html 페이지 상 존재하는 첫번째 form [50번째줄의 form]), elements[0] 그 폼에 존재하는 첫번째 요소
+			// alert(element);
 		console.log("1번"+element);
 		console.log("2번"+element.value);
 		console.log("3번"+element.value.length);
 		
+			//form 태그가 자신의 이름을 가지고 있다
+			// name = "myform"
+			// window.document.폼이름.요소이름
+			// window.document.폼이름.요소이름.값
 		
-		//form 태그가 자신의 이름을 가지고 있다
-		// name = "myform"
-		// window.document.폼이읆.요소이름
-		// window.document.폼이름.요소이름.값
-		
-		var ele = window.document.myform.userid;
-		//ele 변수는 : <input type="text" name = "userid" value = "hong">
+		var ele = window.document.myform.userid;			// myform 에 입력된 userid 의 주소?? 값을 ele 변수에 할당
+			//ele 변수는 : <input type="text" name = "userid" value = "hong">
 		console.log("ele : "+ ele);
 		console.log("input userid : " + ele.value);
 		
-		var val = window.document.myform.userid.value;
+		var val = window.document.myform.userid.value;		// myform 에 입력된 userid 의 value 값을 ele 변수에 할당
 		console.log("val : " + val);
 		
-		console.log(typeof(val));
-		if (val.length < 5 ) {
+		console.log(typeof(val));		
+		if (val.length < 5 ) {								// userid의 value 값 크기가 5보다 작으면 아래 구문 실행
 			alert("다시 입력햇");
 			ele.value = "";	
 		}
-		
-		
 	</script>
+
 </html>
