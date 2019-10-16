@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		회원가입, 게시판 글쓰기 -->
+	<form action = "Ex13_Login.jsp" method="get">	
+	<h1>여기의 메소드의 따라 수단이 다름 (비행기 배 자동차 등등과 비슷)</h1>
+	<br>
+		당신의 데이터따위는 필요없습니다!
+		<input type = "text" name = "userid">
+		<input type = "text" name = "username">
+		<input type = "submit" value = "전송하기">
+		<input type = "reset" value = "취소하기">
+	</form>
+	<!--  form 태그는 전송을 담당하는 태그  (서버로 (네이버, 다음) >> 웹서버 >> Tomcat)
+			네이버 >> 회원가입 >> 회원가입 페이지 >> 정보입력 >> 가입하기 (전송)
+				>> 입력한 데이터 (네트워크) 이동 >> form (교통수단) >> 서버 (데이터 받기) >> jsp (servlet)
+					>> DB 연결 >> insert >> 완료 >> 클라이언트 (정산 처리 여부)
+			
+		form 전송수단
+		두가지 : 배 (method="get") ,	비행기 (method="post")
+		웹사이트 주소창
+		
+		:웹사이트 주소에 컨텐츠 노출....
+		get : http://192.168.0.3/WebClient/login.jsp?userid=kglim&username=hong
+		*어쩔수 없이 여행시 배를 타야 하는 경우 (link <a href ="http://...></a> )형식의 처리....
+		
+		:http 프로토콜을 사용해서 header 안에 내용(정보)를 숨겨서 전송
+		post : http://192.168.0.3/WebClient/login.jsp
+	 
+	 	여행의 목적지 (웹서버)
+	 	action = "" >> 목적지 주소 >> login.jsp
+	 	
+	 	기장(선장) : 출발 >> submit, reset
+	-->
+	
+		
+</body>
+</html>

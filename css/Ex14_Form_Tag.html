@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action=" ">
+		<fieldset>
+	
+			<legend>Text : Password	</legend>
+			Text : <input type="text" name="userid" id="userid"><br>
+			Password : <input type="password" name="pwd" maxlength="5"><br>
+			<hr>
+			Text2 : <input type="text" name="data" maxlength="10" size="100px" value="초기값">
+			<hr>
+			readonly(읽기 전용 : 서버로 데이터 전송 가능)
+			<input type="text" name="data2" value="hong" readonly="readonly">
+			<br>
+			disabled(비활성화 : 서버 데이터 전송 불가능)
+			<input type="text" name="data3" value="kim" disabled="disabled">
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend> 체크박스 (다중선택) </legend>
+			<h2> 베팅 </h2>
+			<input type="checkbox" name="sports_1" value="1:1" checked="checked"> 1:1
+			<input type="checkbox" name="sports_2" value="2:1"> 2:1
+			<input type="checkbox" name="sports_3" value="0:1"> 0:1
+			<input type="checkbox" name="sports_4" value="0:0"> 0:0
+			<input type="checkbox" name="sports_5" value="0:3"> 0:3
+			<h4> 베팅은 암호화폐로!</h4>
+			<input type="file" name="uploadimage">
+			<br>
+			<hr><input type="button" value="베팅확인" ><hr>
+			<!-- 
+				서버 : ?sports_1=1:1&sports_2=2:1&sports_3=0:1
+				
+					String str  = request.getParameter("sports_1");
+					>> str 변수에 "1:1"
+					String str2 = request.getParameter("sports_2");
+					STring str3 = request.getParameter("sports_3");
+					>> str 변수에 "1:1"
+					>> str2 변수에 "2:1"
+					>> str3 변수에 "0:1"
+			
+				<input type="checkbox" name="sports" value="1:1" checked="checked"> 1:1
+				<input type="checkbox" name="sports" value="2:1"> 2:1
+				<input type="checkbox" name="sports" value="0:1"> 0:1
+				서버 : ?sports=1:1&sports=2:1&sports=0:1
+					String[] strarr = request.getParameter("sports");
+					strarr[0] = "1:1"
+					strarr[1] = "2:1"
+					strarr[2] = "0:1"		 배열로 받는게 편해여~ 그래서 보통 배열로 합니다!!!!
+			 -->
+		</fieldset>	
+		
+		<fieldset>
+			<legend> Select 태그 (단일선택 : 년, 월 , 일)</legend>
+				<select name="year">
+					<option value="2019">2019년</option>
+					<option value="2018" selected ="selected">2018년</option>
+					<option value="2017">2017년</option>
+				</select>
+				<!-- 
+					?year=2017& ....
+				-->
+		</fieldset>
+		
+		<fieldset>
+			<legend> Select 태그 (다중선택 : like checkbox년)</legend>
+				<select name="items" multiple="multiple">
+					<option value="019">JAVA</option>
+					<option value="018">ORACLE</option>
+					<option value="017">ㅎㅌㅁㄹ</option>
+				</select>
+		</fieldset>
+		
+		<fieldset>
+			<legend> 라디오버튼 (단일선택 : 남, 여) : name 이 같으면</legend>
+			 남 : <input type="radio" name="gender" value="1">
+			 여: <input type="radio" name="gender" value="2" checked>
+			 name 이 다르면 둘다 다른객체로 보고 동시 선택이 가능하기때문에 네임은 하나로 만든다.
+		</fieldset>
+		
+		<fieldset>
+			<legend> 기타등등 </legend>
+			1. 화면에 출력이 안되요 (소스는 가지고 있어요) [숨김태그] 근데 남이 볼 수 있는거라서....조심하고
+			<input type="hidden" value = "1000" name = "hdata">
+			<hr>
+			2.파일 업로드 (선택)
+			<input type="file" name="uploadimage">
+			3.게시판 글쓰기 (여러줄) (초기크기 : rows, cols)
+			<textarea rows="10" cols="10" name="content"> 입력데이터 </textarea>
+			4.각종 버튼들
+			<input type="button" value="나를 누르면" onclick="alert('꺼졍!')">
+			<br>
+			<input type="image" src="images/index.jpg">
+			<br>
+			<input type="submit" value="전송">
+			<input type="reset" value="취소">
+		</fieldset>
+		
+	</form>
+
+</body>
+</html>

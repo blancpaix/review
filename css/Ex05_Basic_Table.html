@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>테이블 만들기</title>
+	<style type="text/css">
+	
+		table {
+			font-family: arial, sans-serif;
+			border-collapse : collapse;	/* 붕괴하다? collapse 미사용시 빙산처럼 떨어져 테이블 형성*/   
+			width: 100%;
+		}
+		
+		td, th {
+			border : 1px solid #a000dd;
+			text-align : Left;
+			padding : 8px;
+		}
+				
+		tr:nth-child(even) {	/*짝수*/
+		  background-color: lightgray;
+		}
+		
+		tr:nth-child(odd) {
+		  background-color: gold;
+		}
+		
+	</style>
+		
+</head>
+<body>
+
+	<h2>HTML Table</h2>
+
+	<table>
+		<tr>
+			<th>Company</th>
+			<th>Contact</th>
+			<th>Country</th>
+		</tr>
+		<tr>
+			<td>Alfreds Futterkiste</td>
+			<td>Maria Anders</td>
+			<td>Germany</td>
+		</tr>
+		<tr>
+			<td>Centro comercial Moctezuma</td>
+			<td>Francisco Chang</td>
+			<td>Mexico</td>
+		</tr>
+		<tr>
+			<td>Ernst Handel</td>
+			<td>Roland Mendel</td>
+			<td>Austria</td>
+		</tr>
+		<tr>
+			<td>Island Trading</td>
+			<td>Helen Bennett</td>
+			<td>UK</td>
+		</tr>
+		<tr>
+			<td>Laughing Bacchus Winecellars</td>
+			<td>Yoshi Tannamuri</td>
+			<td>Canada</td>
+		</tr>
+		<tr>
+			<td>Magazzini Alimentari Riuniti</td>
+			<td>Giovanni Rovelli</td>
+			<td>Italy</td>
+		</tr>
+	</table>
+
+</body>
+</html>

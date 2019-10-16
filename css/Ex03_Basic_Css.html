@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CSS 사용하기</title>
+	<style type = "text/css"> 
+
+		/*
+			html 페이지에 Css 적용방법
+			1. inline	(태그 안에)
+			2. internal	(page 상단)
+			3. external (별도의 파일 .css)
+		*/
+		body {background-color: lavender;}
+		h3 {color : red;}
+		p { color : blue;}
+	
+	</style>
+	<link rel="stylesheet" href = "css/cssExam.css">
+</head>
+<body>
+
+	<p style="background-color: pink"> 문단 태그입니다. (in-line) </p>
+	<h3> internal 적용하기 </h3>
+	<h3 style="color:green"> 적응방식은? 안쪽이 우선으로 적용됩니다...</h3>
+	<p> 뭐임 이거는 파란색으로 표시될거임 </p>
+	<h1> 외부 파일에서 참조합니다??? </h1>
+	
+</body>
+</html>

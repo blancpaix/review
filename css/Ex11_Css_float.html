@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type = "text/css" >
+	.floating-box {
+	width : 150px;
+	height : 80px;
+	margin : 10px;
+	border : 3px dotted red;
+	float : left;
+	}
+	.after-box {
+	clear : left;
+	border : 3px solid blue;
+	background-color : gold;
+	width : 120px;
+	}
+	.head, .footer {
+	width :100%;
+	background-color : gray; 
+	clear : left;
+	}
+	.body {
+	width : 30%;
+	background-color : gold;
+	margin : 0 auto;
+	float : both;
+	}
+
+</style>
+</head>
+<body>
+	<div style="background-color:magenta; width:600px; height:400px;">
+		<div class = "head"> HEAD </div>
+		<div class = "body" style = "float : left;"> body 1 </div>
+		<div class = "body" style = "float : none"> body 2 </div>
+		<div class = "body" style = "float : right;"> body 3 </div>
+		<div class = "footer"> footer </div>
+	</div>
+	
+	<h3>float</h3>
+	<div class = "floating-box">1 </div>
+	<div class = "floating-box">2 </div>
+	<div class = "floating-box">3 </div>
+	<div class = "floating-box">4 </div>
+
+	<hr>
+	<div class = "after-box">5 </div>
+	<div class = "after-box">6 </div>
+	<div class = "after-box">7 </div>
+	<div class = "after-box">18 </div>
+</body>
+</html>

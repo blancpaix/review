@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<Style type="text/css">
+		/*
+		css 의 적용은 기존에 존재하는 태그(요소)만 가능합니까? 만? 아니오! 내가 만들수도 있고 다양하게 만들어서 쓸수 있음
+			p {}
+			h3 {}
+			h1, h2, h3 자원들 >> 선택자 (selector)
+			*선택자* 기준
+			1. 기존에 있는 태그들
+			2. . >> class 반영
+			3. # >> id 반영
+		*/
+		h1, h2, h3 {color: red; font-style: italic;} /* 다중선택자 multi-selector */
+		#kglim {color: gold; font-size: 30px;} /* #만든... id    		id="# 떼고 이름" 으로 사용 */
+		.hong {color: blue;} /* .만든... class   	class="hong" 으로 사용 */
+		
+		
+		/* 가상 클래스 선택자 (a:link 라는 이름??)
+			<a href = "" link, visited, hover, active 등등 */
+		a:link {
+			color: black;
+			background-color: transparent;
+			text-decoration: none;
+		}
+		a:visited {
+			color: purple;
+			background-color: transparent;
+			text-decoration: none;
+		}
+		a:hover {
+			color: yellow;
+			background-color: transparent;
+		}
+		a:active {
+			color: gold;
+			background-color: transparent;
+			text-decoration: underline;
+		}
+		
+	</Style>
+</head>
+<body>
+	<h1>선택자 1</h1>
+	<h2>선택자 2</h2>
+	<h3>선택자 3</h3>
+	<p id="kglim">id 라는 속성을 사용해서 css 반영</p>
+	<p class="hong">호옹길동이</p>
+	<!-- 
+	사용자 정의 : id, class 선택자 사용해서
+	css, javascript, jquery 에서 활용도 100% -->
+	<a href="http://president.go.kr">청와대 갈거임?</a>
+
+
+</body>
+</html>

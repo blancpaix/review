@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>테이블 표만들기</title>
+	<style>
+		table {border-collapse : collapse;	width : 150px;}
+		td {border : 1px solid red;}
+	</style>
+</head>
+<body>
+		<h3>일반 테이블1</h3>
+		<table>
+		<tr>
+			<td>가1</td><td>가2</td><td>가3</td>
+		</tr>
+			<tr><td>나1</td><td>나2</td><td>나3</td>
+		</tr>	
+		<tr>
+			<td>다1</td><td>다2</td><td>다3</td>
+		</tr>
+			
+		</table>
+		
+		<h3>일반 테이블2</h3>		
+		<table style="height : 200px; width : 500px;">
+		<tr>
+			<td>글번호</td><td>제목</td><td>조회수</td>
+		</tr>
+		<tr>
+			<td>1</td><td>방가</td><td>456</td>
+		</tr>
+		<tr>
+			<td>2</td><td>안녕</td><td>123</td>
+		</tr>
+		</table>
+		
+		<h3>일반 테이블3 (병합하기)</h3>
+		<table>
+		<tr>
+			<td colspan = "2">가1 가2</td><td>가3</td>
+		</tr>
+		<tr>
+			<td>나1</td><td>나2</td><td>나3</td>
+		</tr>
+		<tr>
+			<td colspan = "3">다1 다2 다3</td>
+		</tr>
+		</table>
+		
+		<h3>일반 테이블4 (병합하기)</h3>
+		<table style="width:500px; height: 100px">
+			<tr>
+				<td rowspan = "2" colspan="2">가1 가2<br>나1 나2</td><td rowspan = "3">가3<br>나3<br>다3</td>
+			</tr>
+			<tr>
+			</tr>
+			<tr>	
+				<td>다1</td><td>다2</td>
+			</tr>
+		</table>
+</body>
+</html>

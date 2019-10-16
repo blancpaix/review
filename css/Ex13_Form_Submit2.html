@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>개발자 필수 태그(암기)</title>
+</head>
+<body>
+<!--
+회원가입, 게시판 글쓰기
+  -->
+  <h3>한녘김</h3>
+  <form action="Ex13_Login.jsp" method="post">
+  <input type="text" name="userid">
+  <input type="text" name="username">
+  <!-- <input type="submit" value="전송하기"> -->
+  <input type="image" src="images/index.jpg" width="50px" height="50px">
+  <input type="reset" value="취소하기">
+  </form>
+  <!-- form 태그는 전송을 담당하는 태그 (서버로 (네이버, 다음)) >> 웹 서버로 데이타를 보내는 것  >> Tomcat 
+ 		 네이버 >> 회원가입 >> 회원가입 페이지 >> 정보입력 >> 가입하기(전송) >> 
+  		form 태그 안에 들어있어야 한다(입력한 데이터가 네트워크를 통해서) 이동 담당하는 역할 (form태그) >> form = 교통수단 >> 서버(데이터 받기) >> jsp(servlet)
+  		>> DB 연결 >> insert >> 완료여부 >> client에게 정상처리여부           ------------ 전체적인 흐름 -------------
+  
+  		form 전송수단 (2가지 방법)
+  		배를타고 여행하는 방법(method = get), 비행기를 타고 여행하는 방법(method=post)
+  		웹사이트 주소창
+  		
+  		: 웹사이트 주소에 컨텐츠 노출 ......
+ 		 get : http://192.168.0.3:8090/WebClient/login.jsp?userid=kglim&username=hong
+		 * 어쩔수 없이 여행시 배를 타야되는 경우 (link <a href) 형식 처리
+  
+  		: http 프로토콜을 사용해서 header 안에 내용을(정보) 숨겨서 전송
+ 		 post : http://192.168.0.3:8090/WebClient/login.jsp
+  
+		여행의 목적지 (웹 서버)
+		action으로 설정한다. >> action="" >>(목적지 주소) >> login.jsp
+		  
+		form 태그의 전송방식 >> post 방식 사용
+		<a href="boardDetail.jsp?boardnum=100"> </a>
+		 
+		  
+		기장(선장) : 출발 >> submit , 취소 >> reset
+		1. input type = "submit" 전송
+		2. input type = "image" 내부적으로 전송(submit)
+		3. input type = "button" >> javascript 함수 >> document.form.submit() 전송
+  -->
+</body>
+</html>
