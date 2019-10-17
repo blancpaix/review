@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>TODAY POINT ~~~***</title>
+	<script type="text/javascript">
+	//1. 배열 > []     > var arr=[]; push() , pop()
+	//2. JSON객체 > {} > var obj ={}; obj.속서명 
+	
+	//배열과 객체 혼합 (대부분의 공공데이터)
+	var students = [];
+	
+	//배열에 객체 추가 (객체배열)
+	students.push({이름:"홍길동", 국어:80 , 영어:60}); //[0] ={}
+	students.push({이름:"아무개", 국어:100 , 영어:50});
+	students.push({이름:"이순신", 국어:10 , 영어:60});
+	
+	//[{},{},{}]
+	//기존에 만들어진 객체에 함수 추가
+	for(var index in students){
+		// var jsonobj = students[index]; {이름:"홍길동", 국어:80 , 영어:60}
+		students[index].getSum = function(){return this.국어 + this.영어;}
+		students[index].getAvg = function(){return this.getSum()/2;}
+	}
+	
+	console.log(students);
+	//문제
+	//students 배열에 담겨있는 학생의 이름, 총점 , 평균 점수를 출력하세요
+	var print = "이름&nbsp;&nbsp;&nbsp;총점&nbsp;&nbsp;&nbsp;평균&nbsp;&nbsp;&nbsp;<br>";
+	for(var index in students){
+		print += students[index].이름 + "&nbsp;&nbsp;";
+		print += students[index].getSum() + "&nbsp;&nbsp;";
+		print += students[index].getAvg() + "&nbsp;&nbsp;<br>";
+	}
+	document.write(print);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

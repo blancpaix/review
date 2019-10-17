@@ -6,6 +6,29 @@
 </head>
 
 <script type="text/javascript">
+
+   /*
+	자동완성(젠코딩) : ctrl + E
+	태그 삭제 : ctrl + shift + ;
+	태그명 변경 : ctrl + shift + '
+	주석 1 : ctrl + /
+	주석 2 : ctrl + shift + /
+	태그 내용 선택 : ctrl + shift + ,
+	계산식 결과물 : ctrl + shift + y
+	reflect css : ctrl + shift + r
+	다음 요소 : ctrl + shift + .
+	이전 요소 : ctrl + shift + ,
+	이미지 크기 조정 : ctrl + U
+	태그 wrap : ctrl + shift + G
+	태그 쌍 선택 : ctrl + alt + j
+	한줄태그로 : ctrl + shift + `
+	1단위 숫자 증감 : ctrl + up, down
+	0.1단위 숫자 증감 : alt + up, down
+	10단위 숫자 증감 : alt + shift + up, down
+	img를 data로 : Ctrl + '
+	*/
+
+
 /*  
   자바 설계도(클래스) => 재사용성
   class Product{
@@ -44,10 +67,10 @@
                        단, 인스턴스는 오직 하나
      (초보자에게도 중요 ^^)	: JSON Javascript Object Notation 자바스크립트 객체 표기법
      					  JSON :객체 데이터 교환 역할()
-  	 그냥 초보도 쓸 줄 알아야하는 방법
+  	 그냥 초보도 쓸 줄 알아야하는 방법, 모르면 데이터 송수신할 방법이 없다!
   	 
   
-  4. ECMA6 버전부터 : class 키워드 제공
+  4. ECMA6 버전부터 : class 키워드 제공			// 2015년 이후 사용
      class Person {		// JAVA 생성자 대신 constructor을 따로 써줌
      	constructor(name) {				
            this._name = name;
@@ -75,10 +98,10 @@
  다른 이야기 
  객체지향언어 장점 : 설계도 (재사용성)
  
- *오브젝트 리터럴 방식 : 재사용을 지원하는 않는다 
- *설계도를 생성과 동시에 객체 생성(장점 : 편하고 , 빠르다 )
+ *오브젝트 리터럴 방식 : 재사용을 지원하는 않는다
+ *설계도를 생성과 동시에 객체 생성(장점 : 편하고 , 빠르다 ) !
  *설계도를 미리 만들어 놓고 재사용하는 방식은 아니다
- *설계도당 하나의 객체만 생성 사용 (only object)
+ *설계도당 하나의 객체만 생성 사용 (only object) !!
     
  var product = {};
  var product2 = {제품명:'사과',년도:'2018',원산지:'대구'};
@@ -120,6 +143,7 @@
     delete(product.년도);		// 객체에서 년도가 제거됨
     
     // for (var index in Array) { arr[index] }
+
     // JSON 형식은 { 키 : 값, 키 : 값, 키 : 값..... }을 가지고 있어서
     for (var key in product) {
     	console.log("key : " + key)
@@ -134,6 +158,45 @@
     // json 객체
     // 외부 API(우편번호, 서울시 화장실 정보, 날씨정보, 대법원 판례... 데이터) Parsing??? 파싱???
     // KEY : Json 가지고 필요한 정보를 추출해서 가공...... 하는게 중요하다!
+
+    var Member = {};		// 빈 객체
+    Member.name = "hong";	// {name : "hong"} 속성 지정
+    document.write(Member.name + "<br>");
+    Member.age = 100;
+    document.write("<br>" + Member.age + "<br>");
+
+    //기능 함수
+    Member.print = function() {
+    	document.write(this.name + "/" + this.age + "<br>");
+
+    }
+
+    Member.print();		// 객체.함수명
+
+    // JSON 객체 해석 원하는 값을 출력
+    // 객체가 객체를 가질 수 있다
+    var Grade = {
+    	"list" : {
+    				"hong" : 10,
+    				"kim"	:20,
+    				"park"	:30
+    	},		// 이게 json 객체 하나임
+    	"show" : function() {
+    		for (var key in this.list) {
+    			document.write(key +" : " + this.list[key] + "<br>");
+    		}
+    	}
+    }
+    Grade.show();
+    document.write("<br>");
+    var listobj = Grade.list;		// json 객체
+    document.write(listobj.kim + "뭐임 이건 <BR>");
+    for (var key in listobj) {
+    	document.write(key + "," + listobj[key] + "<br>");
+    }
+
+
+
     
 
 	({

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>TODAY POINT &&&&&&&&&&&</title>
+	<script type="text/javascript">
+		// 1. 배열 > []			> var arr= [];		push(), pop()
+		// 2. JSON 객체 > {}		> var obj= {};		obj.속성명
+
+		// 배열과 객체 혼합 ( 대부분의 공공 데이터 )
+		var students = [];
+
+		// 배열에 객체 추가 (객체 배열 )
+		students.push({이름:"홍길동", 국어점수:80,영어:60});	// [0] = {0}
+		students.push({이름:"홍일번", 국어점수:100,영어:50});
+		students.push({이름:"홍이번", 국어점수:10,영어:60});
+
+		//[{}},{},{}]
+		// 기존에 만들어진 객체에 함수 추가
+		for (var index in students) {
+			// var jsonobj = students[index];
+			students[index].getSum = function() { return this.국어 + this.영어;}
+			students[index].getAvg = function() { return this.getSum()/2;}
+		}
+		console.log(students)
+
+		// 문제
+		// students 배열에 담겨있는 학생의 이름, 총점, 평균 점수를 출력하세요
+		var result = "";
+		for (var index in students) {
+			result += students[index].이름;
+			result += students[index].getSum();
+			result += students[index].getAvg() + "<Br>";
+
+		}
+		document.write(result);
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+</html>
