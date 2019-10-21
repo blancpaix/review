@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*
+		다중 이벤트
+		DOM : https://www.w3schools.com/js/js_htmldom_eventlistener.asp
+
+
+		jquery 사용해서 좀 더 편하게
+
+		event attach
+		2.x 버전에서 : bind()	/	unbind()
+		3.x 		: on()	/	off()
+
+		KEY POINT : 다수 처리 : JSON
+		*/
+		/*
+		$(function() {		// 줄임표현
+			// $('p').click(function() {});
+			// $('p').mouseenter(function() {});
+
+			// 위 보다 편하게 쓰는 방법
+			$('p').on(
+				{
+					// 이벤트, 함수를 씀 JSON 표기법?
+					mouseleave:function() {$(this).css('background-color', 'red')},		
+						// this 를 jquery 함수 안에 넣으면 다양한 함수를 쓸 수 있음
+					click:funciton() {$(this).css('background-color', 'green')},
+					mouseenter:function() {$(this).css('background-color', 'blue')}
+
+				}
+			);
+
+			$('button').click(function(){
+				$('p').off('click');
+			});
+		});
+		*/
+		
+
+		$(function(){ //줄임표현
+			//$('p').click(function(){});
+			//$('p').mouseenter(function(){});
+			$('p').on(
+				{ //json 객체
+				  mouseleave:function(){$(this).css('background-color','red')},
+				  click:function(){$(this).css('background-color','green')},
+				  mouseenter:function(){$(this).css('background-color','blue')}
+				}		
+			);
+			
+			$('button').click(function(){
+				$('p').off('click');		// 위에서 함수 제거
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<p>on 함수를 사용해서 다중 이벤트 처리하기 </p>
+	<hr>
+	<button>이벤트 제거</button>
+
+</body>
+</html>

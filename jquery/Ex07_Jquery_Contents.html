@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#btn1').click(function() {
+				alert("text : " + $('#test').text());	// getter
+			});
+			$('#btn2').click(function() {
+				alert("html : " + $('#test').html());	// getter
+			});
+			$('#btn3').click(function() {
+				$('#test').text("<div>??메롱??</div>");			// setter을 걸어볼게요		button 을 클릭하면 p 태그 안쪽에 div 를 넣어주는거임.
+					// 그냥 문자 그대로 출력
+				// $('#test').html("<div>??메롱??</div>");	
+					// html 형식을 적용한 방식대로 출력
+			})
+
+		})
+	
+	</script>
+</head>
+<body>
+	<p id="test"> 안녕하세요 <b>정말</b> 안녕하세요? </p>
+	<button id="btn1">show text</button>
+	<button id="btn2">show html</button>
+	<button id="btn3">html</button>
+	<button id="btn4">input tag</button>
+	<input type="text" id="test2" value="Hello World!">
+</body>
+</html>

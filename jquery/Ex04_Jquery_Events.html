@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	/*
+	Mouse Events 	Keyboard Events 	Form Events 	Document/Window Events
+	click 			keypress 			submit 			load
+	dblclick 		keydown 			change 			resize
+	mouseenter 		keyup 				focus 			scroll
+	mouseleave 	  						blur 			unload
+
+	*/
+	$(document).ready(function() {			// ready = onload 라서 필요할때만 쓰세요...
+		// 모든 코드를 해석 한 다음에 익명 함수를 실행 하겠다!
+		$('#btncopy').click(function() {		// 클릭이 발생하면 옆의 함수를 실행해라
+			let data = $('#txtuserid').val();
+			$('#txtcopyuserid').val(data);
+
+			// 위의 코드 한줄로 만듦
+			// $('#txtcopyuserid').val($('#txtuserid').val());
+		});
+
+		// onchange > change
+		// <input value="Value"> >> value 	: 	<p>값</p> , <div>값</div> >> text 만 가짐 value는 없음
+		// value 는 val()로 읽거나 쓰거나 (getter, setter) 		text() (getter, setter)
+
+		$('#select_hobby').change(function() {		// 값의 변화가 일어나면
+			let text = $(':selected').text();	
+				// 선택된 옵션태그의 텍스트를 가져와라
+				// 전제조건 : [body] 안의 select 태그가하나만 존재할때 사용
+			let text2 = $('#select_hobby option:selected').text()		// selected_hobby 하부 option(자손) 태그 
+			let val = $("#select_hobby").val();
+				// value 속성값이 없으면 text 를 value 로 받아옴
+			$('#txtselect').val(text + "/" + text2 + "/" + val);
+		});
+
+		// 암호확인 기능, txtpwd2 >> keyup  되었을때 txtpwd 값을 비교해서 암호가 같으면 div 태그 (id="message") 에 text 암호가 일치합니다 / 그렇지 않으면 암호가 일치하지 않습니다. 를 출력 
+		/*
+		$('#txtpwd2').change(function() {
+			let inputpwd = $('#txtpwd').val();
+
+			if (txtpwd2.val() === inputpwd) {
+				console.log("암호가 일치하지 않소.")
+			} else {
+				meesage.innerHTML="암호가 일치하지 않습니다.";
+			}
+		});
+		*/
+		$('#txtpwd2').keyup(function(){		// keyup뭐지... textinput 이 완성되면?
+			if($('#txtpwd').val() != $('#txtpwd2').val()){
+				$('#message').text('암호가 일치하지 않습니다');
+			}else{
+				$('#message').text('암호가 일치합니다');
+			}
+		});
+
+
+		$('input').focus(function() {		// 포커스가 되면 실행하는 함수
+			// $(this) : 현재  focus 를 가지고 있는 input 태그
+			$(this).css('background-color', 'gray');
+		});
+
+		$('input').blur(function() {		// 포커스가 나가면 실행하는 함수
+			// $(this) : 현재  focus 를 가지고 있는 input 태그
+			$(this).css('background-color', 'white');
+		});
+
+		// 하나의 이벤트가 함수를 여러개 (두개) 가질 수 있다
+		$('p').hover(function(Event) {
+			$(this).css('background-color','yellow');
+		}, function(Event) {
+			$(this).css('background-color','pink');
+		});
+
+	});
+	</script>
+</head>
+<body>
+	<p>Jquery Hover(mouseover, mouseleave) </p>
+
+	ID : <input type="text" id="txtuserid">
+	<hr>
+	<input type="button" id="btncopy" value="copy">
+	<hr>
+	Copy ID : <input type="text" id="txtcopyuserid">
+	<hr>
+
+	<select id = "select_hobby">
+		<option value="JAVA"> java </option>
+		<option>script</option>
+		<option>jdbc</option>
+	</select>
+
+	<br>
+	<input type="text" id="txtselect">
+	<hr>
+
+	<table style="border:1px solid red;">
+		<th>
+			<td>암호</td>
+			<td>
+				<input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
+		</th>
+		<tr>
+			<td>암호확인</td>
+			<td>
+				<input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
+		</tr>
+	</table>
+	<div id = "message" style="color:red"></div>
+</html>
+</body>

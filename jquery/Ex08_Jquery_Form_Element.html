@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	// https://www.w3schools.com/jquery/jquery_ref_selectors.asp
+	// https://api.jquery.com/category/selectors/form-selectors/
+	
+	$(function() {
+		$('#txtname').val('hong');	// 가장 만만한게 .# 으로 접근하는거임
+			// val 함수가 getter, setter 기능 다 합니다.
+		// 1. radio 에 기본값을 설정하고 싶어요 (checked)
+		// $('input[type=radio]')
+
+		
+		$('input:radio').val(['F'])	// 필터 적용방식		['F'] 는 배열을 말함
+			// 값이 F인 값에 대해서 체크를 하겠다		checked 설정 (default 설정)
+		//예외적으로 좀 보세요~
+
+		console.log($('input:radio').val());		// M : 순서대로 먼저 걸리는 value 반환
+		// 어떤 값을 가지고 오는지 확인하고
+		console.log($('input:checked').val());		// F : 선택 된 value 반환
+			// 선택 된 것의 value
+
+		// radio 가 여러개 있을 경우 input:checked 여러개.. => (식별자 id, name 사용)
+		console.log($('input:radio[name=gender]:checked').val());
+			// name 이 gender 인 radio 에서 check 된 값을 반환
+
+
+		// radio 다중값 선택은??
+
+		// select
+		// multiple = "multiple"
+		// multiple = "true"
+		// multiple
+
+		// 단일값(0)
+		// $('#isF').val() : getter
+		// $('#isF').val('oracle') : setter
+
+		// 다중값 multiple = "true"
+		$('#isF').val(['java', 'oracle']);	// 선택하기 (다중값) 		근데 이건 잘 안써요~
+
+		// 확인 버튼에 이벤트 걸게요~
+		$('#btnok').click(function() {
+			// 다중 선택된 값을 출력하세요 (console)
+			let selecttag = $('#isF').val();
+			console.log(selecttag);
+			for (var index in selecttag) {
+				console.log("value : " + selecttag[index]);
+			}	
+		});
+
+
+		// 자식요소로 submit element 를 가지고 있니??
+		if ($('#myform').children().is('input:submit')) {		
+			alert("그런데?");		//true
+		} else {
+			alert("아닌데?");		//false
+		}
+
+	});
+	
+	</script>
+</head>
+<body>
+	Textbox : <input type="text" id="txtname">
+	<br>
+	
+	RadioButton : Checked 속성
+	<input type="radio" name="gender" value="M">남
+	<input type="radio" name="gender" value="F">여
+	<br>
+	
+	Dropdownlist(select 태그)
+	<!-- 셀렉트 태그의 옵션은 기본적으로 단일선택이 기본임 다만 multiple 이 들어가면 다중선택이 가능함 (복잡해짐...ㅠ) -->
+	<select id="isF" multiple="multiple" size="3">
+		<option value="java">자바</option>
+		<option value="jsp">웹</option>
+		<option value="oracle">오라클</option>
+	</select>
+	<br>
+	
+	<input type="button" value="확인" id="btnok">
+	<br>
+	<div id="myform">
+		submit button : <input type="submit" value="전송">
+	</div>
+</body>
+</html>
