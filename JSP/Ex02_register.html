@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 페이지</title>
+</head>
+<body>
+<!-- 
+1. name 속성 : 변수명 (Ex02_register.jsp?userid=hong&pwd=111..... 이런 식으로 넘어감
+2. id 속성 : (UI : css, javascript, jquery) 식별자
+3. Ex02_register.jsp 페이지 ... 가장 먼저 무엇을 할까?			클라이언트가 입력한 데이터를 받아오는것을 함.
+
+ -->
+	<!-- <form action = "Ex02_register.jsp" method = "get" > -->
+	
+	<form action = "Ex02_register.jsp" method = "post" >
+		<input type="text" name = "userid" id="userid">
+		<input type="text" name = "pwd" id = "pwd">
+		<input type="checkbox" name = "hobby" value="baseball">baseball
+		<input type="checkbox" name = "hobby" value="scooer">soccer
+		<input type="checkbox" name = "hobby" value="basketball">basketball
+		<input type="checkbox" name = "hobby" value="tenis">tenis
+		<input type="submit" value = "회원가입">						<!--  호출하는 것 submit, javascript button with submit, img -->
+		
+		
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	// https://www.w3schools.com/jquery/jquery_dom_remove.asp
+
+	/*
+    remove() - Removes the selected element (and its child elements)
+    	/// 자신도 삭제
+    empty()	 - Removes the child elements from the selected elements
+    	// 자신을 비움. 자식요소만 제거
+
+	*/
+	/*
+	$(document).ready(function(){
+		$(`#btncreate`).click(function() {
+			let row = $('#row').val();
+			let col = $('#col').val();		// 받으면 모두 문자임
+
+			let strtable=`<table>`;
+				for (let i=0; i< row; i++) {		// 왠만해선 let 쓰고 함수에선 var 씀
+					strtable += `<tr>`;
+					for (let j=0; j<col; j++) {
+						strtable +=`<td>(` + i	+ `)행 (` + j + `)열` + `</td>`;
+					}
+					strtable+=`</tr>`;
+				}
+			strtable+=`</table>`;
+			console.log(strtable);
+			
+		});
+	});
+	또 안됌 ㅅㅂ
+	*/
+
+	$(document).ready(function(){
+		$('#btncreate').click(function(){
+			let row = $('#row').val();
+			let col = $('#col').val();
+			
+			let strtable="<table>";
+				for(let i = 0; i < row ; i++){
+					strtable+="<tr>";
+					for(let j = 0 ; j < col ; j++){
+						strtable+="<td>(" + i + ")행(" + j + ")열</td>";
+					}
+					strtable+="</tr>";
+				}
+			strtable+="</table>"
+			console.log(strtable);
+		});
+	});
+
+	</script>
+</head>
+<body>
+	<span id ="lbldisplay">Table Create</span>
+	<input type="text" id="row">행
+	<input type="text" id="col">열
+	<input type="button" value="동적생성" id="brncreate">
+	<input type="button" value="동적제거" id="brndelete">
+	<div id = "divtable">
+
+	</div>
+	<hr>
+	<input type="Button" id="btnmenu" value="변경">
+	<div id="menu">HOME</div>
+	<div id="content">CONTENT</div>
+	<div id="submenu">SUBMENU</div>
+
+</body>
+</html>

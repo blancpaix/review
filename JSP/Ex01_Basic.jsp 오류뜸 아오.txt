@@ -1,0 +1,17 @@
+
+<% 
+	// 스크립트 릿 (java code 작성 영역)
+	Date day = new Date();
+	/*
+		JSP 페이지 : UI 구성 >> Html + Css + Javascript 코드 + 
+					Server code (jdbc... ) >> Java 코드 <% 안에서 구현 %>....
+			>> 디자인 코드 + 서버 로직 코드 => 스파게티 코드 (좋은 방식이 아님)
+		
+
+			>> [ 결론 ] 
+			>> servlet (Java 로 Web 을 구현하는 page)
+			>> UI >> JSP
+			>> MCV (model(java) - view(jsp) - contoroller(servlet))
+			>> 잘하는 것만 해~	model2 기반의 MVC 패턴
+				JSP 하나로 다 하면 가능하지만, 유지보수가 엄청 힘듦
+			>>

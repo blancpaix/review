@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style type="text/css">
+		table , tr, td {
+			border: 1px solid blue;
+			border-collapse: collapse; 
+		}
+	</style>
+	<script type="text/javascript">
+	/*  
+	remove() - Removes the selected element (and its child elements)
+	자신제거(자식제거)
+	
+	empty() - Removes the child elements from the selected element
+	자식제거
+	*/
+	$(document).ready(function(){
+		$('#btncreate').click(function(){
+			let row = $('#row').val();
+			let col = $('#col').val();
+			
+			let strtable="<table>";
+				for(let i = 0; i < row ; i++){
+					strtable+="<tr>";
+					for(let j = 0 ; j < col ; j++){
+						strtable+="<td>(" + i + ")행(" + j + ")열</td>";
+					}
+					strtable+="</tr>";
+				}
+			strtable+="</table>"
+			console.log(strtable);
+			$('#divtable').append(strtable);			// 뒤의 내용을 앞의 selector에 적용하겠다 [46번줄이랑 비교]
+		});
+		
+		$(`#btndelete`).click(function() {
+			$(`#divtable`).remove();		// 자신을 포함해서 싹다 제거~	자기자신(모든 자식 요소 삭제)
+			// $(`#divtable`).empty();			// 선택한 요소의 자식만 제거~	선택된 태그의 자식요소 삭제
+		});
+		
+		$(`#btnmenu`).click(function() {
+			// method chain 함수().함수().함수()
+			// $(`#menu`).clone().appendTo(`#submenu`);				// 뒤에 target 이 나옴.  menu를 복제하여 target 에 넣어주겠다! 
+			$(`#menu`).clone().prependTo(`#submenu`);
+		})
+	});
+	
+	</script>
+</head>
+<body>
+	<span id="lbldisply">Table Create</span>
+	<input type="text" id="row">행
+	<input type="text" id="col">열
+	<input type="button" value="동적생성" id="btncreate">
+	<input type="button" value="동적제거" id="btndelete">
+	
+	<div id="divtable">
+		<!-- 여기서 먼저 table 태그를 만들어놨는데요, remove 를 쓰면 같이 날라가고 empty 를 사용하면 안에 자식요소만 삭제됩니다.
+			remove 를 하면 테이블을 동적생성버튼으로 다시 테이블을 생성할수 없고요, empty 를 하면 테이블을 버튼으로 다시 생성 가능합니다. empty를 주로 씁니다. -->
+	
+	</div>
+	<hr>
+	<input type="button" id="btnmenu" value="변경">
+	<div id="menu">HOME</div>
+	<div id="content">CONTENT</div>
+	<div id="submenu">SUBMENU</div>
+</body>
+</html>
+
+
+
+
