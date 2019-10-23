@@ -3,14 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Emp e = new Emp();
+	Emp e = new Emp();		// Java Resources 에서 kr.or.bit 패키지 생성후 Emp class 작성하여 사용
 	e.setEmpno(1000);
 	e.setEname("홍길동");
 	
-	Calendar cal = Calendar.getInstance();
-	int year = cal.get(Calendar.YEAR);		// 상수값으로 받음
-	int month = cal.get(Calendar.MONTH);
-	int date = cal.get(Calendar.DATE);
+	Calendar cal = Calendar.getInstance();		// java.util? 사용하기
+	int year = cal.get(Calendar.YEAR);		// 현재 년도 상수값으로 받음
+	int month = cal.get(Calendar.MONTH);	// 현재 달
+	int date = cal.get(Calendar.DATE);		// 현재 일
 	
 %>
 <!DOCTYPE html>
