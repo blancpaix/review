@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action = "Ex05_register.jsp" method = "get" >
+		<input type="text" name = "userid" id="userid">
+		<input type="text" name = "pwd" id = "pwd">
+		<input type="checkbox" name = "hobby" value="baseball">baseball
+		<input type="checkbox" name = "hobby" value="scooer">soccer
+		<input type="checkbox" name = "hobby" value="basketball">basketball
+		<input type="checkbox" name = "hobby" value="tenis">tenis
+		<input type="submit" value = "회원가입">
+	</form>
+	<hr>
+	링크 사용(GET)		POST 비행기라서 좋은데 GET 써야 하는 경우는 따로 정해져 있죠
+	<a href="Ex05_register.jsp?userid=hong&pwd=1004&hobby=aa">GET 방식 처리</a>	
+		<!-- 실제로 보안이 필요한 정보는 이렇게 보내면 망합니다....ㅋㅋㅋ -->
+	
+</body>
+</html>
