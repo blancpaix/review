@@ -4,14 +4,16 @@
    //스크립트 릿(java code 작성 영역)
    Date day = new Date();
    /*
-      JSP 페이지 : UI > html + css + javascript 코드 +
-                 Server code(JDBC) > java 코드 <% 안에서 구현....
-		>> 디자인 코드 + 서버 로직 코드(좋은 방식은 아님...)
+      JSP 페이지 : UI >> Html + Css + Javascript 코드 +
+				 Server code (JDBC) >> JAVA 코드 : <% 안에서 구현 % >
+		>> 디자인 코드 + 서버 로직 코드 	=>	스파게티 코드 (좋은 방식이 아님) 
+
 		>> [결론]
-		>> servlet (Java Web을 구현하는 page)
-		>> UI > jsp 
-		>> MVC (model(java) : view(jsp) : controller(servlet))   
-		>> 잘하는 것만 해.... model2 기반의 MVC패턴
+		>> servlet (Java 로  Web 을 구현하는 page)
+		>> UI >> JSP
+		>> MVC (model(java) - view(jsp) - controller(servlet))
+		>> 잘하는 것만 해~ 		model2 기반의 MVC 패턴
+			JPS 하나로 다 하면 되지만, 유지보수가 엄청 힘듦
 		
 		>> JSP와 html의 차이점 
 		>> tomcat(WAS) 사용하는 이유 : Web Server -웹 어플리케이션 서버(서비스)
