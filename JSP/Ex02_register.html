@@ -6,14 +6,15 @@
 </head>
 <body>
 <!-- 
-1. name 속성 : 변수명 (Ex02_register.jsp?userid=hong&pwd=111..... 이런 식으로 넘어감
+1. name 속성 : 변수명 (Ex02_register.jsp ? userid=hong & pwd=111..... 이런 식으로 넘어감
 2. id 속성 : (UI : css, javascript, jquery) 식별자
 3. Ex02_register.jsp 페이지 ... 가장 먼저 무엇을 할까?			클라이언트가 입력한 데이터를 받아오는것을 함.
-
  -->
+ 	
 	<!-- <form action = "Ex02_register.jsp" method = "get" > -->
-	
 	<form action = "Ex02_register.jsp" method = "post" >
+	<!-- get : 데이터를 서버??에서 불러올때 사용. post : 데이터를 서버에 전달하여 저장할 때 사용. -->
+	
 		<input type="text" name = "userid" id="userid">
 		<input type="text" name = "pwd" id = "pwd">
 		<input type="checkbox" name = "hobby" value="baseball">baseball

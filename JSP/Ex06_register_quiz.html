@@ -28,28 +28,36 @@
     userSsn1 , userSsn2 , userZipCode , userPhone
    	값이 입력되지 않으면 다시 입력을 요청
   -->
+  
 <script type="text/javascript">
-
+// 모든 구문 해석 이후 실행할 함수 정의
 $(document).ready(function(){
+	
+	// 정규표현식 생성
 	var regId = /^[a-z0-9_]{4,20}$/;
 	var regPwd = /^[a-z0-9_]{6,20}$/;
 	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	var regPhone =  /^\d{3}-\d{3,4}-\d{4}$/;
 	
+	// 제출 버튼 클릭시 실행할 함수 정의
 	$('#btnsubmit').click(function() {	
+		// 누락 개체 확인
 		if($('#userName').val() == "" || $('#userPass').val() == "" || $('#userPassCheck').val() == "" || $('#userSsn1').val() == "" || $('#userSsn2').val() == "" || $('#userZipCode').val() == "" || $('#userAddr1').val() == "" || $('#userAddr2').val() == "") {
 			alert("누락");
 			return false;
 		} else {
+			// 정규표현식 불만족 개체 확인
 			if (regId.test($('#userId').val()) && regEmail.test($('#userEmail').val()) && regPhone.test('#userPhone').val()) {
 			
 			} else {
 				alert("정규표현 만족X ");
 				return false;
+				// return false; 로 form 의 action 주소(MemberJoinOK.jsp)로 넘어가지 않음
 			}
 		}
 	});
 	
+	// 암호 입력부분 키 입력이 되면 정규표현식 만족 여부 확인
 	$('#userPass').keyup (function () {
 		if (regPwd.test($(this).val()) != true) {
 			$('.tdpw').html("암호 형식 만족 X");
@@ -58,6 +66,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 암호, 암호 확인 칸의 동일 값 여부 확인
 	$('#userPassCheck').keyup(function() {
 		if ($('#userPass').val() != $('#userPassCheck').val()) {
 			$('.tdpwch').html("암호 다름");
@@ -66,6 +75,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 아이디 입력부분 키 입력이 되면 정규표현식 만족 여부 확인
 	$('#userId').keyup(function() {
 		
 		if (regId.test($(this).val()) != true) {
@@ -75,6 +85,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 핸드폰번호 ''
 	$('#userPhone').keyup(function() {
 		
 		if (regPhone.test($(this).val()) != true) {
