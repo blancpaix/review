@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//$(function(){
+			
+		//});
+		//일반 자바스크립트 함수
+		function javascriptFunc(){
+			let arrayobj=[];
+			//1. arrayobj 배열에 아래 처럼 객체 추가해보세요
+			//아래 테이블에서 데이터 read
+			/*
+			101th  홍길동  10
+			102th  김유신  20
+			103th  유관순  30
+			arrayobj  배열에 객체형태로 추가 
+			[{},{},{}]
+			//ex) [{grade:101th , name:홍길동 , age:10}] 형식으로 추가
+			//arrayobj.push({grade: , name: ,  ,age:})
+			$('table')
+			*/
+			$("table > tbody > tr").each(function(){
+				//console.log(this); <tr><td>.....</tr>
+				//console.log($(this).children()); //<td>....</td><td>....</td>
+				//console.log($(this).children().eq(0));
+				//console.log($(this).children().eq(0).text());
+				arrayobj.push(//3번 push
+					{
+						//<td>101th</td><td>홍길동</td><td>10</td>
+						grade:$(this).children().eq(0).text(),
+						name:$(this).children().eq(1).text(),
+						age:$(this).children().eq(2).text()
+					}	
+				);
+			});
+			
+			console.log(arrayobj);
+			//2. 최종결과를 출력 (javascript for문 출력)
+			//id="display" div 안쪽에 출력
+			let output="";
+			for(let i = 0 ; i < arrayobj.length ; i++){
+				output+= arrayobj[i].grade + ","+
+						 arrayobj[i].name + ","+
+						 arrayobj[i].age + "<br>";
+			}
+			$('#display').append(output);
+			
+			for(let index in arrayobj){
+				console.log(arrayobj[index].grade);
+			}
+			
+			//3.최종결과를 출력 (jquery each 문 출력)
+			//id="display2" div 안쪽에 출력
+			$.each(arrayobj,function(index,obj){
+				$('#display').append(obj.grade + " " + obj.name + " " + obj.age + "<br>");
+			});
+		}
+		
+	</script>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr><td>기수</td><td>이름</td><td>번호</td></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>101th</td><td>홍길동</td><td>10</td>
+			</tr>
+			<tr>
+				<td>102th</td><td>김유신</td><td>20</td>
+			</tr>
+			<tr>
+				<td>103th</td><td>유관순</td><td>30</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<button onclick="javascriptFunc()">함수호출</button>
+	</p>
+	<div id="display"></div>
+	<div id="display2"></div>
+</body>
+</html>

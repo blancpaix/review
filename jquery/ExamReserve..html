@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		#feedback { font-size: 1.4em; }
+		#selectable .ui-selecting { background: #FECA40; }
+		#selectable .ui-selected { background: #F39814; color: white; }
+		#selectable { list-style-type: none; margin: 0; padding: 0; width: 300px; }
+		#selectable li { margin: 3px; border:1px; padding: 1px; float: left; width: 40px; height: 50px; font-size: 2em; text-align: center; }
+		
+		#selectable2 .ui-selecting { background: #FECA40; }
+		#selectable2 .ui-selected { background: #F39814; color: white; }
+		#selectable2 { list-style-type: none; margin: 0; padding: 0; width: 300px; }
+		#selectable li { margin: 3px; border:1px; padding: 1px; float: left; width: 40px; height: 50px; font-size: 2em; text-align: center; }
+		
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js">
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+<script type="text/javascript">
+
+$(document).ready(function() {
+		
+	    $( "#accordion" ).accordion();
+	    
+	    $("#btnSelectTime").click(function() {
+
+	    	$('#selectTimeList').toggle();
+			$('#selectSeat').hide();
+		});
+	    
+	    $("#btnSelectSeat").click(function() {
+			$('#selectSeat').toggle();
+			$('#selectTimeList').hide();
+		});
+	    
+	   
+	    var seatNum = 0;
+	    var setTime = 0;
+	    
+	    /*
+		$('#selectTime').click(function() {
+			
+			setTime = $(this).val();
+			console.log(setTime + "112");
+			// if ('#') {}
+		});
+	    */
+
+	    
+		$( "#selectable" ).selectable({
+			stop : function() {
+		        var result = $( "#inputSeat" ).empty();
+		        $( ".ui-selected", this ).each(function() {
+		          seatNum = ($( "#selectable li" ).index(this)+1);
+		          result.append( " #" + ( seatNum + 1 ) );		       
+		          $('#inputSeat').val(seatNum);
+		          console.log(seatNum +"좌석 번호");
+		        });
+			}
+		});
+		
+		
+		$( "#selectable2" ).selectable({
+			stop : function() {
+		        var result = $( "#inpuTime" ).empty();
+		        $( ".ui-selected", this ).each(function() {
+		          var obj = ($( "#selectable2"));
+		          var textOutput = obj.val();
+		          result.append( " #" + ( setTime) );		       
+		          $('#inputTime').val(setTime);
+		          console.log(setTime +"시간");
+		        });
+			}
+			
+			/*
+			stop : function() {
+		        var result = $( "#inputTime" ).empty();
+		        
+		        $( ".ui-selected", this ).each(function() {
+		        
+		          setTime = ($("#selectable2 .selected").val());
+		          result.append( " #" + ( setTime) );		       
+		          $('#inputTime').val(setTime);
+		          console.log(setTime +"시간 확인2");
+		        });
+			}
+			*/
+		});
+		
+		
+
+	    
+	
+		$('#dialog').dialog({
+				autoOpen : false,
+				show:{effect : "blind", duration:2000},
+				hide:{effect:"explode",duration:1000},
+				buttons :
+				{
+				"확인" : function() {			
+					let setTime = $('#selectTime .selected').val();		// 값을 가지고 옴. text() 도  값 불러오기 될껄???? 일단 확인 해보고
+					let setSeat = $('#inputSeat').val(seatNum);
+					
+					$(`<h3></h3>`).html(setTime + " : " + setSeat).appendTo("#showOptions");
+					$(`#dialog`).dialog('close');
+					
+				},
+				"cancle" : function() {
+					$(`#selectTime`).val('');		// 빈 문자열을 주면 기존 내용을 삭제하는거랑 동일함
+					$(`#inputSeat`).val('');
+					$(`#dialog`).dialog('close');
+				}
+			},
+			resizable : true,
+			modal : true
+		});
+		
+		
+		$('#btnSelectYes').click(function() {
+			console.log(seatNum);
+			console.log( $('#selectTime .selected').val());
+			console.log($('#inputSeat').val(seatNum));
+			let setTime = $('#selectTime .selected').val();
+			let setSeat = $('#inputSeat').val(seatNum);
+			$('#dialogTime').val(setTime);
+			$('#dialogSeat').val(setSeat);
+			$("#dialog").dialog("open");
+		});
+	
+	    
+
+	});
+	
+</script>
+</head>
+<body>
+	<div id="showOptions">
+	</div>
+	<div class = "container" id ="container">
+		<div class="row">
+		
+			<div class="col-sm-5" id ="initiate" style="height:100%">
+				<h3 style="text-align:center"> 게임을 시작하지 </h3>
+				
+				
+				<div class="collapse" id="selectTimeList" style="padding-left:10px; min-width:220px; max-width:230px;">
+					<h3 style="text-align: center;">시간선택</h3>
+					
+					<input type="text" title="시간" id="inputTime" readOnly; style="text-align:center;" class="inpt2" placeholder="시간 선택 확인">
+		
+						<ol id="selectable2" style="width: 90%; margin-left: 5%; margin:auto; size:10px;" draggable="false">
+							<li class="ui-state-default" value="1">1시간<br>1500원</li>
+							<li class="ui-state-default" value="3">3시간<br>4000원</li>
+							<li class="ui-state-default" value="6">6시간<br>10000원</li>
+						</ol>
+				</div>
+				
+				<div class="col-sm-12" style="padding-left:10px">
+					<button type="button" id="btnSelectTime" style="width: 90px; height: 40px; margin: 30;">
+					시간 선택</button>
+				</div>
+				
+				
+				<div class = "collapse" id="selectTime" style="padding-left:10px">
+					<button type="button" class="btn btn-primary" id="t1" value="1">1시간 (1500원)</button>
+					<button type="button" class="btn btn-primary" id="t3" value="3">3시간 (4000원)</button>
+					<button type="button" class="btn btn-primary" id="t6" value="6">6시간 (10000원)</button>
+				</div>
+				
+				
+				<div class="col-sm-12" style="padding-left:10px">
+					<button type="button"  id="btnSelectSeat" style="width:90px; height:40px; margin:30;">
+					자리 선택</button>
+				</div>
+				<br>
+				<div class="collapse" id="selectSeat" style="padding-left:10px; min-width:220px; max-width:230px;">
+					<h3 style="text-align: center;">좌석지정</h3>
+					
+					<input type="text" title="좌석" id="inputSeat" readOnly; style="text-align:center;" class="inpt" placeholder="좌석 번호 확인">
+		
+						<ol id="selectable" style="width: 90%; margin-left: 5%; margin:auto;" draggable="false">
+							<li class="ui-state-default">1</li>
+							<li class="ui-state-default">2</li>
+							<li class="ui-state-default">3</li>
+							<li class="ui-state-default">4</li>
+							<li class="ui-state-default">5</li>
+							<li class="ui-state-default">6</li>
+							<li class="ui-state-default">7</li>
+							<li class="ui-state-default">8</li>
+							<li class="ui-state-default">9</li>
+							<li class="ui-state-default">10</li>
+							<li class="ui-state-default">11</li>
+							<li class="ui-state-default">12</li>
+							<li class="ui-state-default">13</li>
+							<li class="ui-state-default">14</li>
+							<li class="ui-state-default">15</li>
+							<li class="ui-state-default">16</li>
+						</ol>
+						<button id="checkSeat" class="btn btn-primary" style="margin-left:40%">좌석 확정</button>
+
+				</div>
+				
+				<button type="button" id="btnSelectYes"  style="width:90px; height:40px; margin:30;">시작 </button>
+				<button type="button" id="btnSelectNo"  style="width:90px; height:40px; margin:30;"> 취소 </button>
+				
+				<!-- dialog 들어가는 html -->
+				<div id = "dialog" title="주문 확인" style="width:100%;">
+					<h3>*욱* *옷* *홋*훗*홋* *옷* *웅*</h3>
+					<label for="LabelTime">시간</label>
+			  		<input type="text" id="dialogTime" readonly><br>
+			  		<label for ="LabelSeat">좌석</label>
+			  		<input type="text" id="dialogSeat" readonly><br>
+				 </div>
+
+			</div>
+			
+			<div class="col-sm-5" id="otherOption" style="height:100%">
+				Other options
+			</div>
+			
+			
+		</div>
+	</div>
+</body>
+</html>

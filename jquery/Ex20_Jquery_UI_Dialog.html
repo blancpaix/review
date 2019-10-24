@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style type="text/css">
+	
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$( "#dialog" ).dialog(
+				{
+					autoOpen: false,
+					show:{effect:"blind",duration:2000},
+					hide:{effect:"explode",duration:1000}
+				}		
+			);
+			
+			$('#opener').click(function(){
+				$( "#dialog" ).dialog("open");
+				/*
+				$( "#dialog" ).dialog(
+					{
+						autoOpen: true
+					}		
+				);
+				*/	
+			});
+		});		
+	</script>
+</head>
+<body>
+	<p>Basic content</p>
+	<button id="opener">open dialog</button>
+	<!-- POPUP DIV  -->
+	<div id="dialog" title="Basic dialog">
+  		<p>오늘은 목요일</p>
+	</div>
+</body>
+</html>

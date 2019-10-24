@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style type="text/css">
+	
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			
+			$('#datepicker').datepicker({
+				dateFormat: "yy년mm월dd일"
+			});
+			
+			
+			
+			$( "#dialog" ).dialog(
+				{
+					autoOpen: false,
+					show:{effect:"blind", duration:2000},
+					hide:{effect:"explode", duration:1000},
+					buttons: {
+								"submit" : function() {			// 텍스트에 쓰여지는 글자일 뿐이고 뒤에 함수가 실행될거임
+									let eventname = $(`#event_name`).val();		// 값을 가지고 옴. text() 도  값 불러오기 될껄???? 일단 확인 해보고
+									let eventdate = $(`#event_date`).val();
+									// $(`p`).html('aaa'); >>	존재하는 p 태그를 찾아서 aaa 넣어줌 <p>aaa</p> 처럼
+									// $(`<h3></h3>`).html('aaa')	>> selector 칸 안에 full tag 를 쓴다면 h3을 만듦. <h3>aaa<h3>
+									// 	 = DOM :		createElement('h3')	>>	$('<h3></h3>')
+									// ex) var tag = $(`<h3></h3>`).htm(`aaa`);
+									// $(`#div`).append(tag);
+									
+									$(`<h3></h3>`).html(eventname + " : " + eventdate).appendTo("#output");
+									$(`#dialog`).dialog('close');
+									
+								},
+								"reset" : function() {
+									$(`#event_name`).val('');		// 빈 문자열을 주면 기존 내용을 삭제하는거랑 동일함
+									$(`#event_date`).val('');
+								},
+								"cancle" : function() {
+									$(`#event_name`).val('');		// 빈 문자열을 주면 기존 내용을 삭제하는거랑 동일함
+									$(`#event_date`).val('');
+									$(`#dialog`).dialog('close');
+								}
+					         },
+					resizable: true,
+					modal: true //팝업창을 닫기 전까지는 opener 부모창 작업 불가
+				}		
+			);
+			
+			$('#open_button').click(function(){
+				$( "#dialog" ).dialog("open");
+				/*
+				$( "#dialog" ).dialog(
+					{
+						autoOpen: true
+					}		
+				);
+				*/	
+			});
+		});		
+	</script>
+</head>
+<body>
+	<h3 id="open_button">일정생성</h3>
+	<hr>
+	<div id="output">
+	</div>
+
+	<!-- POPUP DIV  -->
+	<div id="dialog" title="팝업창">
+  		<h3>일정 만들기</h3>
+  		<label for="event_name">일정이름</label>
+  		<input type="text" id="event_name"><br>
+  		<label for ="event_date">일정날짜</label>
+  		<input type="text" id="event_date" readonly><br>
+  		
+	</div>
+</body>
+</html>

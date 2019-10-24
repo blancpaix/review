@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js">
+	
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+<script type="text/javascript">
+	
+	$(function() {
+		$(function() {
+			
+			$('#ticketing').click(function() {
+				
+				if($('#inputDate').val() == ""){
+					alert("날짜를 선택하세요");
+				}else if($('#inputRegion').val() == ""){
+					alert("지역을 선택하세요");
+				}else if($('#inputTime').val() == ""){
+					alert("시간을 선택하세요");
+				}else if($('#inputSeat').val() == ""){
+					alert("좌석을 선택하세요");
+				}else{
+					var str = "<p>날짜: ";
+
+					str += $('#inputDate').val();
+					str += "<br>지점: "
+					str += $('#inputRegion').val();
+					str += "<br>("
+					str += $('#inputTime').val();
+					str += ")<br>좌석: "
+					str += $('#inputSeat').val();
+					str += "<br>으로 예매되었습니다.</p>"
+
+					$("#dialog").html(str);
+					$('#dialog').dialog('open');
+				}
+			});
+
+			$("#dialog").dialog({
+				autoOpen : false,
+				modal : true,
+				show : {
+					effect : "clip",
+					duration : 500
+				},
+				hide : {
+					effect : "clip",
+					duration : 500
+				},
+				buttons : {
+					확인 : function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+
+		});
+		
+		$("#accordion").accordion({
+			collapsible : true,
+			heightStyle : "content"
+		});
+	
+
+		$("#seoul").click(function() {
+			$('#seoull').toggle();
+			$('#gyunggi,#inchon').hide();
+		});
+
+		$("#gg").click(function() {
+			$('#gyunggi').toggle();
+			$('#seoull,#inchon').hide();
+		});
+
+		$("#ic").click(function() {
+			$('#inchon').toggle();
+			$('#gyunggi,#seoull').hide();
+		});
+
+		$("#s1").click(function() {
+			$("#inputRegion").val($("#s1").text());
+		});
+
+		$("#s2").click(function() {
+			$("#inputRegion").val($("#s2").text());
+		});
+
+		$("#s3").click(function() {
+			$("#inputRegion").val($("#s3").text());
+		});
+
+		$("#g1").click(function() {
+			$("#inputRegion").val($("#g1").text());
+		});
+
+		$("#g2").click(function() {
+			$("#inputRegion").val($("#g2").text());
+		});
+
+		$("#g3").click(function() {
+			$("#inputRegion").val($("#g3").text());
+		});
+
+		$("#i1").click(function() {
+			$("#inputRegion").val($("#i1").text());
+		});
+
+		$("#i2").click(function() {
+			$("#inputRegion").val($("#i2").text());
+		});
+
+		$("#i3").click(function() {
+			$("#inputRegion").val($("#i3").text());
+		});
+
+	
+		
+		var spinner = $('#spinner').spinner({
+			step : 1,
+			numberFormat : "n",
+			max : 1,	// 좌석 수 고정
+			min : 0
+		});
+		
+		
+		// 좌석 선택
+		$('#choice').click(function() {
+			var show = $('#spinner').val();
+			var str = "";
+			if (show > 49) {
+				alert('인원이 초과 되었습니다. 다시 선택해 주세요');
+				$('#spinner').val(0);
+			} else {
+				alert('예약인원 : ' + show + "명 입니다. 아래에서 좌석을 선택해 주세요");
+			}
+		});
+
+		var i = [];
+
+		$("#selectable").selectable({
+			stop : function() {
+				$(".ui-selected", this).each(function() {
+					var index = ($("#selectable li").index(this) + 1);
+
+					if (i.length == 0) {
+						$("#select-result").append(index);
+						$('#select-result').append(" ");
+						i.push(index);
+					} else {
+						var index2 = 0;
+						for ( var num in i) {
+							if (i[num] == index) {
+								alert('이미 선택하신 자리입니다');
+								break;
+							}
+							index2++;
+						}
+
+						if (index2 == i.length) {
+							$('#select-result').append(index);
+							$('#select-result').append(" ");
+						}
+						i.push(index);
+					}
+				});
+			}
+		});
+		
+		$('#check').click(function() {
+			if ($('#spinner').val() != i.length) {
+				alert('선택한 인원과 좌석수가 맞지 않습니다.다시 선택해 주세요');
+				$('#select-result').val(null);
+			} else {
+				for(var index in i){
+					$('#inputSeat').val(i + " ");
+				}
+			}
+		});
+
+		$('#clear').click(function() {
+			i.length = 0;
+			$('#select-result').html("");
+		});
+		
+	});
+</script>
+<style type="text/css">
+#feedback {
+	font-size: 1.4em;
+}
+
+#selectable .ui-selecting {
+	background: #FECA40;
+}
+
+#selectable .ui-selected {
+	background: #F39814;
+	color: white;
+}
+
+#selectable {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 450px;
+}
+
+#selectable li {
+	margin: 3px;
+	padding: 1px;
+	float: left;
+	width: 40px;
+	height: 40px;
+	font-size: 1em;
+	text-align: center;
+}
+
+#selectable li>selectable1 {
+	margin: 5px;
+	padding: 1px;
+	float: left;
+	width: 400px;
+	height: 50px;
+	font-size: 1em;
+	text-align: center;
+}
+
+#container {
+	width: 95%;
+	padding: 0;
+	border-left: 1px solid;
+	height: 100%;
+	margin: 40px;
+	margin-bottom: 10px;
+	background:
+		url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuBF6Qk9OMnHtaQkKzj677ytoVQk7RmPZb3tyY5eU4a9mvIOR5);
+}
+
+input {
+	width: 50%;
+	height: 40px;
+	margin: 30px;
+}
+
+h3 {
+	color: white;
+}
+
+.btnclass {
+	width: 40%;
+	margin: 10px;
+	color: black;
+	text-align: center;
+	padding: 0;
+	margin-left: 4.5%;
+	margin-right: 2%;
+}
+
+.inpt {
+	text-align: center;
+	margin-left: 25%;
+	margin-right: 25%
+}
+</style>
+</head>
+<body>
+		
+	<div class="container" id="container">
+		<div class="row">
+		
+			<div class="col-sm-3 col-xs-3" id="region" style="padding: 0; border-left: 1px solid; height: 650px; margin:20px;">
+				<h3 style="text-align: center;">게임을 시작하지</h3>
+				
+				<div class="col-sm-12" style="padding-left: 10px">
+					<button type="button" id="seoul" class="ui-state-default ui-corner-all" style="width: 90px; height: 40px; margin: 30px">시간 선택</button>
+				</div>
+
+				<div class="collapse" id="seoull" style="padding-left: 10px">
+					<button type="button" class="btn btn-primary" id="s1">1시간	(1500원)</button>
+					<button type="button" class="btn btn-primary" id="s2">3시간	(4000원)</button>
+					<button type="button" class="btn btn-primary" id="s3">6시간	(10000원)</button>
+				</div>
+
+				<div class="col-sm-12" style="padding-left: 10px">
+					<button type="button" id="gg"
+						class="ui-state-default ui-corner-all"
+						style="width: 90px; height: 40px;  margin: 30px;">자리선택</button>
+				</div>
+
+				<div class="collapse" id="gyunggi" style="padding-left: 10px">
+					<div class="col-sm-12 col-xs-12" id="seat" style="padding: 0; border-left:1px solid; height:650px; min-width:250px; max-width:250px;">
+						<h3 style="text-align: center;">좌석지정</h3>
+						<input type="text" title="좌석" id="inputSeat" readonly class="inpt" placeholder="좌석 들어가는 곳">
+						<div style="text-align: center">
+							<!-- spinner 예약인원 정하기 -->
+							<label for="spinner">예약을 원하는 인원을 선택하세요</label><br> <input
+								id="spinner" name="spinner" value="0">
+							<button id="choice">인원 선택 완료</button>
+						</div>
+		
+						<p id="feedback"
+							style="margin-left: 5%; margin-right: 5%; margin-top: 10px;">
+							<span>선택하신 좌석:</span> <span id="select-result"></span>
+						</p>
+		
+						<ol id="selectable"
+							style="width: 90%; margin-left: 5%; margin-right: 5%">
+							<li class="ui-state-default">1</li>
+							<li class="ui-state-default">2</li>
+							<li class="ui-state-default">3</li>
+							<li class="ui-state-default">4</li>
+							<li class="ui-state-default">5</li>
+							<li class="ui-state-default">6</li>
+							<li class="ui-state-default">7</li>
+							<li class="ui-state-default">8</li>
+							<li class="ui-state-default">9</li>
+							<li class="ui-state-default">10</li>
+							<li class="ui-state-default">11</li>
+							<li class="ui-state-default">12</li>
+							<li class="ui-state-default">13</li>
+							<li class="ui-state-default">14</li>
+							<li class="ui-state-default">15</li>
+							<li class="ui-state-default">16</li>
+							
+						</ol>
+						<button id="check" class="btn btn-primary" style="margin-left:30%">좌석 선택완료</button>
+						<button id="clear" class="btn btn-primary" style="margin-left:2%">좌석 초기화</button>
+					</div>
+					
+				</div>
+
+
+			</div>
+			<div class="col-sm-4 col-xs-4" id="time"
+				style="padding: 0; border-left: 1px solid; height: 650px;">
+				<h3 style="text-align: center;">시간지정</h3>
+				<input type="text" title="시간" id="inputTime" readonly class="inpt"
+					placeholder="영화시간 들어가는 곳">
+				<div id="accordion"
+					style="width: 90%; margin-left: 5%; margin-right: 5%">
+					<h3>브리짓 존스의 일기</h3>
+					<div>
+						<input class="btnclass" type="button" id="opener0"
+							value=" 8시 ~ 10시 "> <input class="btnclass" type="button"
+							id="opener" value=" 10시 ~ 12시 "> <input class="btnclass"
+							type="button" id="opener2" value="  12시 ~ 14시 "> <input
+							class="btnclass" type="button" id="opener3" value=" 14시 ~ 16시 ">
+						<input class="btnclass" type="button" id="opener4"
+							value=" 16시 ~ 18시 ">
+
+					</div>
+					<h3>라푼젤</h3>
+					<div>
+
+						<input class="btnclass" type="button" id="opener5"
+							value=" 10시 ~ 12시 "> <input class="btnclass"
+							type="button" id="opener6" value=" 12시 ~ 14시 "> <input
+							class="btnclass" type="button" id="opener7" value=" 14시 ~ 16시 ">
+						<input class="btnclass" type="button" id="opener8"
+							value=" 16시 ~ 18시 ">
+
+					</div>
+					<h3>택시운전사</h3>
+					<div>
+						<input class="btnclass" type="button" id="opener9"
+							value=" 10시 ~ 12시 "> <input class="btnclass"
+							type="button" id="opener10" value=" 12시 ~  14시 "> <input
+							class="btnclass" type="button" id="opener11" value=" 14시 ~ 16시 ">
+						<input class="btnclass" type="button" id="opener12"
+							value=" 16시 ~ 18시 ">
+
+					</div>
+					<h3>청년경찰</h3>
+					<div>
+						<input class="btnclass" type="button" id="opener13"
+							value=" 10시 ~ 12시 "> <input class="btnclass"
+							type="button" id="opener14" value=" 12시 ~ 14시 "> <input
+							class="btnclass" type="button" id="opener15" value=" 14시 ~ 16시 ">
+						<input class="btnclass" type="button" id="opener16"
+							value=" 16시 ~ 18시 ">
+					</div>
+				</div>
+
+			</div>
+			
+			
+		</div>
+	</div>
+	<button class="btn-lg btn btn-warning" id="ticketing"
+		style="margin-left: 1335px">예매하기</button>
+
+	<div id="dialog" title="예매 완료"></div>
+</body>
+</html>
