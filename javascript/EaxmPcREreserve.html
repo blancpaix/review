@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+	#feedback { font-size: 1.4em; }
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0;}
+	#selectable li { margin: 3px; border:1px; padding: 1px; float: left; width: 22%; height: 80px; font-size: 2em; text-align: center; }
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js">	</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">	</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$( "#accordion" ).accordion();
+	
+	$("#first").click(function() {
+		$('#fir').toggle();
+		$('#sec, #thi, #fou, #fiv').hide();
+	});
+	
+	$("#second").click(function() {
+		$('#sec').toggle();
+		$('#fir, #thi, #fou, #fiv').hide();
+	});
+
+	$("#third").click(function() {
+		$('#thi').toggle();
+		$('#fir, #sec, #fou, #fiv').hide();
+	});
+	
+	$("#four").click(function() {
+		$('#fou').toggle();
+		$('#fir, #sec, #thi, #fiv').hide();
+	});
+	
+	$("#five").click(function() {
+		$('#fiv').toggle();
+		$('#fir, #sec, #thi, #fou').hide();
+	});
+	
+	var seatNum = 0;
+	var setTime = 0;
+	var money = 0;
+	
+	$( "#selectable" ).selectable({
+		stop : function() {
+	        var result = $( "#inputSeat" ).empty();
+	        $( ".ui-selected", this ).each(function() {
+	          seatNum = ($( "#selectable li" ).index(this)+1);
+	          result.append( " #" + ( seatNum + 1 ) );
+	          $('.inpt').val(seatNum);
+	          //$('#inputSeat').val(seatNum);
+	          console.log(seatNum +"좌석 번호");
+	        });
+		}
+	});
+	
+	/*
+	$( "#selectable2" ).selectable({
+		stop : function() {
+	        var result = $( "#inputSeat" ).empty();
+	        $( ".ui-selected", this ).each(function() {
+	        	setTime = ($( "#selectable2 li" ).val());
+	          	result.append( " #" + ( setTime ) );		       
+	          	$('#inputTime').val(setTime);
+	         	console.log(setTime +"좌석 번호");
+	        });
+		}
+	});
+	*/
+	
+	$('#btnTimeSel1').click(function() {
+		setTime += 1;
+		$('#inputTime').val(setTime);
+		console.log(setTime);
+	});
+	$('#btnTimeSel3').click(function() {
+		setTime += 3;
+		$('#inputTime').val(setTime);
+		console.log(setTime);
+	});
+	$('#btnTimeSel6').click(function() {
+		setTime += 6;
+		$('#inputTime').val(setTime);
+		console.log(setTime);
+	});
+	
+});
+
+</script>
+</head>
+<body>
+
+ 
+<div id="accordion">
+  <h3>1단계 SELECT SEAT</h3>
+  <div>
+  	<h2>SELECT SEAT</h2>
+		<div id="fir" style="width:100%; margin:auto;">
+
+			<input type="text" title="좌석" id="inputSeat" style="text-align: center;" class="inpt" placeholder="좌석 번호 확인">
+				<ol id="selectable" style="min-width: 80%; margin-left: 5%; margin: auto;" draggable="false">
+					<li class="ui-state-default">1</li>
+					<li class="ui-state-default">2</li>
+					<li class="ui-state-default">3</li>
+					<li class="ui-state-default">4</li>
+					<li class="ui-state-default">5</li>
+					<li class="ui-state-default">6</li>
+					<li class="ui-state-default">7</li>
+					<li class="ui-state-default">8</li>
+					<li class="ui-state-default">9</li>
+					<li class="ui-state-default">10</li>
+					<li class="ui-state-default">11</li>
+					<li class="ui-state-default">12</li>
+					<li class="ui-state-default">13</li>
+					<li class="ui-state-default">14</li>
+					<li class="ui-state-default">15</li>
+					<li class="ui-state-default">16</li>
+				</ol>
+				<button id="checkSeat" class="btn btn-primary" style="margin-left: 40%">좌석 확정</button>	
+		</div>
+  </div>
+  
+  <h3>2단계 SELECT TIME</h3>
+  <div>
+    <input type="text" title="시간" id="inputTime" style="text-align: center;" class="inpt" placeholder="입력 시간 확인">
+				<ol id="selectable" style="min-width: 80%; margin-left: 5%; margin: auto;" draggable="false">
+					<li class="ui-state-default" value="1시간">1 hour <br></li>
+				
+				</ol>
+				<button id="checkSeat" class="btn btn-primary" style="margin-left: 40%">좌석 확정</button>
+				
+				<button id="btnTimeSel1" style="width:120px; height: 60px;" value="1">1 시간 <br>1500원</button>
+				<button id="btnTimeSel3" style="width:120px; height: 60px;" value="3">3 시간 <br>4000원 </button>
+				<button id="btnTimeSel6" style="width:120px; height: 60px;" value="6">6 시간 <br>10000원 </button>
+  </div>
+  <h3>Section 3</h3>
+  <div>
+    <p>
+    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+    </p>
+    <ul>
+      <li>List item one</li>
+      <li>List item two</li>
+      <li>List item three</li>
+    </ul>
+  </div>
+  <h3>Section 4</h3>
+  <div>
+    <p>
+    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+    mauris vel est.
+    </p>
+    <p>
+    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos.
+    </p>
+  </div>
+</div>
+ 
+<!-- 
+<div id="container" style="background-color:gray">
+
+	<div id="first" style="width:100%; height:50px; background-color:navy;">
+	<h2>SELECT SEAT</h2>
+		<div id="fir" style="width:100%; background-color: gold;">
+			<input type="text" title="좌석" id="inputSeat" style="text-align: center;" class="inpt" placeholder="좌석 번호 확인">
+				<ol id="selectable"
+					style="width: 90%; margin-left: 5%; margin: auto;" draggable="false">
+					<li class="ui-state-default">1</li>
+					<li class="ui-state-default">2</li>
+					<li class="ui-state-default">3</li>
+					<li class="ui-state-default">4</li>
+					<li class="ui-state-default">5</li>
+					<li class="ui-state-default">6</li>
+					<li class="ui-state-default">7</li>
+					<li class="ui-state-default">8</li>
+					<li class="ui-state-default">9</li>
+					<li class="ui-state-default">10</li>
+					<li class="ui-state-default">11</li>
+					<li class="ui-state-default">12</li>
+					<li class="ui-state-default">13</li>
+					<li class="ui-state-default">14</li>
+					<li class="ui-state-default">15</li>
+					<li class="ui-state-default">16</li>
+				</ol>
+				<button id="checkSeat" class="btn btn-primary" style="margin-left: 40%">좌석 확정</button>
+				<p>이건 뭐임</p>
+		</div>
+	</div>
+	
+	
+	<div id="second" style="width:100%; height:50px; background-color:navy;">
+	<h2>SELECT TIME</h2>
+		<div id="sec" style="width:100%; height:100%; background-color: gold;">
+		</div>
+	</div>
+	
+	<div id="third" style="width:100%; height:50px; background-color:navy;">
+	<h2>SELECT MEALS</h2>
+		<div id="thi" style="width:100%; height:100%; background-color: gold;">
+		</div>
+	</div>
+		
+	<div id="four" style="width:100%; height:50px; background-color:navy;">
+	<h2>TOTAL</h2>
+		<div id="fou" style="width:100%; height:100%; background-color: gold;">
+		</div>
+	</div>
+		
+</div>
+
+ -->
+ 
+</body>
+</html>
