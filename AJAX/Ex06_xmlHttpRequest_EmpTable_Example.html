@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+		
+		/* 
+		 1. XMLHttpRequest 객체 얻기
+  		 2. onreadystatechange 이벤트 핸들러 구현 (함수 (callback))
+  		 3. 요청 정보 ( open() )
+  	     4. 요청 보내기 (send() )
+         5. 응답 처리 (Text(JSON), xml )
+		*/
+		
+		var httpReq = null;
+		
+		function getInstance(){
+		   if(window.XMLHttpRequest){
+			   httpReq = new XMLHttpRequest(); //모든 브라우져 > XMLHttpRequest
+		   }else if(window.ActiveXObject){
+			   httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		   }else{
+		    throw new Error("AJAX 지원하지 않습니다");
+		   }
+		   return httpReq;
+		}
+		
+		
+		// 여기부분 말고는 건드릴 것이 없다! 정형화된 코드
+		function HandlerStateChange(){
+			//alert(httpReq.readyState)
+			if(httpReq.readyState == 4){ 
+				if(httpReq.status >= 200 && httpReq.status < 300){
+				    //처리 코드 (가공 사용자 마음)
+				    //Text (text , html , json)
+				    //XML
+				   document.getElementById("txtdata").innerHTML = httpReq.responseText;
+				}
+			}
+		}
+		
+		
+		// Ex03 에서 수정됨
+		function sendData(){				// 호출 시 파라미터를 받아서 처리
+			httpReq = getInstance();
+			httpReq.onreadystatechange = HandlerStateChange; //(x)
+			let empno = document.getElementById("emp").value;
+	        httpReq.open("POST", "Ex06_EmpSearch.jsp?empno="+empno);//준비  jsp?id=0
+	        httpReq.send();
+		}
+		
+	</script>
+</head>
+<body>
+	<h3>사원 검색하기 (비동기 처리 방식)</h3>
+	<select name="emp" id="emp" onchange="sendData()">
+		<option value="0000">SELECT EMPNO</option>	
+		<option value="7788">SCOTT</option>
+		<option value="7902">FORD</option>
+		<option value="7521">WORD</option>
+	</select>
+	<div id="txtdata"> EMP DATA LOAD</div>
+	
+	<h3>사원 검색하기 (동기 처리 방식)</h3>
+	<a href="Ex06_EmpSearch.jsp?empno=7788">사원검색</a>
+</body>
+</html>

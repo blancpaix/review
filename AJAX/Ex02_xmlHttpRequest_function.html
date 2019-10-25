@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	/*
+		0 : 초기화 되지 않은 상태 (open메소드가 아직 호출되지 않은 상태)
+		1 : open메소드가 호출된 상태 (send메소드는 호출 되지 않은 상태)
+		2 : 송신완료, 요청을 시작한 상태 ( 요청은 하지 않았지만 데이터가 아직 오지 않은 상태)
+		3 : 수신 중인 상태 (데이터가 들어오고 있는 상태)
+		4 : 수신 완료 (데이터를 모두 받은 상태)
+	*/
+	
+	/*
+	var httpReq=null;
+	function getInstance() {
+		  if(window.XMLHttpRequest){					// 리퀘스트가 존재하면
+		    	httpReq = new XMLHttpRequest(); //모든 브라우져 > XMLHttpRequest			// 새로운 변수에 넣어놓고
+		   }else if(window.ActiveXObject){ 		//IE6 이하 ... 라서 사실상 이 코드는 필요없습니다.
+		    	httpReq = new ActiveXObject("Msxml2.XMLHTTP");		// 비동기 기술은 클라이언트가 아니라 브라우저에서 활용하는 기술이랍니다.
+		   }else{
+		       throw new Error("AJAX 지원하지 않습니다");
+		   }
+		  return httpReq;
+	}
+	
+	
+	function handlerStateChange() {			// callback 함수 : 이벤트 발생 시 마다 자동 호출
+		if(httpReq.readyState === 4) {		// 서버로 부터 응답이 오면
+			// 응답이 정상적인 응답이라면	(status == 200~299)		정형화된 코드라서 바뀌는게 없습니다
+			if (httpReq.stattus >= 200 && httpReq.status < 300) {		// 응답이 정상이라면?		데이터가 도착하면?
+					document.getElementById("container").innerHTML = httpReq.responseText; 	// 서버가 클라이언트한테 데이터를 받는 방식은 xml 이나 text 밖에 없다
+					
+				
+			}
+			
+		}
+	}
+	*/
+	
+	var httpReq=null;
+	function getInstance(){
+	   if(window.XMLHttpRequest){
+		   httpReq = new XMLHttpRequest(); //모든 브라우져 > XMLHttpRequest
+	   }else if(window.ActiveXObject){ //IE6 이하 ...
+		   httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+	   }else{
+	       throw new Error("AJAX 지원하지 않습니다");
+	   }
+	   return httpReq;
+	}
+	
+	function handlerStateChange(){ //callback 함수 이벤트 발생시 마다 자동 호출
+		 if(httpReq.readyState === 4){  //서버로 부터 응답이 오면
+			 //응답이 정상적인 응답이라면 (status == 200 ~ 299)
+		 	if(httpReq.status >= 200 && httpReq.status < 300){
+		 		  document.getElementById("container").innerHTML = httpReq.responseText;
+		 	}
+		 }	
+	}
+
+
+	function sendData() {
+		httpReq = getInstance();
+	
+		httpReq.onreadystatechange = handlerStateChange;	// 위의 함수를 호출 (재귀호출) (이벤트에다가 바로 함수를 걸어줄때는 () 생략!!!)
+		
+		httpReq.open("GET", "Ex01_Server.html"); 			// 요청을 준비하는 것이고
+		httpReq.send();										// 서버 요청 보내기
+	}
+	
+	</script>
+</head>
+	<body>
+	<h3>이미지</h3>
+	<div id="container"></div>
+	<img src="images/1.jpg" style="width: 300px;height: 300px">
+	
+	<h3>비동기 (Ajax) 요청 처리하기</h3>
+	<input type="button" value="비동기처리" onclick="sendData()">
+	<div id="container">First Data Load .....</div>
+	
+	<h2>동기식 데이터 처리</h2>
+	<a href="Ex01_Server.html">데이터 요청</a>
+	
+	<div>HELLO AJAX WORLD</div>
+</body>
+</html>

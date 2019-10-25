@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+		
+		/* 
+		 1. XMLHttpRequest 객체 얻기
+  		 2. onreadystatechange 이벤트 핸들러 구현 (함수 (callback))
+  		 3. 요청 정보 ( open() )
+  	     4. 요청 보내기 (send() )
+         5. 응답 처리 (Text(JSON), xml )
+		*/
+		
+		var httpReq = null;
+		
+		function getInstance(){
+		   if(window.XMLHttpRequest){
+			   httpReq = new XMLHttpRequest(); //모든 브라우져 > XMLHttpRequest
+		   }else if(window.ActiveXObject){
+			   httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		   }else{
+		    throw new Error("AJAX 지원하지 않습니다");
+		   }
+		   return httpReq;
+		}
+		
+		
+		// 여기부분 말고는 건드릴 것이 없다! 정형화된 코드
+		function HandlerStateChange(){
+			//alert(httpReq.readyState)
+			if(httpReq.readyState == 4){ 
+				if(httpReq.status >= 200 && httpReq.status < 300){
+				    
+				   //document.getElementById("txtdata").innerHTML = httpReq.responseText;
+				   var data = eval("("+httpReq.responseText+")");
+				   //var result = httpReq.responseText.JobFndtnSportPolocy;
+				   
+				   var dataresult = data.JobFndtnSportPolocy[1];
+				   
+				   var table="<tr><th>PBLANC_TITLE</th><th>INST_NM</th><th>RECRUT_BEGIN_DE</th><th>RECRUT_END_DE</th><th>DETAIL_PAGE_URL</th></tr>"
+				   var target = document.getElementById("tttt");
+				   
+				   for(var index in dataresult.row){
+					   // 표만 만들어주면 됨
+						var localex = dataresult.row[index].REGION_NM;
+						var two = dataresult.row[index].PBLANC_TITLE;
+						var three = dataresult.row[index].INST_NM;
+						var four = dataresult.row[index].RECRUT_BEGIN_DE;
+						var five = dataresult.row[index].RECRUT_END_DE;
+						var six = dataresult.row[index].DETAIL_PAGE_URL;
+						
+						table+= "<tr><td>" + localex + "</td><td>" + two + "</td><td>"+ three+"</td><td>"+four+"</td><td>"+five+"</td><td>"+six+"</td></tr>" 
+				   }
+				   console.log(table);
+				   target.innerHTML = table;
+						
+				  
+				}
+			}
+		}
+		
+		// Ex03 에서 수정됨
+		function sendData(){				// 호출 시 파라미터를 받아서 처리
+			httpReq = getInstance();
+			httpReq.onreadystatechange = HandlerStateChange; //(x)
+			let region_cd = document.getElementById("REGION_CD").value;
+	        httpReq.open("POST", "https://openapi.gg.go.kr/JobFndtnSportPolocy?Key=e9daf34b330b4f44a9eeeec428be73a0&Type=json&pIndex=1&pSize=1000&REGION_CD="+region_cd);//준비  jsp?id=0
+	        httpReq.send();
+		}
+		
+	</script>
+</head>
+<body>
+	<h3>지역 코드로 데이터 불러오기 (비동기 처리 방식)</h3>
+	<select name="emp" id="REGION_CD" onchange="sendData()">
+		<option value="0000">SELECT EMPNO</option>	
+		<option value="4146">용인시</option>
+		<option value="4137">오산시</option>
+		<option value="4155">안성시</option>
+		<option value="4159">화성시</option>
+		<option value="4122">평택시</option>
+	</select>
+	<div> Table will be created </div>
+	<table>
+		<tbody id="tttt">
+		</tbody>
+	</table>
+	
+</body>
+</html>
