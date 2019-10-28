@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>WebJSP</display-name>
+<!-- 
+http://192.168.0.27:8090/WebJSP
+
+순서대로 찾는거임.. 앞에 애 없으면 뒤에 꺼 찾고 순서대로 차례차례 요청시 WebContent 아래 default.jsp 있으면 기본 페이지로 띄워줌
+
+요청이 WebContent 아래 default.jsp 있으면 기본 페이지 서비스.
+-->
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+  	<description> 기본적인 설명.. 개발자 마음..</description>
+  	<param-name>email</param-name>
+  	<param-value>webMaster@bit.or.kr</param-value>
+  </context-param>
+  
+  <context-param>
+  	<description>파일 저장 경로</description>
+  	<param-name>FilePath</param-name>
+  	<param-value>C:\\Web\\Download</param-value>
+  </context-param>
+  <!-- 위에 선언한 것들이 전역자원이 되는거임... -->
+</web-app>

@@ -13,7 +13,7 @@
 		>> UI >> JSP
 		>> MVC (model(java) - view(jsp) - controller(servlet))
 		>> 잘하는 것만 해~ 		model2 기반의 MVC 패턴
-			JPS 하나로 다 하면 되지만, 유지보수가 엄청 힘듦
+			JSP 하나로 다 하면 되지만, 유지보수가 엄청 힘듦
 		
 		>> JSP와 html의 차이점 
 		>> tomcat(WAS) 사용하는 이유 : Web Server -웹 어플리케이션 서버(서비스)
