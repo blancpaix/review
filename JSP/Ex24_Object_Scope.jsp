@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <!-- 
 Tomcat (WAS) 기본적으로 제공하는 객체
 1. request		(요청 : 클라이언트 정보)

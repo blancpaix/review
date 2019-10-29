@@ -14,6 +14,7 @@
 	// 4. 로직 / 업무 처리
 	// DB연결 >> select 로 확인 >> 회원 테이블 >> id (0) >> pwd(0)		원래라면 이렇게 해야하는데 귀찮으니
 	// id, pwd 같으면 회원으로 봅시다
+	
 	boolean success = false;
 	if (uid.equals(pwd)) {
 		// 로그인 성공
