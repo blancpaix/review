@@ -27,4 +27,27 @@ http://192.168.0.27:8090/WebJSP
   	<param-value>C:\\Web\\Download</param-value>
   </context-param>
   <!-- 위에 선언한 것들이 전역자원이 되는거임... -->
+  <!-- 
+  Web App 전체 페이지에서 적용 될 수 있는 Error 처리
+	기준
+	1. 상태코드 ( 404, 500, 201, ... ) 제어 가능
+	2. 예외객체따라서 페이지 설정 (nullpoint, outOfRange 등등 너무 많아서 잘 안써요... 어렵고...) 권장하지 않아요
+	
+	TEST 하고 적용은 최종 배포시....
+	개발시에는 Error 을 직접 확인하고 배로시에는 예외 처리 페이지 사용????
+   -->
+   
+   
+   <!-- 지금은 Error Message 를 봐야 하기 때문에 주석처리 중......
+   <error-page>
+		<error-code>404</error-code>
+		<location>/Error/Error404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/Error/Error500.jsp</location>
+	</error-page>
+    -->
+    
+    
 </web-app>

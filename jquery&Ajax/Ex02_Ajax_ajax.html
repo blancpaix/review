@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+	/*
+	Low-Level Interface 비동기 함수 (jquery.ajax(), $.ajax())
+	 -개발자가 원하는 모든 형태의 비동기 코드구현 : 상세 구현 가능
+	 
+	jQuery.ajax( url [, settings ] )
+	url : 요청 주소
+	settings : 여러개 옵션 >> json 객체로 표현 { Akey:"Avalue", Bkey:"Bvalue", }
+	
+	dataType : 서버가 클라이언트에게 응답하는 데이터 형식
+	(Text(json, script, html, text), xml)
+	
+	1. responseText > Text(json, script, html, text)
+	2. responseXml	> XML
+	*/
+	
+		$(function () {
+			$('#message').click(function() {
+				// jquery.ajax
+				// $.ajax()			위 아래 같은 코드임
+				jQuery.ajax(		// 호출			Q만 대문자로 해서 사용해야 하네 까다로운 놈일세 ㅎㅎㅎㅎ
+					{
+						url : "Ex02_menu.html",
+						dataType : "html",			// 서버가 응답하는 형식이 html 라는것
+						success : function(responsedata) {
+							// 서버가 응답한 상태 (200~299) 값 사이라면
+							// responsedata 변수가 서버가 response 한 데이터를 받음
+							$('#menudiv').html($(responsedata).find('li'));
+								// 자식요소로 li 태그 뽑아내는거임....
+							
+						} // , error:function() {} 뭐 더있지만 간력하게 이렇게만 합시다잉.
+					});				// 호출
+			})
+		});
+	</script>
+	
+	<style type="text/css">
+		#menudiv {
+			width : 300px;
+			height : 300px;
+			margin : 3px;
+			padding : 0px;
+			float : left;
+			background-color : gold;
+		}	
+	</style>
+</head>
+
+<body>
+	<div id="menudiv">
+		<a href="#" id="menu1"></a>
+	</div>
+	<Span id="message">클릭하세요</Span>
+
+</body>
+</html>
