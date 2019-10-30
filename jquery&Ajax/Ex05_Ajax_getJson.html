@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*  
+		jQuery.getJSON( url [, data ] [, success ] )
+		Default : dataType : "json"
+		
+	    //dataType : "html", //서버가 응답하는 형식 (html)		
+			
+		[url]
+		Type: String
+		A string containing the URL to which the request is sent.
+		
+		[data]
+		Type: PlainObject or String
+		A plain object or string that is sent to the server with the request.
+
+		[success]
+		Type: Function( PlainObject data, String textStatus, jqXHR jqXHR )
+		A callback function that is executed if the request succeeds.
+		*/
+	
+		$(function(){
+			$('#btn .btnload').click(function(){
+			//jQuery.getJSON( url [, data ] [, success ] )
+				$.getJSON("Ex05_json.json",function(data){
+					//console.log(jsondata);
+					//[{},{},{},{}]
+					//문제 : Table 만들고 서버에서 받는 데이터를 Table 에 td 에 넣어서
+					//display 에 append 하세요
+					//$.each() 
+					//hint) 객체.속성명 or 객체["속성명"]
+					let table="<table border='1'>";
+            		//each 문사용해서 tr , td 만들고 서버에서 받은 데이터 넣고 ....
+            			table+="<tr><th>INDEX</th><th>NUM</th><th>NAME</th></tr>";
+            			$.each(data,function(index,obj){
+            				//key point
+            				//1. 객체.속성명
+            				//2. 객체["속성명"]
+            				table+="<tr>";
+            				  table+="<td>" + index + "</td>";
+            				  table+="<td>" + obj.num + "</td>";
+            				  if(obj.num){
+            					  table+="<td>" + obj["Name"] + "</td>";
+            				  }else{
+            					  table+="<td>" + "EMPTY" + "</td>";
+            				  }
+            				  
+            				table+="</tr>";
+            			});
+            		
+            		table+="</table>";
+            		$('#display').html(table);
+                	//$('#display').append(table);
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="btn">
+		<div class="btnload">JSON DATA LOAD</div>
+	</div>
+	<div id="display"></div>
+</body>
+</html>
+
+
+

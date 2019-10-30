@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	/*
+    [url]
+    Type: String
+    A string containing the URL to which the request is sent.
+      && Default : dataType : "json"							&&&&&&&&&&&&&&&&&&
+    	// dataType : "html", 		// 서버가 응답합는 형식 (html)
+    
+    [data]
+    Type: PlainObject or String
+    A plain object or string that is sent to the server with the request.
+    
+    [success]		 함수가 들어가는거임 그리고 파라미터로 (Obj, 등, 등 )
+    Type: Function( PlainObject data, String textStatus, jqXHR jqXHR )
+    A callback function that is executed if the request succeeds.
+	*/
+	
+	$(function() {
+		$(`#btn .btnload`).click(function() {
+			// jQuery.getJSON( url [,data] [, success] )
+			$.getJSON("Ex05_json.json", function(jsondata) {
+				// console.log(jsondata);
+				// let jsonData = jsondata
+				
+				$.each(jsondata, function(index, element) {
+					console.log(index + element.num + element.name);
+					
+					$("#targetTable").append("<tr><td>" + element.num + "</td><td>" + element.name + "</td></tr>");
+				})
+				// [ {}, {}, {} ]
+				// 문제 : Table 만들고 서버에서 받은 데이터르 td에 넣어서 
+				// display 에 append 하세요
+				
+				// Table 을 만들어놓는거는 뭐임?
+						
+	
+				// append : 겹쳐쓰기
+				// table : 덮어쓰기  오버라이팅이라서 이게 잘 맞을수도.
+			})
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="btn">
+		<div class="btnload">JSON DATA LOAD</div>
+	</div>
+	<div id="display">
+		<table id = "targetTable">
+			<tr>
+				<th>Num</th>
+				<th>Name</th>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+</html>

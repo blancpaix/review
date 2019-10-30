@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*  
+	$.ajax() 함수를 사용해서 id 값 pwd 값 비동기로 전송하고
+	그 결과에 따라서 : success , fail
+	$('#message').html('<p>로그인 성공</p>')
+	$('#message').html('<p>로그인 실패</p>')
+	Jquery effect 효과 적용 (슬라이드 효과)
+	
+	Parameter 연습 >> {}
+	val(), text(), html(), attr() 연습
+	effect >> slideUp(), slideDown() 연습
+	
+	if (result == 'success') {} 안타는 이유를 콘솔로 잘 찾아보시면 됩니다.....
+	
+	숨겨진 함수 : 넘어오는 데이터는 반드시 콘솔로 출력해봅시다
+	*/
+	
+	$(function() {					// $ 이게 제이쿼리 사용하는거임??? 그래서 위에 script 로 불러오는?>
+		$(`#login`).click(function() {
+			var actionUrl = $(`#form1`).attr(`action`);			// actionUrl >> Ex08_Ajax_loginOk.jsp
+			
+			var formData = {
+					user_id : $(`#user_id`).val(),
+					user_pw : $(`#user_pw`).val()
+			}
+			
+			$.ajax(
+					{
+						data : formData,
+						url : actionUrl,
+						type : "post",
+						dataType : "html",			// 아무렇게나 해도 일단 여기서는 상관없음
+						success : function(responseData) {
+							console.log(">" + responseData + "<");		// 공백문자가 들어간다면 비교 자체가 안됨... 그래서 밑에서 로그인이 안됬던듯??
+									// >     responseData< 이렇게 들어오기 때문에 > 뒤에 공백이 발생해서 값이 이상하게 들어감
+							var result = responseData.trim();
+							if(result == "success") {
+								$(`#message`).html("<p style='color:green; font-weight:bold'>로그인 성공</p>");
+								$(`form1`).slideUp();
+							} else {
+								$(`#message`).html("<p style='color:red; font-weight:bold'>로그인 실패</p>");
+								$(`form1`).slideDown();
+							}
+						},
+						error : function(xhr) {
+							alert("error : " + xhr.status + " / " + xhr.statusText);		// 에러코드 + 에러 텍스트 출력
+						}
+					}
+			)
+			
+			
+			/*		밑에는 나의 뻘짓
+			
+			var formData = {
+					uid : $(`#user_id`).val(),
+					upw : $(`#user_pw`).val()
+			};
+			$.ajax(
+					{
+						url : "Ex08_Ajax_loginOk.jsp",
+						type : "POST",
+						data : formData,
+						
+						success : function(data) {
+							console.log(formData);
+							
+							$(`#message`).html("<p>로그인 성공</p>");
+						},
+						
+						error : function(xhr) {
+							console.log(formData);
+							$(`#message`).html("<p>로그인 실패</p>");
+		
+						}
+					}
+				)
+				*/
+				
+		});
+	});
+	
+	</script>
+</head>
+<body>
+	<form id="form1" name="form1" action="Ex08_Ajax_loginOk.jsp" method="post">
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type='text' id='user_id' name='user_id' tabindex='1' /></td>
+				<td rowspan='2'>
+					<input type='button' id='login' tabindex='3' value='로그인' style='height: 50px' /></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type='password' id='user_pw' name='user_pw' tabindex='2' /></td>
+			</tr>
+		</table>
+	</form>
+	<div id="message"></div>
+</body>
+</html>

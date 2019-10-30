@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*	
+	$.get(URL,data,funciton(data,status,xhr), dataType)
+	  >httpReq.open("GET")
+	*/
+	
+	$(function(){
+		$('#btn').click(function() {
+			// data parameter 은 생략
+			$.get(`Ex03_Company.xml`, function(data){
+				console.log(data);			// 가공
+				$(`#display`).empty(); 		// 자식요소 제거
+				// console.log( $(data).find(`Company`) );
+				// find() 함수의 결과 return : 배열객체 [Company, Company]
+				
+				// $.each(Array, function(index, element) { })			// 개선된 for문
+				// $(`p`).each(function(index, element) { })
+				
+				// 가공하는 일이 제일 처음하는 일일건데 그만큼 잘 이해하고 있는것이 중요하단건가
+				// jQuery 쓰는것보다 가공이 훨씬 어렵습니다...
+				$.each($(data).find(`Company`), function(index, element) { })
+				$(data).find(`Company`).each(function() {
+					// console.log(this);
+					var entry = $(this);
+					// console.log(entry);				// 사용할 수 있는 객체가 되는거여
+					
+					/*
+						<Company CompanyType="private">
+							<CompanyName>Bit</CompanyName>
+							<CompanyNumber>2019</CompanyNumber>
+							<CompanyAddress>스울시 서초구</CompanyAddress>
+							<Owner></Owner>
+						</Company>
+						<Company CompanyType="crop">
+							<CompanyName>kakaT</CompanyName>
+							<CompanyNumber>2020</CompanyNumber>
+							<CompanyAddress>제주 서귀포시</CompanyAddress>
+							<Owner></Owner>
+						</Company>
+					*/
+					
+					let html = "<div>" + entry.attr(`CompanyType`) + "</div>";
+					// console.log(html);				// 콘솔로 에러 하나씩 체크하면서 하세요		&&&&&&
+									// 반환되는것은 태그 이름
+					
+					html+="<div>" + entry.find(`CompanyName`).text() + "</div>";
+									// 반환되는것이 태그 안에 있는 값
+					html+="<div>" + entry.find(`CompanyNumber`).text() + "</div>";
+					html+="<div>" + entry.find(`CompanyAddress`).text() + "</div>";
+					html+="<div>" + entry.find(`Owner`).text() + "</div>";
+					$(`#display`).append(html);
+					
+					// var companyArr = $(data).find(`Company`)
+					// $.each(companyArr, function(index, obj) { })
+					// 위와 같이 처리 가능함. 첫번쨰 parameter은 배열을 넣어주는거임
+					
+				});
+			});
+		});
+	});
+	
+	</script>
+</head>
+<body>
+	<input type="button" id="btn" value="회사소개">
+	<div id="display" style="background-color:gray">DATA</div>
+	
+</body>
+</html>

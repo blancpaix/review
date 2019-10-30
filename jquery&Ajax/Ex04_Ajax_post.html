@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(`btn`).click(function(){
+			
+			/*
+			// .jsp?name=kglim&pwd=1004 변환
+					// 권장하지 않아요!!!!!!!!! &&&&&&&&&&&&&&&&&&&&& 무튼.. 내가 했는데 안돌아가네요...
+			let name = $(`#name`).val();
+			let pwd = $(`#pwd`).val();
+			let param = `name=`+name+`$pwd=`+pwd;
+			// 무식한 방법인데 일단 해봅시다...
+			
+			//jQuery 비동기 함수 .post
+			$.post("Ex04_Server.jsp", param, function(responseText) {
+				$(`#message`).html(responseText);
+			});
+			// 우리가 받았던 데이터는 .jsp?name=kglim&pwd=1004 이거 말하는거임
+			*/
+			
+			// 권장방법 : 두번째 Paramewter 설정 : JSON { } 객체로
+		
+			// 데이터를 내장하는 케이스			데이터가 소량일 경우			
+			/*
+			$.post("Ex04_Server.jsp", {"name":$(`#name`).val(), "pwd" : $(`#pwd`).val() }, function(responseText) {
+				$(`#message`).html(responseText);
+			}); */
+			
+			// 데이터를 외장하는 케이스			데이터가 대량일 경우
+			let data = {"name":$(`#name`).val(), "pwd" : $(`#pwd`).val() }
+			$.post("Ex04_Server.jsp", data, function(responseText) {
+				$(`#message`).html(responseText);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	이름 : <input type="text" id="name" placeholder="메롱"> <br>
+	비번 : <input type="text" id="pwd" placeholder="ㅋㅋㅋㅋ"> <br>
+	<input type="button" id="btn" value="비동기 전송">
+	
+	<hr>
+	
+	<div id="message">
+	
+	</div>
+</body>
+</html>

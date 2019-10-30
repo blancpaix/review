@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#btn').click(function(){
+				var input = $(`#search`).val();
+				// console.log(input);
+				
+			   	// Quiz 입니다
+				// http://api.flickr.com/services/feeds/photos_public.gne?tags=raccoon&tagmode=any&format=json&jsoncallback=?
+ 				// tags=raccoon&tagmode=any&format=json&
+			   	// 출력은 img 태그로 출력하세요 
+				// =============================================================
+				
+				// 내가 한거
+	
+				var paramAddr= "http://api.flickr.com/services/feeds/photos_public.gne?tags=" + input + "&tagmode=any&format=json&jsoncallback=?"
+				
+				$.getJSON(paramAddr, function(jsonData) {
+					
+					// console.log(jsonData);
+					$('#images').empty();
+					
+					$.each(jsonData.items, function(index, element) {
+						// console.log(element.media.m);
+						$(`#images`).append("<img src="+ element.media.m +">");
+					})			
+				})
+				
+				/*
+				강사님 파일
+				
+				var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne? &jsoncallback=?"
+				$.getJSON(flickerAPI, {tgs:$('#search').val(), target:"any", format : "json"}, function(data, textStatus, xhr) {
+					console.log(data.items);
+					$('#images').empty();
+					$.each(data.items, function(index, obj) {
+						$(`<img>`).attr("src", obj.media.m).appendTo("div");					// appendTo 도 있네?? 뭐임
+						// if (index == 3) {
+						// 	return false;			// return false 더이상 실행 하지 않겠다.
+						// }
+					})
+				})
+				*/
+				
+			});
+		});
+			
+			
+	</script>
+</head>
+<body>
+    <input type="text" id="search">
+    <input type="button" value="검색하기" id="btn">
+    <hr>
+    <div id="images"></div>
+    
+</body>
+</html>

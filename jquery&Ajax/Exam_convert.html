@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style type="text/css" >
+	
+	body, th {
+	text-align: center;
+}
+
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.2); /*not in ie */
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+}
+
+    .wrap-loading div{ /*로딩 이미지*/
+        position: fixed;
+        top:50%;
+        left:50%;
+        margin-left: -21px;
+        margin-top: -21px;
+    }
+
+    .display-none{ /*감추기*/
+        display:none;
+    }
+
+       
+</style>
+	<script type="text/javascript">
+    /* 
+     1. XMLHttpRequest 객체 얻기
+       2. onreadystatechange 이벤트 핸들러 구현 (함수 (callback))
+       3. 요청 정보 ( open() )
+       4. 요청 보내기 (send() )
+     5. 응답 처리 (Text(JSON), xml )
+    */
+    
+    $(function () {
+	
+    	$(`#btn`).click(function() {
+    		var inputUrl = "https://openapi.gg.go.kr/JobFndtnSportPolocy?Key=e9daf34b330b4f44a9eeeec428be73a0&Type=json&pIndex=1&pSize=1000";
+    		var inputRcd = { REGION_CD : $(`#region_cd`).val() };
+    		
+        	$.ajax(
+        			{
+        				data : inputRcd,
+        				url : inputUrl,
+        				type : "GET",
+        				dataType : "json",
+        				success : function(responseData) {
+        					var tag;
+        					var tagAdd = "";
+        					console.log(responseData);
+        					$.each(responseData.JobFndtnSportPolocy[1].row, function(index, element) {
+        						// console.log(element.PBLANC_TITLE);
+        						// console.log(element.INST_NM);
+        						tag = "<tr><td>" + element.REGION_NM + "</td><td>" + element.PBLANC_TITLE +"</td><td>" + element.INST_NM +
+                                 "</td><td>" + element.RECRUT_BEGIN_DE + "</td><td>" + element.RECRUT_END_DE + "</td><td>" +
+                                 element.DETAIL_PAGE_URL + "</td></tr>";
+                                 
+                                 tagAdd = tagAdd+tag;
+                                 
+        					});
+        					$(`#tbody`).html(tagAdd);
+        					
+        					
+        				},
+            			
+            			beforeSend:function(){     
+            		        $('.wrap-loading').removeClass('display-none');
+            		    },
+
+            		    complete:function(){
+            		        $('.wrap-loading').addClass('display-none');
+            		    },
+            		    
+        				error : function(xhr) {
+        					alert("error : " + xhr.status + " / " + xhr.statusText);
+        				}
+        				
+        			}
+        			
+       			)
+    	});
+    	
+    });
+    
+    
+  
+        
+    </script>
+
+</head>
+<body>
+
+<div class="wrap-loading display-none">
+    <div><img src="images/lol.gif" /></div>
+</div>   
+
+	<h3>경기도일자리재단_일자리 관련 지원정책</h3>
+	<select name="region_cd" id="region_cd"> <!-- onchange="sendData()" -->
+		<option value="">지역을 선택하세요</option>
+		<option value="&REGION_CD=4127">안산시</option>
+		<option value="&REGION_CD=4129">과천시</option>
+		<option value="&REGION_CD=4141">군포시</option>
+		<option value="&REGION_CD=4143">의왕시</option>
+		<option value="&REGION_CD=4111">수원시</option>
+		<option value="&REGION_CD=4146">용인시</option>
+		<option value="&REGION_CD=4137">오산시</option>
+		<option value="&REGION_CD=4155">안성시</option>
+		<option value="&REGION_CD=4159">화성시</option>
+		<option value="&REGION_CD=4122">평택시</option>
+		<option value="&REGION_CD=4113">성남시</option>
+		<option value="&REGION_CD=4145">하남시</option>
+		<option value="&REGION_CD=4161">광주시</option>
+		<option value="&REGION_CD=4163">양주시</option>
+		<option value="&REGION_CD=4183">양평군</option>
+		<option value="&REGION_CD=4150">이천시</option>
+		<option value="&REGION_CD=4131">구리시</option>
+		<option value="&REGION_CD=4136">남양주시</option>
+		<option value="&REGION_CD=4182">가평군</option>
+		<option value="&REGION_CD=4119">부천시</option>
+		<option value="&REGION_CD=4121">광명시</option>
+		<option value="&REGION_CD=4136">시흥시</option>
+		<option value="&REGION_CD=4165">포천시</option>
+		<option value="&REGION_CD=4117">안양시</option>
+		<option value="&REGION_CD=4128">고양시</option>
+		<option value="&REGION_CD=4148">파주시</option>
+		<option value="&REGION_CD=4157">김포시</option>
+		<option value="&REGION_CD=4115">의정부시</option>
+		<option value="&REGION_CD=4125">동두천시</option>
+
+
+	</select>
+	
+	<input type="button" id="btn" value="눌러보실??">
+	<hr>
+	<table class="table table-hover text-center" id="table">
+		<thead>
+			<tr>
+				<th>지역명</th>
+				<th>공고명</th>
+				<th>기관명</th>
+				<th>모집시작일자</th>
+				<th>모집종료일자</th>
+				<th>상세페이지</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+		</tbody>
+	</table>
+</body>
+</html>
