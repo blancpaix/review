@@ -34,38 +34,37 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
- //jquery 로 간단하게 유효성 check 하기
- $(function() {
-  	$('#joinForm').submit(function() {
-	   //alert("가입");
-	if ($('#id').val() == "") { // 아이디 검사
-    	alert('ID를 입력해 주세요.');
-    	$('#id').focus();
-    return false;
-   } else if ($('#pwd').val() == "") { // 비밀번호 검사
-    alert('PWD를 입력해 주세요.');
-    $('#pwd').focus();
-    return false;
-   }else if ($('#mname').val() == "") { // 이름 검사
-    alert('mname를 입력해 주세요.');
-    $('#mname').focus();
-    return false;
-   }else if ($('#age').val() == "") { // 나이 검사
-    alert('age를 입력해 주세요.');
-    $('#age').focus();
-    return false;
-   }else if ($('#email').val() == "") { // 우편번호
-    alert('email를 입력해 주세요.');
-    $('#email').focus();
-    return false;
-   }
-   
-  });
- });
+	//jquery 로 간단하게 유효성 check 하기
+	$(function() {
+		$('#joinForm').submit(function() {
+			//alert("가입");
+			if ($('#id').val() == "") { // 아이디 검사
+				alert('ID를 입력해 주세요.');
+				$('#id').focus();
+				return false;
+			} else if ($('#pwd').val() == "") { // 비밀번호 검사
+				alert('PWD를 입력해 주세요.');
+				$('#pwd').focus();
+				return false;
+			} else if ($('#mname').val() == "") { // 이름 검사
+				alert('mname를 입력해 주세요.');
+				$('#mname').focus();
+				return false;
+			} else if ($('#age').val() == "") { // 나이 검사
+				alert('age를 입력해 주세요.');
+				$('#age').focus();
+				return false;
+			} else if ($('#email').val() == "") { // 우편번호
+				alert('email를 입력해 주세요.');
+				$('#email').focus();
+				return false;
+			}
+
+		});
+	});
 </script>
 
 <style type="text/css">
@@ -99,81 +98,161 @@ td {
 
 
 		<div class="page-holder w-100 d-flex flex-wrap">
-			<div class="container-fluid px-xl-5">
+			<div class="container-fluid px-xl-12">
 
-				<section class="py-5">
+				<section class="py-12">
 					<div class="row"></div>
-						
-						
-						<table
-			style="width: 400px; height: 200px; margin-left: auto; margin-right: auto;">
-			<tr>
-				<th>ID:</th>
-				<!-- 습관적으로 name 을 안만들기 때문에.... 값을 불러올 수가 없다. 그러니까 다 만드세요... 같은 이름을 쓰더라도 일단은 &&&&&&&&&&&&&&&& -->
-				<td><input type="text" name="id" id="id"></td>
-			</tr>
-			<tr>
-				<th>PWD:</th>
-				<td><input type="password" name="pwd" id="pwd"></td>
-			</tr>
-			<tr>
-				<th>Name:</th>
-				<td><input type="text" name="mname" id="mname"></td>
-			</tr>
-			<tr>
-				<th>age:</th>
-				<td><input type="text" name="age" id="age" maxlength="3"></td>
-			</tr>
-			<tr>
-				<th>Gender:</th>
-				<td><input type="radio" name="gender" id="gender" value="여"
-					checked>여자 <input type="radio" name="gender" id="gender"
-					value="남">남자</td>
-			</tr>
-			<tr>
-				<th>Email:</th>
-				<td><input type="text" name="email" id="email"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="회원가입"> <input
-					type="reset" value="취소"></td>
-			</tr>
-		</table>
-						
-						
-						
-						
-					<footer
-						class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-						<jsp:include page="/common/Bottom.jsp"></jsp:include>
-					</footer>
+
+					<div class="row mb-4">
+						<div class="col-lg-7 mb-4 mb-lg-0">
+							<div class="card">
+								<div class="card-header">
+									<h2 class="h6 text-uppercase mb-0">SIGN IN HERE!</h2>
+								</div>
+								<div class="card-body">
+									<form action="Signinok.jsp" method="post" name="SigninForm" id="SigninForm">
+
+										<div class="form-group mb-4">
+											<input type="text" name="userId" placeholder="UserId"
+												class="form-control border-0 shadow form-control-lg">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="password" name="passowrd" placeholder="Password"
+												class="form-control border-0 shadow form-control-lg text-violet">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="password" name="passowrdCheck"
+												placeholder="Password Check"
+												class="form-control border-0 shadow form-control-lg text-violet">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="text" name="fName" placeholder="First Name"
+												class="form-control border-0 shadow form-control-lg">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="text" name="sName" placeholder="Second Name"
+												class="form-control border-0 shadow form-control-lg">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="text" name="address" placeholder="Address"
+												class="form-control border-0 shadow form-control-lg">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="text" name="phoneNum" placeholder="Phone Number"
+												class="form-control border-0 shadow form-control-lg">
+										</div>
+
+										<div class="form-group mb-4">
+											<input type="text" name="email" placeholder="E-mail"
+												class="form-control border-0 shadow form-control-lg">
+										</div>
+
+
+										<button type="submit" class="btn btn-primary shadow px-5">Sign
+											In</button>
+										<button type="reset" class="btn btn shadow px-5">Reset</button>
+
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- 
+					<div class="row align-items-center py-8">
+						<!-- 
+						<div class="col-5 col-lg-7 mx-auto mb-5 mb-lg-0">
+							<div class="pr-lg-5">
+								<img src="img/illustration.svg" alt="" class="img-fluid">
+							</div>
+						</div>
+		-- >
+						<div class="col-lg-8 px-lg-4">
+							<h1 class="text-base text-primary text-uppercase mb-4">I can
+								make the Sign in Form!</h1>
+							<h2 class="mb-4">Sign in in HERE!</h2>
+							<p class="text-muted">LOL! Join our Site and Get Premier
+								Service, yall!</p>
+
+							<form action="Signinok.jsp" method="post" name="SigninForm"
+								id="SigninForm">
+
+								<div class="form-group mb-4">
+									<input type="text" name="userId" placeholder="UserId"
+										class="form-control border-0 shadow form-control-lg">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="password" name="passowrd" placeholder="Password"
+										class="form-control border-0 shadow form-control-lg text-violet">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="password" name="passowrdCheck"
+										placeholder="Password Check"
+										class="form-control border-0 shadow form-control-lg text-violet">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="text" name="fName" placeholder="First Name"
+										class="form-control border-0 shadow form-control-lg">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="text" name="sName" placeholder="Second Name"
+										class="form-control border-0 shadow form-control-lg">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="text" name="address" placeholder="Address"
+										class="form-control border-0 shadow form-control-lg">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="text" name="phoneNum" placeholder="Phone Number"
+										class="form-control border-0 shadow form-control-lg">
+								</div>
+
+								<div class="form-group mb-4">
+									<input type="text" name="email" placeholder="E-mail"
+										class="form-control border-0 shadow form-control-lg">
+								</div>
+
+
+								<button type="submit" class="btn btn-primary shadow px-5">Sign In</button>
+								<button type="reset" class="btn btn shadow px-5">Reset</button>
+								
+							</form>
+ -->
+					</div>
+				</section>
+			
 			</div>
+
+			
+
 		</div>
-
-
-
-
-		
-
 	</div>
-	</form>
-	</td>
-	</tr>
-	<tr>
-		<td colspan="2"><jsp:include page="/common/Bottom.jsp"></jsp:include>
-		</td>
-	</tr>
-	</table>
-
+		<footer
+			class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+			<jsp:include page="/common/Bottom.jsp"></jsp:include>
+		</footer>
+	</div>
 
 
 	<!-- JavaScript files-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/popper.js/umd/popper.min.js">
-			
-		</script>
+		
+	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js">
+		
+	</script>
 	<script src="vendor/chart.js/Chart.min.js"></script>
 	<script src="js/js.cookie.min.js"></script>
 	<script src="js/charts-home.js"></script>

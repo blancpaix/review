@@ -18,21 +18,27 @@
 	
 		try{
 		
-			conn = 	Singleton_Helper.getConnection("oracle");
-		String sql="select id, pwd from koreamember where id=?";
+		conn = 	Singleton_Helper.getConnection("oracle");
+		String sql="select id, pwd, sn, ip from ExamMember where id=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,id);
 		rs = pstmt.executeQuery(); 
 		
 		while (rs.next()) {
+			
 		if (pwd.equals(rs.getString("pwd"))) {
+			
 				session.setAttribute("userid", rs.getString("id"));
+				session.setAttribute("sn", rs.getString("sn"));
+				session.setAttribute("ip", rs.getString("ip"));
 				
-				response.sendRedirect("Main.jsp");
+				
+				response.sendRedirect("index.jsp");
 						
 			} 	
 		}
 		// while 을 타지 않는 경우는 ID 나 pw 가 존재하지 않는 경우
+		
 		out.print("<script>");
 			out.print("location.href='Signin.jsp'");
 		out.print("</script>");
@@ -45,17 +51,4 @@
 	} 
 	
 %>    
-
-
-
-
-
-
-
-
-
-
-
-
-
 

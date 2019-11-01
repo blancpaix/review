@@ -1,5 +1,16 @@
+<%@page import="kr.or.bit.utils.Singleton_Helper"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	if (session.getAttribute("userid") == null || !session.getAttribute("userid").equals("admin")) {
+		//강제로 페이지 이동
+		out.print("<script>location.href='index.jsp'</script>");
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +45,18 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
+<style type="text/css">
+table {
+	border: solid 2px white;
+	border-collapse: collapse;
+}
+
+tr {
+	background-color: white;
+	color: black;
+}
+</style>
+
 <body>
 
 	<!-- navbar-->
@@ -51,56 +74,73 @@
 				<section class="py-5">
 					<div class="row">
 
+						<%
+						Connection conn = null;
+						PreparedStatement pstmt = null;
+						ResultSet rs = null;
+						try {
+							conn = Singleton_Helper.getConnection("oracle");
+							String sql = "select id, ip from ExamMember";
+							pstmt = conn.prepareStatement(sql);
+							rs = pstmt.executeQuery();
+						%>
 
+						<table style="width: 400px; height: 100px; margin-left: auto; margin-right: auto">
+							<tr>
+								<th colspan="4">Member List</th>
+							</tr>
 
-						<div class="row align-items-center py-5">
-							<div class="col-5 col-lg-7 mx-auto mb-5 mb-lg-0">
-								<div class="pr-lg-5">
-									<img src="img/illustration.svg" alt="" class="img-fluid">
-								</div>
-							</div>
-							<div class="col-lg-5 px-lg-4">
-								<h1 class="text-base text-primary text-uppercase mb-4">I
-									can make the Login Form!</h1>
-								<h2 class="mb-4">get Away!</h2>
-								<p class="text-muted">LOLOLOLOLOLOLOLOLOLOLOLOLOLOL</p>
-
-								<form action="loginok.jsp" method="post" name="loginForm" id="loginForm">
-									<div class="form-group mb-4">
-										<input type="text" name="id" id="id"
-											placeholder="Username or Email address"
-											class="form-control border-0 shadow form-control-lg">
-									</div>
-									<div class="form-group mb-4">
-										<input type="password" name="pwd" id="id" placeholder="Password"
-											class="form-control border-0 shadow form-control-lg text-violet">
-									</div>
-
-									<button type="submit" class="btn btn-primary shadow px-5">Log
-										in</button>
-								</form>
-
-							</div>
-						</div>
+						<%
+						while (rs.next()) {
+						%>
 						
-	
+						<tr>
+							<td width="100px"><a href="Ex03_MemberDetail.jsp?id="<%=rs.getString("id")%>'> <%=rs.getString("id")%> </a> 
+							<td width="100px"><%=rs.getString("ip")%></td>
+							<td><a href='Ex03_MemberDelete.jsp?id=<%=rs.getString("id")%>'>	[삭제] </a></td>
+							<td><a href='memberEdit.jsp?id=<%=rs.getString("id")%>'> [수정] </a></td>
+						</tr>
+
+						<%
+						}
+						%>
+
+						</table>
+
+						<%
+						} catch (Exception e) {
+
+						} finally {
+							Singleton_Helper.close(rs);
+							Singleton_Helper.close(pstmt);
+						}
+						%>
+					
 					</div>
 				</section>
 
-				<footer
-					class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-					<jsp:include page="/common/Bottom.jsp"></jsp:include>
-				</footer>
+
+
 				
 			</div>
 		</div>
+		<footer
+					class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+					<jsp:include page="/common/Bottom.jsp"></jsp:include>
+				</footer>
+	</div>
+
 
 
 		<!-- JavaScript files-->
 		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/popper.js/umd/popper.min.js"> </script>
+		<script src="vendor/popper.js/umd/popper.min.js">
+	
+</script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+		<script src="vendor/jquery.cookie/jquery.cookie.js">
+	
+</script>
 		<script src="vendor/chart.js/Chart.min.js"></script>
 		<script src="js/js.cookie.min.js"></script>
 		<script src="js/charts-home.js"></script>

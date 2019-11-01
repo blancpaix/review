@@ -48,13 +48,13 @@
 				<section class="py-5">
 					<div class="row">
 					
-						we can't write Korean.
+						
 						<jsp:include page="/Main.jsp"></jsp:include>
-					
-							
-						</section>
+						
+				</section>
 			
 				<section>
+				
 					<div class="row mb-4">
 						<div class="col-lg-7 mb-4 mb-lg-0">
 							<div class="card">
@@ -71,6 +71,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
 							<div class="card mb-3">
 								<div class="card-body">
@@ -91,6 +92,7 @@
 									</div>
 								</div>
 							</div>
+							
 							<div class="card">
 								<div class="card-body">
 									<div class="row align-items-center flex-row">
@@ -110,6 +112,7 @@
 									</div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 
