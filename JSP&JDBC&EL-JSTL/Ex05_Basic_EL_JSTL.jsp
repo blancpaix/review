@@ -39,5 +39,16 @@ ${param.id } - ${param.pwd }<br>
 id : ${userid }<Br>
 pwd : ${userpwd } <Br>
 
+<hr>
+
+<!-- c:Set 구문에서 문들어진 변수를 사용 -->
+<c:if test="${empty userpwd }">
+	<h3>not empty userpwd</h3>
+	<c:if test="${userpwd == '1004' }">
+		<h3>welcome Admin page</h3>
+	</c:if>
+</c:if>
+
+
 </body>
 </html>
