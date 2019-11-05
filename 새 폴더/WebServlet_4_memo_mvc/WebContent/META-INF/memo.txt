@@ -1,0 +1,41 @@
+원칙) Model2 기반의 MVC 패턴 사용 프로젝트
+Model  (DTO , DAO)
+View (JSP)
+Controller(Servlet)
+
+지금 servlet 연습 ...
+JSP 파일 사용하지 않고 DB작업 (servlet 가지고 웹 서비스 )
+
+create table memo(
+	id varchar2(15) not null,
+	email varchar2(20) not null,
+	content varchar2(100)
+);
+
+DB 작업 : ojdbc6.jar 파일 
+
+-----------------------------------------------------------------------
+Model2 기반의 MVC 패턴 웹 프로젝트
+
+DB Table 설계
+
+Model :(순수한 자바  파일) >> DTO(VO,DOMAIN) (데이터를 담을 수 있는 클래스 1건)
+                      >> DAO(Data Access Object) : DB연결 .. CRUD 작업 함수 
+                      >>>> select(2개 함수:전체,조건) , update , insert , delete
+
+View : JSP (EL & JSTL)
+
+
+
+연습용 : [요청]마다 controller 제작 실습
+
+Controller : Servlet(요청 받기:주소) >> 요청을 받아서 업무에 따라서 (Model & view) 제어
+
+
+
+
+
+
+
+
+

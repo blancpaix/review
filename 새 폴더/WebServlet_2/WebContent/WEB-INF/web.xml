@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>WebServlet_2</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>path</servlet-name>
+  	<servlet-class>com.PathServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>path</servlet-name>
+  	<url-pattern>/java/study/*</url-pattern>
+  	<!--  PathServlet 이거임
+  		/* 뒤에 뭐가 들어가든 그짝으로 가는거여~ path 서블릿 실행 강제
+  		그러면 게시판 조회 같은거 할떄 이런거 사용하는듯? -->
+  		
+  </servlet-mapping>
+  
+  <!-- 
+      http://localhost:8090/WebServlet_2/java/study/board.jsp
+  	   WebContent/java/study/a.jsp  > com.PathServlet 실행
+       WebContent/java/study/b.jsp  > com.PathServlet 실행
+       WebContent/java/study/aaaaaa > com.PathServlet 실행
+  -->
+  
+   <servlet>
+  	<servlet-name>path2</servlet-name>
+  	<servlet-class>com.PathServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>path2</servlet-name>
+  	<url-pattern>/jquery</url-pattern>
+  	<!-- 아예 폴더명을 지정했음.
+  		그러면 어떻게 되는가??  servlet 실행됨
+  		 -->
+  </servlet-mapping>
+  
+</web-app>
