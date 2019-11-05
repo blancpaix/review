@@ -4,35 +4,46 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	 $(document).ready(function(){
-		 $('#message').click(function(){
-			//유효성 검증 (입력)
-			$.ajax(
-				{
-					// http://192.168.0.3:8090/WebServlet_4_memo_mvc/MemoId
-					url:"MemoId",
-
-					dataType : "text",
-					data : {"id" : ${"#id "}.val() },
-					success : function (data) {
-						if (data == "false") {
-							alert("굿?");
-						} else if (data =="true") {
-							alert("낫굿?")
-						} else {
-							alert("뭐여?");
-						});
-					},
-					error : {
-						
-					}
-					
-				}		
-			); 
-		 }); 
-	 });	
-	</script>
+	
+   <script type="text/javascript">
+   
+     $(document).ready(function(){
+    	 
+         let regId = /^[a-z0-9_]{4,15}$/;
+         
+         $(`#id`).keyup(function(){
+             if(regId.test($(`#id`).val()) != true ){
+                 $(`.tdid`).text(`아이디가 조건에 일치하지 않습니다.`);                 
+             }else{
+                 $(`.tdid`).text(`아이디가 조건과 일치합니다.`);                 
+             }
+         });
+         
+         $(`#message`).click(function(){
+            //유효성 검증 (입력)
+            $.ajax(
+                {
+                    //http://192.168.0.3:8090/WebServlet_4_memo_mvc/MemoId
+                    url : "MemoId",   // 이건 뭐여
+                    dataType : "text",    // 텍스트 타입 받아서 비교를 하겠다는건가?? JSON 객체 안받으니가
+                    data:{
+                    	"id" : $('#id').val()
+                    },
+                    success : function(data){ 
+                        if(data == `false`){
+                        	alert(`이미 사용중인 아이디`);
+                        }else{
+                        	alert(`사용 가능한 아이디`);
+                        }
+                    },
+                    error:function(xhr){
+                        alert(xhr.statusText);
+                    }
+                }); 
+            
+         }); 
+     });    
+    </script>
 </head>
 <body>
 <div style="margin-top:70px;"></div> 
@@ -58,7 +69,9 @@
                 <input type="button" value="ID확인" id="message">
 
             </td> 
-        </tr>     
+            
+        </tr>
+        <tr><td></td><td class="tdid"></td></tr>     
         <tr> 
             <td width="25%" align="center"> 
                 <b>EMAIL</b> 

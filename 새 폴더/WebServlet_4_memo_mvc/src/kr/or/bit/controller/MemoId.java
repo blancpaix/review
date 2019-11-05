@@ -33,10 +33,7 @@ public class MemoId extends HttpServlet {
 		 memodao dao = new memodao();
 		 String ischeck = dao.isCheckById(id);
 		 //key point
-	
 		 out.print(ischeck);
-		
-		 // 건들 필요가 없어요
 		 
 	}
 

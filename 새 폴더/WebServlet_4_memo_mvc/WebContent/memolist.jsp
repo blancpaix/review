@@ -32,6 +32,7 @@
 	
 </head>
 <body>
+							<!-- 값이 지정된 경우 이렇게.. 그렇다면 memolist 는 request 객체로 이전단계에서 지정된거임 -->
 <c:set var="memolist" value="${requestScope.memolist}"></c:set>
 <div align=center>
 <hr color=green width=400><h2> Line Memo List </h2><hr color=green width=400>

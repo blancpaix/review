@@ -21,7 +21,7 @@ public class Singleton_Helper {
 		try {
 			  if(dsn.equals("oracle")) {
 				  Class.forName("oracle.jdbc.OracleDriver");
-				  conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","bituser","1004");
+				  conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","bituser","1004");
 			  }else if(dsn.equals("mysql")) {
 				  Class.forName("com.mysql.jdbc.Driver");
 				  conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/superdb","superman","1004");

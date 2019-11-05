@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.jasper.TrimSpacesOption;
-
 import kr.or.bit.dto.memo;
 import kr.or.bit.utils.Singleton_Helper;
 
@@ -33,7 +31,7 @@ public class memodao {
 	}
 	
 	//1건의 데이터 read (where 조건으로 사용되는 컬럼은 반드시 unique , primary key)
-	public memo getMemoListById(String id) throws SQLException {
+	public memo getMemoListById(String id) {
 		/*
 		  select id, email ,content from memo where id=?
 		  memo m = new memo();
@@ -103,35 +101,66 @@ public class memodao {
 	}
 
 	//추가함수 (ID 존재 유무 판단 함수)
-	public String isCheckById(String id) {
-		String check = "";
+
+	//id 존재하면 : "false"
+	//존재하지 않으면 : "true" 
+	public String isCheckById2(String id) {
 		
+		String check="";
 		PreparedStatement pstmt = null;
-		String sql = "select id from memo where id=?";
-		
+		ResultSet rs= null;
 		try {
-			pstmt.setString(1,id);
-			pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				memo m = new memo();
-				m.setId(rs.getString("id"));
-				if (id.equals(m.getId())) {
-					check= "false";
-				} else {
-					check= "true";
+				
+				String sql = "select id from memo where id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+						check="false";
+				}else{
+						check="true";
 				}
-			}
-		} catch (Exception e) {
-			System.out.println("헬레렐레 : " + e.getMessage());
-		} finally { 
+				
+		}catch(Exception e) {
+			System.out.println("Insert : " + e.getMessage());
+		}finally {
 			Singleton_Helper.close(pstmt);
 		}
+		System.out.println(check);
 		return check;
+		
 	}
+	
+	
+	public String isCheckById(String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			String sql = "select count(id) from memo where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				System.out.println("false 가 반환될거임");
+				return "false";
+			} else {
+				System.out.println("true 가 반환될거임");
+				return "true";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("예외가 발생햇어예~");
+		return "false";
+		
+		
 
+	}
 }
+
 
 
 
