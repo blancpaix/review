@@ -1,0 +1,9 @@
+1. DI 의존성 주입 (Defendency Injection)
+  1.1 Constructor Injection
+  1.2 Setter Injection
+
+2. Injection 대상
+  2.1 값 (value) : "A", 1000
+  2.2 객체 (bean) : ref
+  2.3 Collection : List, Set, Map 이것만 연습이 되면 쉬울겁니다 ㅋㅋㅋ
+  

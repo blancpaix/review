@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--  
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IOC) 안에 
+[객체를 만들고 조립(관계...의존성)] 설정
+
+>>DIConfig.xml 문서를  read 해서 ....안에 있는 코드 먼저 실행
+>>xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+또는  Annotation 통해서 컨테이너 자원 구성
+
+:제어의 역전 (프로그램의 제어구조를 바꾼다)
+:작은 단위의 부품을 만들어 놓고 그 것을 조립하는 행위 (레고 블럭 처럼)
+
+사실  Qualifier 잘 안씀 그럴바에야 리소스 쓰는게 낫습니다
+@Qualifier
+목적 : @Autowired의 목적에서 동일 타입의 빈객체가 존재시 특정빈을 삽입할 수 있게 설정한다. 
+설정위치 : @Autowired 어노테이션과 함께 사용된다.
+추가설정 : 동일타입의 빈객체 설정에서 <qualifier value="[alias명]" />를 추가하여 준다.
+옵션 : name - alias명
+
+// java 코드
+MonitorViewer viewer = new MonitorViewer();
+Recorder recorder = new Recorder();
+viewer.setRecorder(recorder);
+-->	
+
+ 	<context:annotation-config />	<!-- 이거 한방이면 모든게 해결됩니다만?... 이런 것들은 페이지 제일 위에서 선언해두고 쓰면 될겁니다 -->
+ 	
+ 	<bean id="viewer" class="DI_Annotation_02.MonitorViewer"></bean>
+ 	
+ 	<bean id="xx" class="DI_Annotation_02.Recorder">
+ 		<qualifier value="recorder_1"></qualifier>
+ 	</bean>
+ 	
+ 	<bean id="yy" class="DI_Annotation_02.Recorder">
+ 		<qualifier value="recorder_2"></qualifier>
+ 	</bean>
+ 	
+</beans>
+
+
+

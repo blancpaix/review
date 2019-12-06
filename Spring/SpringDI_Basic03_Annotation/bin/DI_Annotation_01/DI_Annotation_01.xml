@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--  
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IOC) 안에 
+[객체를 만들고 조립(관계...의존성)] 설정
+
+>>DIConfig.xml 문서를  read 해서 ....안에 있는 코드 먼저 실행
+>>xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+또는  Annotation 통해서 컨테이너 자원 구성
+
+:제어의 역전 (프로그램의 제어구조를 바꾼다)
+:작은 단위의 부품을 만들어 놓고 그 것을 조립하는 행위 (레고 블럭 처럼)
+
+	MonitorViewer viewer = new MonitorViewer();
+	Recorder recorder = new Recorder();
+	viewer.setRecorder(recorder);
+	
+-->	
+
+<!--  	1 단계 xml 전환
+	<bean id="recorder" class="DI_Annotation_01.Recorder" > </bean>
+	<bean id="viewer" class="DI_Annotation_01.MonitorViewer" >
+		<property name="recorder" >
+			<ref bean="recorder" />
+		</property>
+	</bean>
+
+		
+-->	
+
+<!--	 2단계 Annotation 기반으로 DI 작업
+	@Autowired > Type기반 (자동 주입)
+	목적 : 의존관계를 자동설정할 때 사용하며 [타입을 이용]하여 의존하는 객체를 삽입해 준다. 
+		그러므로 (IOC Container) 해당 타입의 빈객체가 존재하지 않거나 또는 2개 이상 존재할 경우 스프링은 예외를 발생시키게 된다.
+		
+	설정 위치 : 생성자, 필드, 메소드 (굳이 setter 메소드가 아니어도 된다)
+	
+	** @Autowird 사용하기 위한 선행 작업			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+			org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+		<bean id="" class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
+		사실은 위와같이 써야 합니다...
+		AutowiredAnnotationBeanPostProcessor 클래스가 빈객체로 등록되어야 한다.
+		위의 것이 빈으로 등록되어야 @Autowired 사용 가능
+	
+	이거 하나 쓰면 @Autowired 그냥 사용...	
+	!! <context:annotation-config />
+	** Annotation 사용에 필요한 모든 클래스를 한번에 bean 객체로 생성합니다. **		단점 : 안쓰고 싶은 bean 들도 다 등록함 => 리소스 낭비
+	
+	
+	** @Autowired 정상 동작하지 않는 경우
+	1. injection 되는 타입의 bean 객체가 IOC 컨테이너 안에 없는 경우 (exception)
+	2. IoC 컨테이너 안에 같은 타입의 bean 객체가 여러개 존재하는 경우
+		ex) 	<bean id="a" class="DI_Annotation_01.Recorder"></bean>
+			 	<bean id="b" class="DI_Annotation_01.Recorder"></bean>
+			 	<bean id="c" class="DI_Annotation_01.Recorder"></bean>
+	3. IoC 컨테이너 안에 같은 타입의 bean 객체가 여러개 존재하더라도 
+		private Recorder recorder;
+		public void setRecorder(Recorder recorder)
+		set 함수의 parameter 이름이 <bean element 의 id 와 같으면 하나를 콕 선택해서 오류가 뜨지 않아요
+		// set 함수의 parameter 이름이 <bean id="" 값과 같다면... 처리가능
+		원칙) @Resource (by name)
+		
+		
+-->
+ 	<context:annotation-config />	<!-- 이거 한방이면 모든게 해결됩니다만?... 이런 것들은 페이지 제일 위에서 선언해두고 쓰면 될겁니다 -->
+ 	
+ 	<bean id="viewer" class="DI_Annotation_01.MonitorViewer"></bean>
+ 	<bean id="recorder" class="DI_Annotation_01.Recorder"></bean>
+ 	<bean id="a" class="DI_Annotation_01.Recorder"></bean>
+ 	<bean id="b" class="DI_Annotation_01.Recorder"></bean>
+ 	<bean id="c" class="DI_Annotation_01.Recorder"></bean> 	
+ 	
+</beans>
+
+
+

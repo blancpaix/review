@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IoC 컨테이너) 안에서
+[ 객체를 만들고 조립 (관계...의존성 ) ] 설정
+
+>> DIConfig.xml 문서를 read 해서.... 안에 있는 코드 먼저 실행
+>> xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+	또는 Annotation 을 통해서 컨테이너 자원 구성
+	
+	: 제어의 역전 (프로그램의 제어 구조를 바꾼다)
+	: 작은 단위의 부품을 만들어 놓고 그것을 조립하는 행위 (레고 블럭 만드는 것 처럼)
+
+	MessageBean_en messagebean_en = new MessageBean_en();
+	
+	MessageBean_kr messagebean_kr = new MessageBean_kr();	
+	
+	MessageBean messagebean = new MessageBean_kr();	
+	
+	Ioc 객체 주입의 장점은 필요할 때 주입이 가능하다?? 라는거임 그래서 자유롭다고?
+-->
+
+	<bean id="message" class="DI_03_Spring.MessageBean_en">	</bean>
+	
+
+</beans>

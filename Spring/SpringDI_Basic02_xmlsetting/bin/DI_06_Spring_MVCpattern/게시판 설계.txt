@@ -1,0 +1,23 @@
+MVC 게시판
+
+1. 요구사항
+	create table Article() >> Oracle, Mysql
+	
+Model 		우리는 Model 단만 할거
+	1. DTO (VO) : Article
+	2. DAO 		: ArticleDao (CRUD) : 인터페이스 설계 : 추상함수 (CRUD)
+		>> 구현 : OracleDao	ArticleDao 구현하는
+		>> 구현 : MySqlDao	ArticleDao 구현하는
+	3. SERVICE 	: 
+	
+	요청 : Controller => Service => Dao => Dto => Controller => View 구현
+	
+	
+	
+	
+	
+	
+View
+	
+Controller
+	

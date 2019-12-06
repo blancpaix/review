@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IOC) 안에 
+[객체를 만들고 조립(관계...의존성)] 설정
+
+>>DIConfig.xml 문서를  read 해서 ....안에 있는 코드 먼저 실행
+>>xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+또는  Annotation 통해서 컨테이너 자원 구성
+
+:제어의 역전 (프로그램의 제어구조를 바꾼다)
+:작은 단위의 부품을 만들어 놓고 그 것을 조립하는 행위 (레고 블럭 처럼)
+
+	ProtocolHandlerFactory factory = new ProtocolHandlerFactory();
+	Map<String, ProtocolHandler> map = new HashMap<String, ProtocolHandler>();		// 이거는 bean 따로 안만들고
+	map.put("rss", new RssHandler());
+	map.put("rest", new RestHandler());		// 이것도bean 따로 안만드는듯?
+	
+	factory.setHandlers(map);
+
+-->
+	<bean id="rssHandler" class="DI_09_Spring.RssHandler"></bean>
+	<bean id="protocolHandlerFactory" class="DI_09_Spring.ProtocolHandlerFactory" >
+		<property name="handlers">
+			
+			<map>
+				<entry>					<!-- entry 가 key 와 value 의 집합입니다 -->
+					<key> <value>rss</value> </key>
+					<ref bean="rssHandler"/>		<!-- 여기 객체가 들어가는데? -->
+				</entry>
+				
+				<entry>
+					<key> <value>rest</value> </key>
+					<bean class="DI_09_Spring.RestHandler"> </bean>
+				</entry>
+			</map>
+			
+		</property>
+	</bean>
+	
+</beans>
+
+
+

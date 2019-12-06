@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+	   
+	   
+	   <!-- 
+	   	xml 파일
+	   	IoC 컨테이너 안에 적재될 bean 객체 생성과 injection(DI)
+	   
+	   <bean id="emp"
+	   <bean name="emp, emp2, emp3"
+	   
+	   id 속성, name, 속성 : 객체의 이름 (식별자)
+	   
+	   ********* Spring MVC 로 오면 id, name 속성이 (mapping)주소로 변경 ***********
+	   id, name => url_pattern
+	   
+	   <bean id="/hello.htm" class="BoardController">
+	   	id="/hello.htm"		>>		mapping 주소
+	   
+	   
+	   
+	   
+	   -->
+	<bean id="/hello.htm" class="kr.or.bit.HelloController"> </bean>
+	
+	<bean id="/intro.htm" class="kr.or.bit.IntroController"> </bean>
+
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">		<!-- setter 주입 하는데 앞뒤로 주소하고 파일 확장자 붙여주는거임 -->
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	
+	<!--
+		mav.setViewName("Hello");
+		/WEB-INF/views/ + hello + .jsp
+		
+		view name => /WEB-INF/views/Hello.jsp
+	-->
+	
+	
+	   
+</beans>
+
+
+
+
+<!-- Serverlet-name -servlet 으로 만들어주는건가?뭐임 이거는??? 뭐 맞춰줘야 한다고 하더니 -->

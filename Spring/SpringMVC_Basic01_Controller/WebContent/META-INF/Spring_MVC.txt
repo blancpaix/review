@@ -1,0 +1,121 @@
+[SpringMVC]
+
+1. Web -> Tomcat 설정 -> workspace > UTF-8
+
+------------------------------------------------------------------------------
+2. 기존 프로젝트 (Model2 기반의 MVC)
+   Model      : dto(vo) , dao , service
+   View       : jsp (html,htm)
+   Controller : servlet 
+   
+   요청 -> FrontController 역활 > servlet (doGET(), doPOST()) 
+        >판단(글쓰기 요청, 글목록 보기) > command(?cmd=list) , url(/list.do) 
+        -> service(dto, dao) -> request (담기) -> view 지정 -> foward -> view 데이터
+        -> 클라언트에게 전달
+        
+  설정 : web.xml (*.do) 
+      Annotation : 
+      @Webservlet("*.htm")
+      public class Frontcontroller extends HttpServet{
+              요청판단 (doGET() , doPOST()) : command(?cmd=list) , url(/list.do)
+      }   
+      
+   >http://localhost:8090/kosta/list.htm >
+   
+ -------------------------------------------------------------------------------- 
+ 
+ 3. SpringMVC 작업 전제 조건
+    SpringFrameWork 통해서 > Jar 파일 프젝젝트에 추가
+    
+    -core , context , beans , expression , aop  4.2.5 버전
+    -의존 : logging
+    
+    web)
+    [ SpringMVC (WEB) ]
+    -Spring-Web   (jar)
+    -Spring-Webmvc(jar) 
+    
+    
+ 4. 설정 (web.xml)
+    > org.springframework.web.servlet.DispatcherServlet;
+    > DispatcherServlet 클래스 (Spring 제공하는 FrontController )
+    > DispatcherServlet 역할  >  요청 판단 (url-pattern) 설정
+    > *.htm , list.html, write.htm
+    > *.action , add.action, plus.action
+    > *.do ,	delete.do, addmember.do
+    
+     
+ 
+ 
+5. 
+console 기반
+ApplicationContext context = 
+    new GenericXmlApplicationContext("classpath:AOP_Basic_Spring_03/ApplicationContext.xml");
+
+>>IOC 컨테이너 > xml read > Bean 생성 , injection
+
+*************************************************************
+****web MVC framework 에서는 각 DispatcherServlet 은 각자 자신의 WebApplicationContext [IOC 컨테이너] 를 가지고 있다**
+*************************************************************
+웹은 dispatcher Servlet 하나 당 컨테이너를 각각 가지고 있다
+
+
+10월 26, 2017 10:48:55 오전 org.apache.catalina.core.ApplicationContext log
+정보: Initializing Spring FrameworkServlet 'spring'
+10월 26, 2017 10:48:55 오전 org.springframework.web.servlet.FrameworkServlet initServletBean
+정보: FrameworkServlet 'spring': initialization started
+10월 26, 2017 10:48:55 오전 org.springframework.context.support.AbstractApplicationContext prepareRefresh
+정보: Refreshing WebApplicationContext for namespace 'spring-servlet': startup date [Thu Oct 26 10:48:55 KST 2017]; root of context hierarchy
+10월 26, 2017 10:48:55 오전 org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+정보: Loading XML bean definitions from ServletContext resource [/WEB-INF/spring-servlet.xml]
+HelloController 객체 생성
+IntroController 객체 생성
+
+ 
+DispatcherServlet 이 각자 가지는 ....
+WebApplicationContext IOC 컨테이너 구성 -> xml read 해서 > 객체 생성 및 주입 
+ : **약속**  
+  <servlet-name>spring</servlet-name>
+ : [spring]-servlet.xml 자동  read  >> DispatcherServlet
+ 
+ <servlet-name>a</servlet-name> 
+ : 자동 : a-servlet.xml
+
+ 
+ 
+ -------------------------------------------------------
+ 정리)
+1. DispatcherServlet 이 제공하는 IOC 컨테이너 DI 작업
+   -규칙 : xml [이름]-servlet.xml 자동 연결
+   
+2. DispatcherServlet (FrontController) 역할 
+    사용자의 요청을 판단하고 어떤 controller 사용할지 결정    
+   -어떤 controller 정의 (spring-servlet.xml) 기술
+   -kr.or.bit.HelloController 클래스는 Controller 인터페이스 구현
+   (public class IntroController implements Controller)
+-----------------------------------------------------------
+실습)
+1. 요청 http://localhost:8090/SpringMVC_Basic01_Controller/hello.htm
+
+2. url-pattern : *.htm 에 의해서 DispatcherServlet
+   DispatcherServlet 사용하는 IOC 컨테이너 안에 bean 생성 (spring-servlet.xml)
+
+3. Handler-mapping 작업    (별도의 객체가 존재 -> )
+   -/hello.htm 주소를 가지고 일치하는 녀석이 있는지  
+   -근거 bean 생성시 id="/hello.htm" 
+   ->hello.htm
+   
+   ->DispatcherServlet 알려 줍니다 (해당하는 controller 동작 :  handleRequest())
+   ->ModelAndView 객체 생성
+   ->데이터 담는 작업 , 뷰  설정 
+   
+   ->return 결과   [DispatcherServlet] 받아서 InternalResourceViewResolver 구현되어 있다면
+   											가지고 있는 view 의 이름을 던져줌
+   
+   ->조합 : view 지정  > Model 담긴 객체를  display (EL&JSTL)
+   ->Client 전달 
+   
+ 
+ 
+ 
+ 

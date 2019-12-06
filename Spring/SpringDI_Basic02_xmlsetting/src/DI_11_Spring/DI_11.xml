@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--  
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IOC) 안에 
+[객체를 만들고 조립(관계...의존성)] 설정
+
+>>DIConfig.xml 문서를  read 해서 ....안에 있는 코드 먼저 실행
+>>xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+또는  Annotation 통해서 컨테이너 자원 구성
+
+:제어의 역전 (프로그램의 제어구조를 바꾼다)
+:작은 단위의 부품을 만들어 놓고 그 것을 조립하는 행위 (레고 블럭 처럼)
+
+	1. DataSourceFactory 빈객체
+	2. jdbc.properties 파일을 read
+	3. DataSourceFactory etter 통해서 read 값을 주입
+	
+Key Point
+xml 설정 파일에서 특정 [파일]을 read 하려면 Spring 제공하는 Context 추가해야 함
+
+1. 상단 부 추가
+xmlns:context="http://www.springframework.org/schema/context" 
+2. 문법적 강제사항
+xsi:schemaLocation="
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd"
+
+context 접두어 사용 요소 생성
+<context:property-placeholder location 특정파일 read>
+밑에서 경로는 . 안써요 	/ 씁니다?
+-->	
+	<context:property-placeholder location = "classpath:DI_11_Spring/jdbc.properties" />
+	<bean id="dataSourceFactory" class="DI_11_Spring.DataSourceFactory" >
+		<property name="jdbcDriver" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+</beans>
+
+
+

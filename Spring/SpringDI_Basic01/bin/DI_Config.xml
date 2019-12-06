@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IoC 컨테이너) 안에서
+[ 객체를 만들고 조립 (관계...의존성 ) ] 설정
+
+>> DIConfig.xml 문서를 read 해서.... 안에 있는 코드 먼저 실행
+>> xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+	또는 Annotation 을 통해서 컨테이너 자원 구성
+	
+	: 제어의 역전 (프로그램의 제어 구조를 바꾼다)
+	: 작은 단위의 부품을 만들어 놓고 그것을 조립하는 행위 (레고 블럭 만드는 것 처럼)
+	
+// JavaCode		이런식으로 작업을 했었는데!
+NewRecordView view = new NewRecordView ();		// 객체 생성
+NewRecord record = new NewRecord();
+
+코드 구현....
+view.setRecord(record);			// 의존성 객체 주입(DI)
+public void setRecord(Record record) {
+	this.record = (NewRecord)record;	
+}
+
+위와 같은 형태를 코드를 자바코드가 아닌 [ 설정 (Annotation or XML) ] 을 통해서 작업
+
+
+public static void main(String[] args) {
+		
+		NewRecordView view = new NewRecordView();
+		NewRecord record = new NewRecord();
+		
+		view.setRecord(record); 	< - - 여기를 설정을 통해서 실행 하겠다!!! 였는데
+}
+
+	** Property name 은 setter 을 구현하고 있는 member field 의 이름을 사용 **
+	** setRecord () 의 주인 => private NewRecord record; => 여기선 record 입니다. 		// %%%%%%%%%%%%%%%%%
+
+-->
+
+	<bean id="record" class="Spring_DI4.NewRecord"> </bean>
+	<!-- NewRecord record = new NewRecord(); -->
+	
+	<bean id="view" class="Spring_DI4.NewRecordView"> 
+		<property name="record" ref="record"></property>
+		<!--  setter 가 property 입니다만?  setter 의 이름이 아닌 setter 을 구현하고 잇는 멤버 필드를 name/ref 적는거예요!-->
+	</bean>
+	<!-- NewRecordView view = new NewRecordView(); -->
+
+</beans>

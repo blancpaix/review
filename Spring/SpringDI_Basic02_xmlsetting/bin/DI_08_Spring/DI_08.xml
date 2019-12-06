@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  
+Spring 자신만의 [컨테이너(Spring 전용 메모리 공간)] 제공 (IOC) 안에 
+[객체를 만들고 조립(관계...의존성)] 설정
+
+>>DIConfig.xml 문서를  read 해서 ....안에 있는 코드 먼저 실행
+>>xml 파일 은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일
+또는  Annotation 통해서 컨테이너 자원 구성
+
+:제어의 역전 (프로그램의 제어구조를 바꾼다)
+:작은 단위의 부품을 만들어 놓고 그 것을 조립하는 행위 (레고 블럭 처럼)
+
+	JobExecute jobexecute = new JobExecute("hong", 100);
+	// JobExecute jobexecute = new JobExecute("hong", 100l);
+	// JobExecute jobexecute = new JobExecute("hong", "gil");
+	
+	ArticleDao articledao = new ArticleDao();
+	jobexecute.setArticledao(articledao);	// setter 참조값
+	
+	jobexecute.setData(500); 		// setter 주입  값
+
+-->
+
+	<bean id="articleDao" class="DI_08_Spring.ArticleDao"></bean>
+	<bean id="jobExecute"  class="DI_08_Spring.JobExecute">
+		<constructor-arg><value>hong</value></constructor-arg>
+		<constructor-arg><value type="long">100</value></constructor-arg>
+		<!-- 
+		타입을 명시하지 않은 모든 값은 문자열
+		String , String
+		<constructor-arg><value>hong</value></constructor-arg>
+		<constructor-arg><value>100</value></constructor-arg> 
+		-->
+		<property name="articledao">
+			<ref bean="articleDao" />
+		</property>
+		
+		<property name="data">
+			<value>400</value>
+		</property>
+	</bean>
+
+</beans>
+
+
+
